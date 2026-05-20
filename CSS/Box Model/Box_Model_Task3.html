@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 3 — Fix Me</title>
+  <style>
+    body { font-family: Arial; }
+
+    .container {
+      width: 500px;
+      background-color: lightblue;
+      /* FIX 1: center this container horizontally */
+      margin: 0 auto;
+    }
+
+    .box {
+      width: 500px;
+      padding: 20px;
+      border: 10px solid navy;
+      background-color: white;
+      /* FIX 2: this box overflows the container — fix with one property */
+      box-sizing: border-box;
+    }
+
+    .title {
+
+      /* FIX 3: add space below the title only — not above */
+      margin-bottom: 20px;
+    }
+
+    .content {
+      /* FIX 4: add 16px space on left and right inside only */
+      padding: 0px 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h2 class="title">Broken Layout</h2>
+      <p class="content">This paragraph needs left and right breathing room.</p>
+    </div>
+  </div>
+</body>
+</html>

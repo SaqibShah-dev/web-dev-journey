@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Model Practice</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 30px;
+    }
+
+    /* content-box: width = content only. padding+border ADD to it */
+    .box-content {
+      box-sizing: content-box;
+      width: 300px;
+      padding: 20px;
+      border: 5px solid tomato;
+      background-color: #ffe0e0;
+      margin-bottom: 20px;
+      /* rendered width = 300 + 20+20 + 5+5 = 350px */
+    }
+
+    /* border-box: width = content + padding + border INCLUDED */
+    .box-border {
+      box-sizing: border-box;
+      width: 300px;
+      padding: 20px;
+      border: 5px solid steelblue;
+      background-color: #e0eeff;
+      margin-bottom: 20px;
+      /* rendered width = exactly 300px */
+    }
+
+    .card {
+      box-sizing: border-box;
+      background-color: white;
+      width: 350px;
+      padding: 32px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    .card p {
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .card button {
+      width: 100%;
+      padding: 12px;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="box-content">
+    content-box — rendered width is 350px (300 + padding + border)
+  </div>
+
+  <div class="box-border">
+    border-box — rendered width is exactly 300px
+  </div>
+
+  <div class="card">
+    <h2>Saqib Shah</h2>
+    <p>BS AI Student — 6th Semester</p>
+    <button>Contact Me</button>
+  </div>
+
+</body>
+</html>

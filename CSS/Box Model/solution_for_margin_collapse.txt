@@ -1,0 +1,83 @@
+How to disable margin-collapsing in CSS ?
+Last Updated : 23 Jul, 2025
+Margin collapsing is a behavior of CSS where the vertical margins of
+ block-level elements are combined into one i.e. to the margin of the 
+ element with the largest value. Sometimes when we assigned margins to 
+ elements it does not work in the way we think it to and that creates confusion. 
+
+In this article, we will discuss five different approaches to prevent margin 
+collapsing in CSS. These approaches include padding or a border to the parent
+ element, floating the child elements, setting the display property of the child 
+ elements to inline-block, and using the clear property to clear the float.
+
+1. Adding Padding to the Parent Element: One approach to disable margin collapsing 
+is to add padding to the parent element. This will create a new block formatting 
+context, which will prevent the margins of the child elements from collapsing with 
+the margins of the parent element.
+.parent {
+      padding: <value>;
+}
+
+
+2. Using Border on the Parent Element: Another approach to disable margin collapsing 
+is to add a border to the parent element. This will create a new block formatting context, 
+which will prevent the margins of the child elements from collapsing with the margins of the
+ parent element.
+
+Syntax:
+
+.parent {
+      border: <value>;
+}
+
+3.Using float property: The float property can be used to prevent margin collapsing. 
+When an element is floated, it is taken out of the normal flow of the document, which 
+prevents the margins from collapsing.
+
+Syntax :
+
+.child {
+      float: <value>;
+}
+
+4.Using the clear property: The clear property can be used to prevent margin collapsing 
+between two elements. When an element is cleared, it is moved down below any floated 
+elements, which prevents the margins from collapsing.
+
+Syntax :
+
+.child {
+      clear: <value>;
+}
+
+
+
+
+i create 4 html file to use these method (file name is approach1,approach2,approach3,approach4)
+
+/* 1. padding on parent ✅ */
+.parent { padding: 1px; }
+/* Works — but adds unwanted space, hacky */
+
+/* 2. border on parent ✅ */
+.parent { border: 1px solid transparent; }
+/* Works — transparent so invisible, still hacky */
+
+/* 3. float ✅ */
+.child { float: left; }
+/* Works — but float is a 2010 technique, nobody uses it anymore */
+
+/* 4. inline-block ✅ */
+.child { display: inline-block; }
+/* Works — but creates other layout problems */
+
+The Real Modern Solution
+None of those 4 are what you'd use in a real project today. The actual fix is:
+css/* ✅ Modern — use flexbox or grid on parent */
+.parent {
+  display: flex;
+  flex-direction: column;
+}
+/* Margin collapse simply doesn't exist in flex/grid containers */
+This is why Flexbox kills two birds with one stone — better layouts AND no margin 
+collapse headaches.

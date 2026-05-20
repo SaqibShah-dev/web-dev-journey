@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 5 — Margin Collapse</title>
+  <style>
+    .box1 {
+      background-color: lightcoral;
+      padding: 20px;
+      margin-bottom: 50px;
+
+    }
+
+    .box2 {
+      background-color: lightblue;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="box1">Box 1 — margin-bottom: 50px</div>
+  <!-- space between boxes is 50px -->
+   <!-- Margin collapse occurs -->
+   <!-- The larger margin wins. The smaller one collapses into it. -->
+  <div class="box2">Box 2 — margin-top: 30px</div>
+</body>
+</html>

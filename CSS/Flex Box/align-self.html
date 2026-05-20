@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+            display: flex;
+            height: 200px;
+            align-items: flex-start;
+            background-color: #f0f0f0;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .box {
+            background-color: lightblue;
+            padding: 20px;
+            width: 100px;
+        }
+
+        .box-2 {
+            align-self: center;
+            background-color: lightcoral;
+        }
+
+        .box-3 {
+            align-self: flex-end;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="box box-1">1 (Obeys Top)</div>
+        <div class="box box-2">2 (Goes Center)</div>
+        <div class="box box-3">3 (Goes Bottom)</div>
+    </div>
+</body>
+
+</html>

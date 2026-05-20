@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Grid</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 30px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* flex is a shorthand for 3 properties */
+    /* flex: 1 1 calc(33% - 20px); */
+        /*   ↑ ↑ ↑
+             | | └── flex-basis
+             |   └──── flex-shrink
+             └────── flex-grow
+*/
+
+/* 0 = NO, don't grow */
+/* 1 = YES, grow to fill space */
+
+/* flex-grow: 0;  stays at its base size  */
+/* flex-grow: 1;  grows to fill available space */
+
+/* Container: 900px wide
+3 cards with flex-grow: 0
+[Card 1][Card 2][Card 3]          empty space wasted →
+
+3 cards with flex-grow: 1
+[   Card 1   ][   Card 2   ][   Card 3   ]  fills 900px */
+
+/* flex-shrink: 0;  NO, never shrink — will overflow */
+/* flex-shrink: 1;  /* YES, shrink if needed */
+/* 
+Container: 500px wide
+3 cards each want 300px
+
+flex-shrink: 0 → [Card 1 300px][Card 2 300px][Card 3 300px] — OVERFLOW!
+flex-shrink: 1 → [Card1 167px][Card2 167px][Card3 166px]  — fits nicely */
+
+/* flex-basis: 200px;        start at exactly 200px
+flex-basis: 50%;          start at 50% of container
+flex-basis: calc(33% - 20px); start at 1/3 minus gap */
+
+/* Why calc(33% - 20px) specifically?
+Container = 900px
+3 cards × 33% = 300px each = 900px total 
+
+BUT you have gap: 20px between cards
+2 gaps × 20px = 40px taken by gaps
+
+So each card must be slightly smaller:
+40px ÷ 3 cards ≈ 13px less per card
+
+calc(33% - 20px) handles this automatically */
+
+
+/* Without the - 20px:
+[300px][300px][300px] + 40px gap = 940px → OVERFLOWS 900px container 
+With calc(33% - 20px):
+[287px][287px][287px] + 40px gap = 900px → fits perfectly  */
+
+    .card {
+      /* flex: 1 1 calc(33% - 20px);  */
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: calc(33% - 20px);
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;       
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;                   
+    }
+
+    .card h2 {
+      font-size: 18px;
+      color: #111;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      /* flex: 1;  */
+      flex-grow: 1;;
+    }
+
+    .card button {
+      background-color: #0070f3;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease; 
+    }
+
+    .card button:hover {
+      background-color: #005ecb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <h2>Card 1</h2>
+      <p>This is the content for Card 1. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <h2>Card 2</h2>
+      <p>This is the content for Card 2. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <h2>Card 3</h2>
+      <p>This is the content for Card 3. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <h2>Card 4</h2>
+      <p>This is the content for Card 4. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <h2>Card 5</h2>
+      <p>This is the content for Card 5. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+    <div class="card">
+      <h2>Card 6</h2>
+      <p>This is the content for Card 6. A short description goes here.</p>
+      <button>Learn More</button>
+    </div>
+  </div>
+
+</body>
+</html>

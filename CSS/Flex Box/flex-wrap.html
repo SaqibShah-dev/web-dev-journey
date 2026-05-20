@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Wrap</title>
+    <style>
+        .no-wrap-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .wrap-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .wrap-reverse-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap-reverse;
+            gap: 20px;
+        }
+
+        .inherit-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: inherit;
+            gap: 20px;
+        }
+
+        .initial-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: initial;
+            gap: 20px;
+        }
+
+        .revert-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: revert;
+            gap: 20px;
+        }
+
+        .revert-layer-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: revert-layer;
+            gap: 20px;
+        }
+
+        .unset-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: unset;
+            gap: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Flex wrap: no wrap</h1>
+    <div class="no-wrap-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: wrap</h1>
+    <div class="wrap-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: wrap reverse</h1>
+    <div class="wrap-reverse-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: inherit</h1>
+    <div class="inherit-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: initial</h1>
+    <div class="initial-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: revert</h1>
+    <div class="revert-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: revert layer</h1>
+    <div class="revert-layer-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+    <h1>Flex wrap: unset</h1>
+    <div class="unset-container">
+        
+        <div class="card">1</div>
+        <div class="card">2</div>
+        <div class="card">3</div>
+        <div class="card">4</div>
+        <div class="card">5</div>
+        <div class="card">6</div>
+        <div class="card">7</div>
+        <div class="card">8</div>
+        <div class="card">9</div>
+        <div class="card">10</div>
+        <div class="card">11</div>
+        <div class="card">12</div>
+    </div>
+</body>
+
+</html>

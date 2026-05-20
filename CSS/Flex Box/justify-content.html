@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justify Content</title>
+    <style>
+         .container{
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        .flex-start-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .flex-end-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .space-between-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .around-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .evenly-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .center-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .left-container {
+            height: 200px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: left;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Justify Content: flex-start</h1>
+        <div class="flex-start-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: flex-end</h1>
+        <div class="flex-end-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: space-between</h1>
+        <div class="space-between-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: Center</h1>
+        <div class="center-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: Space Around</h1>
+        <div class="around-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: Space Evenly</h1>
+        <div class="evenly-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Justify Content: Left</h1>
+        <div class="left-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

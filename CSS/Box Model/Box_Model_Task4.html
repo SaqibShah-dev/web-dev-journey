@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 4</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f0f2f5;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      width: 360px;
+      margin: 60px auto;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      overflow: hidden; /* keeps button corners inside card radius */
+    }
+
+    /* Section 1 — profile header */
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .card-header img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;   /* keeps image aspect ratio inside circle */
+    }
+
+    .card-header h2 {
+      font-size: 17px;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .card-header span {
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* Section 2 — about */
+    .card-about {
+      border-top: 1px solid #eee;
+      padding: 20px;
+    }
+
+    .card-about h3 {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-about p {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* Section 3 — button */
+    .card button {
+      width: 100%;
+      padding: 16px;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-top: 1px solid #eee;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+
+    .card button:hover {
+      background-color: #005ecb;  /* darker on hover — first taste of pseudo-classes */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <div class="card-header">
+      <img src="../images/image2.png" alt="Saqib Shah profile picture"/>
+      <div>
+        <h2>Saqib Shah</h2>
+        <span>BS AI · Semester 6</span>
+      </div>
+    </div>
+
+    <div class="card-about">
+      <h3>About</h3>
+      <p>Undergraduate student of BSAI at PMAS AAUR, Pakistan.
+         Learning full stack web development from scratch.</p>
+    </div>
+
+    <button>Contact Me</button>
+
+  </div>
+
+</body>
+</html>

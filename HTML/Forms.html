@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/submit" method="post">
+        <!-- Text input -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="you@gmail.com" required />
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" required />
+        <!-- Dropdown -->
+        <label for="user_role">Role:</label>
+        <select name="role" id="user_role">
+            <option value="">-- Select a role --</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+        <!-- Checkbox -->
+        <input type="checkbox" id="agree" name="agree" />
+        <label for="agree">I agree to the terms and conditions</label>
+
+        <!-- Radio buttons -->
+         <label for="gender">Gender:</label>
+         <input type="radio" id="gender" value="Male" name="gender"/> Male
+         <input type="radio" id="gender" value="Female" name="gender"/>Female
+
+         <!-- Textarea -->
+        <label for="message">Message:</label>
+        <textarea name="message" id="message" rows="4" cols="50"></textarea>
+
+        <!-- Submit button -->
+         <button type="submit">Submit</button>
+
+    </form>
+</body>
+
+</html>

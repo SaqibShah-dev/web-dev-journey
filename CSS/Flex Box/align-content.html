@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Content</title>
+<style>
+    .container {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    [class*="-container"] {
+        height: 250px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .flex-start-container { align-content: flex-start; }
+    .flex-end-container { align-content: flex-end; }
+    .center-container { align-content: center; }
+    .stretch-container { align-content: stretch; }
+    .space-between-container { align-content: space-between; }
+    .space-around-container { align-content: space-around; }
+    .space-evenly-container { align-content: space-evenly; }
+
+    .start-container { align-content: start; }
+    .end-container { align-content: end; }
+    
+    .baseline-container { align-content: baseline; }
+    .first-base-line-container { align-content: first-baseline; } 
+    .last-base-line-container { align-content: last-baseline; } 
+    
+
+    .safe-container { align-content: safe center; }   
+    .unsafe-container { align-content: unsafe center; } 
+
+    .card {
+        width: 100px;
+        height: 60px; 
+        background-color: lightblue;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Align Content: flex-start</h1>
+        <div class="flex-start-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: flex-end</h1>
+        <div class="flex-end-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: stretch</h1>
+        <div class="stretch-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: baseline</h1>
+        <div class="baseline-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: center</h1>
+        <div class="center-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: space-between</h1>
+        <div class="space-between-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: space-around</h1>
+        <div class="space-around-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Align Content: space-evenly</h1>
+        <div class="space-evenly-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: start</h1>
+        <div class="start-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: end</h1>
+        <div class="end-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: first base line</h1>
+        <div class="first-base-line-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: last base line</h1>
+        <div class="last-base-line-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: safe</h1>
+        <div class="safe-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+        <div class="container">
+        <h1>Align Content: unsafe</h1>
+        <div class="unsafe-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+</body>
+
+</html>

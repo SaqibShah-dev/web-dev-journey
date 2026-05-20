@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Content</title>
+<style>
+    .container {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    [class*="-container"] {
+        height: 250px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .row-column-gap-container{gap:10px 40px}
+    .gap-container{
+        gap:30px;
+    }
+    .row-gap-container{row-gap: 40px;column-gap: 100px;}
+    .column-gap-container{column-gap:30px;row-gap: 50px;}
+
+    .card {
+        width: 100px;
+        height: 60px; 
+        background-color: lightblue;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Row and column gap : gap: 10px 40px</h1>
+        <div class="row-column-gap-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Gap: 30px </h1>
+        <div class="gap-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>row-gap: 40px</h1>
+        <div class="row-gap-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>column-gap: 30px</h1>
+        <div class="column-gap-container">
+
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

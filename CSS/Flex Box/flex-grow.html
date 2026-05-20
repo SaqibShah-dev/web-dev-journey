@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .flex-container {
+    display: flex;
+    width: 100%; 
+    background-color: #f0f0f0;
+    padding: 10px;
+    gap: 10px;
+}
+
+.box {
+    background-color: lightblue;
+    padding: 20px;
+    width: 100px; 
+    text-align: center;
+}
+
+.grow-some {
+    flex-grow: 1; 
+}
+
+.grow-more {
+    flex-grow: 2;
+}
+
+.no-grow {
+    flex-grow: 0; 
+}
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+    <div class="box grow-some">1 (Grows a bit)</div>
+    <div class="box grow-more">2 (Grows a lot)</div>
+    <div class="box no-grow">3 (Doesn't grow)</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Items</title>
+<style>
+    .container {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    .flex-container {
+        height: auto;
+        min-height: 250px; 
+        border: 1px solid black;
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 10px;       
+        padding: 10px;  
+    }
+    .card {
+        width: 100px;
+        height: 60px; 
+        background-color: lightblue;
+        color: #333;    
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Flex Items</h1>
+        <div class="flex-container">
+            <div class="card">1</div>
+            <div class="card">2</div>
+            <div class="card">3</div>
+            <div class="card">4</div>
+            <div class="card">5</div>
+            <div class="card">6</div>
+            <div class="card">7</div>
+            <div class="card">8</div>
+            <div class="card">9</div>
+            <div class="card">10</div>
+            <div class="card">11</div>
+            <div class="card">12</div>
+        </div>
+    </div>
+</body>
+
+</html>

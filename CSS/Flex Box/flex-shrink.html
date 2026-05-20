@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .comment-box {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            background-color: #ccc;
+        }
+
+        .text {
+            background-color: lightgray;
+            padding: 10px;
+            margin: 0;
+            flex-grow: 1;
+            flex-shrink: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comment-box">
+        <img src="../../images/image2.png" class="avatar" alt="">
+        <p class="text">This is a really long comment that might take up multiple lines on a mobile screen...</p>
+    </div>
+</body>
+
+</html>
