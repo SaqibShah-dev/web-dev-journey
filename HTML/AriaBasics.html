@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering WAI-ARIA Basics</title>
+    <style>
+        /* Modern CSS Design System */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0284c7;
+            --success: #4ade80;
+            --border: #334155;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Learning Card Component */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #475569;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .explanation {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 16px;
+        }
+
+        .demo-area {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        /* Interactive Elements styling */
+        button {
+            background-color: var(--accent);
+            color: #0f172a;
+            border: none;
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        /* Icon-only button */
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border-radius: 50%;
+        }
+
+        /* Input styling */
+        input[type="text"], input[type="password"] {
+            background-color: #0f172a;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            width: 100%;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--accent);
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .hint {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* Toggle Menu */
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0 0;
+            background-color: #1e293b;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            display: none; /* Controlled by Javascript */
+        }
+
+        .menu-list li a {
+            display: block;
+            padding: 10px 16px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .menu-list li a:hover {
+            background-color: #334155;
+            color: var(--accent);
+        }
+
+        /* Live Message styling */
+        .live-box {
+            margin-top: 12px;
+            padding: 12px;
+            background-color: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 6px;
+            color: var(--success);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* Decorative Rating Emojis */
+        .stars {
+            font-size: 1.3rem;
+            color: #fbbf24;
+            letter-spacing: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mastering WAI-ARIA Basics ♿</h1>
+        <p class="subtitle">A clean, beginner-friendly guide to making web components accessible to screen readers.</p>
+
+        <!-- 1. aria-label -->
+        <div class="card">
+            <h2>1. aria-label</h2>
+            <div class="explanation">
+                <strong>The Whisperer:</strong> Use this when an element has <em>no visible text</em> (like an icon button). It tells screen readers exactly what text to read out loud.
+            </div>
+            <div class="demo-area">
+                <!-- Screen reader will say "Close window" instead of "Multiplication Sign" or "X" -->
+                <button class="icon-btn" aria-label="Close window">✕</button>
+                <span style="margin-left: 12px; color: var(--text-muted);">← Hover or inspect this icon button</span>
+            </div>
+        </div>
+
+        <!-- 2. aria-expanded -->
+        <div class="card">
+            <h2>2. aria-expanded</h2>
+            <div class="explanation">
+                <strong>The Gatekeeper:</strong> Tells screen readers if expandable content (like a dropdown menu or accordion) is currently open (<code>true</code>) or closed (<code>false</code>).
+            </div>
+            <div class="demo-area">
+                <!-- Controls state and references the target menu ID -->
+                <button id="menuBtn" aria-expanded="false" aria-controls="dropdownMenu">
+                    Menu ▼
+                </button>
+                
+                <ul id="dropdownMenu" class="menu-list">
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. aria-describedby -->
+        <div class="card">
+            <h2>3. aria-describedby</h2>
+            <div class="explanation">
+                <strong>The Detailer:</strong> Connects an input element to a separate text container containing instructions or warnings. Screen readers read the input label first, then this description.
+            </div>
+            <div class="demo-area">
+                <label for="username">Create Username:</label>
+                <!-- Linked to the ID of the hint text below -->
+                <input type="text" id="username" aria-describedby="username-hint" placeholder="e.g. saqib_shah">
+                
+                <span id="username-hint" class="hint">
+                    Username must be lowercase and contain at least one number.
+                </span>
+            </div>
+        </div>
+
+        <!-- 4. aria-hidden -->
+        <div class="card">
+            <h2>4. aria-hidden</h2>
+            <div class="explanation">
+                <strong>The Cloaking Device:</strong> Tells screen readers to ignore decorative elements completely. Emojis and stars can sound messy or repetitive when read aloud.
+            </div>
+            <div class="demo-area">
+                <p>Product Rating:</p>
+                <!-- Screen reader skips the stars, only reads "5 out of 5 stars based on 100 reviews" -->
+                <div class="stars" aria-hidden="true">★★★★★</div>
+                <p style="margin-top: 8px; font-size: 0.95rem;">5 out of 5 stars based on 100 reviews</p>
+            </div>
+        </div>
+
+        <!-- 5. aria-live -->
+        <div class="card">
+            <h2>5. aria-live</h2>
+            <div class="explanation">
+                <strong>The Megaphone:</strong> Forces screen readers to immediately announce changes in dynamic content updated by Javascript (without page reloads).
+            </div>
+            <div class="demo-area">
+                <button id="saveBtn">Save Settings</button>
+                
+                <!-- polite: waits for active reading to finish before announcing. assertive: interrupts immediately -->
+                <div id="statusAlert" aria-live="polite" class="live-box">
+                    Settings saved successfully!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to make elements interactive and update ARIA states -->
+    <script>
+        // Dropdown Toggle (aria-expanded)
+        const menuBtn = document.getElementById('menuBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        menuBtn.addEventListener('click', () => {
+            // Check if currently expanded (returns string "true" or "false")
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            
+            // Toggle the ARIA state
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
+            
+            // Toggle visual display
+            dropdownMenu.style.display = isExpanded ? 'none' : 'block';
+        });
+
+        // Dynamic Status Alert (aria-live)
+        const saveBtn = document.getElementById('saveBtn');
+        const statusAlert = document.getElementById('statusAlert');
+
+        saveBtn.addEventListener('click', () => {
+            statusAlert.style.display = 'block';
+            
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                statusAlert.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

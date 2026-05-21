@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple ARIA Examples</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 30px;
+            line-height: 1.5;
+        }
+        .example-section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .menu {
+            display: none; 
+            margin-top: 5px;
+        }
+        .alert {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple WAI-ARIA Examples</h1>
+
+    <!-- 1. aria-label (Providing labels for icon-only elements) -->
+    <div class="example-section">
+        <h3>1. aria-label</h3>
+        <!-- Screen reader reads: "Close menu, button" instead of "X, button" -->
+        <button aria-label="Close menu">✕</button>
+    </div>
+
+    <!-- 2. aria-expanded (Showing toggle open/close state) -->
+    <div class="example-section">
+        <h3>2. aria-expanded</h3>
+        <button id="toggleBtn" aria-expanded="false" onclick="toggleMenu()">Menu ▼</button>
+        <div id="dropdownMenu" class="menu">
+            <p>Dropdown Content Link 1</p>
+            <p>Dropdown Content Link 2</p>
+        </div>
+    </div>
+
+    <!-- 3. aria-describedby (Connecting inputs to helper instructions) -->
+    <div class="example-section">
+        <h3>3. aria-describedby</h3>
+        <label for="password">Password:</label>
+        <input type="password" id="password" aria-describedby="password-hint">
+        <!-- Linked directly to input above using the ID -->
+        <p id="password-hint" style="color: #666; font-size: 0.9em;">
+            Must contain at least 8 characters.
+        </p>
+    </div>
+
+    <!-- 4. aria-hidden (Hiding visual decorations from screen readers) -->
+    <div class="example-section">
+        <h3>4. aria-hidden</h3>
+        <!-- Screen reader ignores the star emojis, only reads the text below -->
+        <span aria-hidden="true">⭐⭐⭐⭐⭐</span>
+        <p>Rated 5 stars by customers</p>
+    </div>
+
+    <!-- 5. aria-live (Announcing dynamic content updates instantly) -->
+    <div class="example-section">
+        <h3>5. aria-live</h3>
+        <button onclick="showNotification()">Save Changes</button>
+        <!-- polite: Screen reader waits until it finishes reading and then announces this text -->
+        <div id="saveNotification" aria-live="polite" class="alert">
+            Saved successfully!
+        </div>
+    </div>
+
+    <script>
+        // JS to toggle the aria-expanded menu state
+        function toggleMenu() {
+            const button = document.getElementById('toggleBtn');
+            const menu = document.getElementById('dropdownMenu');
+            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+            // Toggle value
+            button.setAttribute('aria-expanded', !isExpanded);
+            menu.style.display = isExpanded ? 'none' : 'block';
+        }
+
+        // JS to show dynamic notification
+        function showNotification() {
+            const alertBox = document.getElementById('saveNotification');
+            alertBox.style.display = 'block';
+
+            // Hide it again after 2.5 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
