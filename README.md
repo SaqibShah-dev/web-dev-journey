@@ -10,10 +10,10 @@ If you are a student learning the fundamentals, this repository will help you ma
 ##  Repository Author
 * **Author:** Saqib Shah
 * **Education:** BS Artificial Intelligence (Undergraduate)
-* **Institution:** BIIT (Bahria Institute of Information Technology)
+* **Institution:** BIIT (Barani Institute of Information Technology)
 * **University:** PMAS Arid Agriculture University (PMAS AAUR)
 * **Location:** Pakistan 🇵🇰
-* **Goal:** Full-Stack MERN Developer & Tech Innovation
+* **Goal:** Full-Stack Web Developer Developer & Tech Innovation
 * **Designed for:** Beginners, self-learners, and fellow students.
 
 ---
