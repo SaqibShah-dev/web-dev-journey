@@ -28,6 +28,7 @@ If you are a student learning the fundamentals, this repository will help you ma
    - [Phase 1: HTML Basics](#phase-1-html-basics-html)
    - [Phase 2: CSS Box Model](#phase-2-css-box-model-cssbox-model)
    - [Phase 3: CSS Flexbox Layouts](#phase-3-css-flexbox-layouts-cssflex-box)
+   - [Phase 4: CSS Grid Layouts](#phase-4-css-grid-layouts-cssgrid)
    - [Root / Starter Templates](#root--starter-templates)
 3. [ Quick Learning Tips for Beginners](#-quick-learning-tips-for-beginners)
 4. [ Getting Started (How to Run Code)](#-getting-started-how-to-run-code)
@@ -43,13 +44,15 @@ To get the most out of this repository, we recommend following this step-by-step
 graph TD
     A[Phase 1: HTML Basics] --> B[Phase 2: CSS Box Model]
     B --> C[Phase 3: CSS Flexbox Layouts]
-    C --> D[Next: JavaScript & MERN Stack]
+    C --> D[Phase 4: CSS Grid Layouts]
+    D --> E[Next: Responsive Design & JavaScript]
 ```
 
 1. **Step 1:** Learn how to structure text, headers, and lists in [HTML](./HTML).
 2. **Step 2:** Learn how block elements behave and spacing works using the [Box Model](./CSS/Box%20Model).
 3. **Step 3:** Master alignment, direction, and responsiveness using [Flexbox](./CSS/Flex%20Box).
-4. **Step 4:** Build the final flexbox projects like a navbar and card grid to test your knowledge!
+4. **Step 4:** Build advanced 2D layouts using [CSS Grid](./CSS/grid).
+5. **Step 5:** Build final projects combining CSS and HTML knowledge!
 
 ---
 
@@ -104,6 +107,98 @@ Once you understand the properties above, practice building these components:
 
 ---
 
+### Phase 4: CSS Grid Layouts (`/CSS/grid`)
+**CSS Grid is a 2D layout system** that lets you create complex, multi-row and multi-column layouts. While Flexbox is best for one-dimensional layouts (rows OR columns), Grid handles both dimensions simultaneously. Perfect for dashboard layouts, magazine grids, and component-based designs!
+
+#### Why Learn CSS Grid?
+✅ **2D Control:** Control both rows AND columns at the same time  
+✅ **Precise Positioning:** Place items exactly where you want them  
+✅ **Responsive:** Build layouts that scale beautifully with `fr` units and `auto`  
+✅ **Industry Standard:** Used in modern web design for complex UI layouts
+
+#### Core Grid Concepts
+
+**1. Understanding Grid Basics**
+*  [css_grid_fundamental.html](./CSS/grid/css_grid_fundamental.html) — **Start Here:** Learn the fundamental grid structure with `grid-template-columns`, `grid-template-rows`, and `grid-gap`.
+
+**2. Sizing Grid Tracks (Columns & Rows)**
+*  [sizing-tracks-FINISHED.html](./CSS/grid/sizing-tracks-FINISHED.html) — Learn to size columns using:
+   - `px` (fixed pixels)
+   - `%` (percentage)
+   - `auto` (content-based sizing)
+   - **`1fr` (fractional units — splits available space equally)**
+   
+   Example: `grid-template-columns: 1fr 50px 1fr 1fr;` creates responsive columns!
+
+**3. Using the `repeat()` Function**
+*  [repeat.html](./CSS/grid/repeat.html) — Avoid repetitive code with `repeat()`:
+   - `repeat(3, 100px)` = `100px 100px 100px`
+   - `repeat(2, 1fr auto)` = `1fr auto 1fr auto`
+   
+   This makes your CSS cleaner and more maintainable!
+
+**4. Grid Template & Named Lines**
+*  [grid-template.html](./CSS/grid/grid-template.html) — Master advanced grid features:
+   - Named grid lines: `[first] 40px [line2] 50px`
+   - Grid template areas for semantic layouts
+   - Combining fixed and flexible sizing
+
+**5. Sizing Individual Grid Items**
+*  [sizing-items.html](./CSS/grid/sizing-items.html) — Learn how to make items span multiple tracks:
+   - `grid-column: span 3;` — item stretches across 3 columns
+   - `grid-row: span 2;` — item stretches across 2 rows
+   - `grid-column: 1 / 4;` — explicit positioning (line 1 to line 4)
+
+**6. Placing Items on the Grid**
+*  [placing.html](./CSS/grid/placing.html) — Position items using grid lines:
+   - Place items in specific grid cells
+   - Create overlapping layouts
+   - Combine sizing and positioning
+
+**7. Automatic Grid Flow**
+*  [autoflow-START.html](./CSS/grid/autoflow-START.html) & [autoflow-FINISHED.html](./CSS/grid/autoflow-FINISHED.html) — Understand how items automatically fill the grid:
+   - `grid-auto-flow: row` (default — fills left to right)
+   - `grid-auto-flow: column` (fills top to bottom)
+
+**8. Implicit vs. Explicit Grids**
+*  [implicit-vs-explicit.html](./CSS/grid/implicit-vs-explicit.html) — Learn the difference:
+   - **Explicit Grid:** Columns/rows YOU define
+   - **Implicit Grid:** Extra columns/rows created automatically
+
+**9. `auto-fit` vs `auto-fill`**
+*  [auto-fit-and-auto-fill.html](./CSS/grid/auto-fit-and-auto-fill.html) — Create responsive grids WITHOUT media queries:
+   - `repeat(auto-fit, minmax(200px, 1fr))` — columns shrink/grow dynamically
+   - Perfect for mobile-first responsive layouts!
+
+**10. Developer Tools for Grid**
+*  [dev-tools-START.html](./CSS/grid/dev-tools-START.html) & [dev-tools-FINISHED.html](./CSS/grid/dev-tools-FINISHED.html) — Learn to inspect and debug CSS Grid using browser DevTools:
+   - Visualize grid lines in Firefox Developer Tools
+   - Inspect grid container and item properties
+   - Debug layout issues faster
+
+#### Key CSS Grid Properties Reference
+
+| Property | Purpose | Example |
+|----------|---------|---------|
+| `display: grid;` | Initialize grid container | — |
+| `grid-template-columns` | Define column widths | `200px 1fr 100px` |
+| `grid-template-rows` | Define row heights | `100px auto 50px` |
+| `grid-gap` | Space between items | `20px` or `20px 10px` |
+| `grid-column: span X` | Item spans X columns | `span 2` |
+| `grid-row: span X` | Item spans X rows | `span 3` |
+| `grid-template-areas` | Create named layout zones | `"header header"` |
+| `repeat(X, size)` | Repeat columns/rows | `repeat(3, 1fr)` |
+| `1fr` | Fractional unit | Divides space equally |
+| `minmax(min, max)` | Set min and max sizes | `minmax(200px, 1fr)` |
+| `auto-fit` / `auto-fill` | Responsive columns | `repeat(auto-fit, ...)` |
+
+#### Quick Tip: When to Use Grid vs. Flexbox?
+- **Use Flexbox:** Navbars, button groups, card layouts (1D)
+- **Use Grid:** Page layouts, dashboards, image galleries (2D)
+- **Use Both:** Grid for layout, Flexbox for alignment within grid items!
+
+---
+
 ### Root / Starter Templates
 *  [simple_web_page.html](./simple_web_page.html) — A clean, fully semantic starter HTML template. Use this to kick off your own practice projects!
 
@@ -137,7 +232,7 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 - [x] HTML5 Semantics & Multimedia Elements
 - [x] CSS3 Box Model Basics
 - [x] CSS Flexbox Layouts
-- [ ] CSS Grid Systems
+- [x] CSS Grid Systems
 - [ ] Responsive Layouts & Media Queries
 - [ ] Core JavaScript (DOM, Events, APIs)
 - [ ] MERN Stack Integration (MongoDB, Express, React, Node.js)
