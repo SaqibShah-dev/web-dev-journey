@@ -17,7 +17,6 @@ If you are a student learning the fundamentals, this repository will help you ma
 ##  Built With & Badges
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![Accessibility](https://img.shields.io/badge/Accessibility-WAI--ARIA-green?style=for-the-badge)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![VS Code](https://img.shields.io/badge/Visual_Studio_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
@@ -29,7 +28,6 @@ If you are a student learning the fundamentals, this repository will help you ma
    - [Phase 1: HTML Basics](#phase-1-html-basics-html)
    - [Phase 2: CSS Box Model](#phase-2-css-box-model-cssbox-model)
    - [Phase 3: CSS Flexbox Layouts](#phase-3-css-flexbox-layouts-cssflex-box)
-   - [Phase 4: Web Accessibility & WAI-ARIA](#phase-4-web-accessibility--wai-aria-html)
    - [Root / Starter Templates](#root--starter-templates)
 3. [ Quick Learning Tips for Beginners](#-quick-learning-tips-for-beginners)
 4. [ Getting Started (How to Run Code)](#-getting-started-how-to-run-code)
@@ -45,15 +43,13 @@ To get the most out of this repository, we recommend following this step-by-step
 graph TD
     A[Phase 1: HTML Basics] --> B[Phase 2: CSS Box Model]
     B --> C[Phase 3: CSS Flexbox Layouts]
-    C --> D[Phase 4: Web Accessibility & WAI-ARIA]
-    D --> E[Next: JavaScript & MERN Stack]
+    C --> D[Next: JavaScript & MERN Stack]
 ```
 
 1. **Step 1:** Learn how to structure text, headers, and lists in [HTML](./HTML).
 2. **Step 2:** Learn how block elements behave and spacing works using the [Box Model](./CSS/Box%20Model).
 3. **Step 3:** Master alignment, direction, and responsiveness using [Flexbox](./CSS/Flex%20Box).
-4. **Step 4:** Make your websites accessible to all users with [WAI-ARIA attributes](./HTML/WAI-ARIA_Attributes.html).
-5. **Step 5:** Build the final flexbox projects like a navbar and card grid to test your knowledge!
+4. **Step 4:** Build the final flexbox projects like a navbar and card grid to test your knowledge!
 
 ---
 
@@ -108,21 +104,7 @@ Once you understand the properties above, practice building these components:
 
 ---
 
-### Phase 4: Web Accessibility & WAI-ARIA (`/HTML`)
-Creating beautiful websites is important, but making them accessible to **everyone** (including people with disabilities using screen readers) is essential. Learn how to use WAI-ARIA attributes to enhance accessibility without changing visual appearance.
-
-> 💡 **Why Accessibility Matters?** Screen readers cannot "see" colors, icons, or visual spacing. WAI-ARIA attributes provide textual descriptions that help assistive technologies understand and announce content properly.
-
-*  [WAI-ARIA_Attributes.html](./HTML/WAI-ARIA_Attributes.html) — **Complete Interactive Guide** with 5 essential attributes:
-  * **`aria-label`** — Provides accessible labels for icon buttons and elements without visible text.
-  * **`aria-expanded`** — Shows whether expandable content (dropdowns, accordions) is open or closed.
-  * **`aria-describedby`** — Links elements to detailed descriptions (e.g., form field hints, error messages).
-  * **`aria-hidden`** — Hides decorative elements from screen readers to reduce noise.
-  * **`aria-live`** — Announces dynamic content updates in real-time (e.g., live notifications, shopping carts).
-  
-  Each attribute includes **interactive examples**, use cases, and screen reader descriptions!
-
----
+### Root / Starter Templates
 *  [simple_web_page.html](./simple_web_page.html) — A clean, fully semantic starter HTML template. Use this to kick off your own practice projects!
 
 ---
@@ -130,18 +112,8 @@ Creating beautiful websites is important, but making them accessible to **everyo
 ##  Quick Learning Tips for Beginners
 
 1. **Inspect Elements:** Press `F12` (or Right-click -> *Inspect*) in your web browser. Check the margins (orange highlight), padding (green highlight), and flex structures to see exactly how CSS properties affect layout positioning.
-
 2. **Build and Break:** Don't just read the code! Open the files, change the values (e.g., change `justify-content: center` to `space-between`), save, and see how the page changes.
-
 3. **Use Semantic HTML:** Always use descriptive tags like `<header>`, `<main>`, `<article>`, and `<footer>` instead of wrapping everything in `<div>`s. It helps browsers, search engines, and screen-readers read your site.
-
-4. **Accessibility First:** When building layouts (especially buttons, forms, and dynamic content), always ask:
-   - Does this work with keyboard navigation?
-   - Would a screen reader user understand this element?
-   - Are colors the only way to convey information?
-   - Use `aria-label`, `aria-describedby`, and `aria-live` to enhance the experience for assistive technology users.
-
-5. **Test with Screen Readers:** Install a free screen reader like [NVDA (Windows)](https://www.nvaccess.org/) or [JAWS](https://www.freedomscientific.com/). Test your HTML/CSS projects to hear how screen readers interpret your code. This is the best way to understand accessibility!
 
 ---
 
@@ -165,10 +137,8 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 - [x] HTML5 Semantics & Multimedia Elements
 - [x] CSS3 Box Model Basics
 - [x] CSS Flexbox Layouts
-- [x] Web Accessibility & WAI-ARIA Attributes
 - [ ] CSS Grid Systems
 - [ ] Responsive Layouts & Media Queries
-- [ ] Form Validation & User Input Handling
 - [ ] Core JavaScript (DOM, Events, APIs)
 - [ ] MERN Stack Integration (MongoDB, Express, React, Node.js)
 
