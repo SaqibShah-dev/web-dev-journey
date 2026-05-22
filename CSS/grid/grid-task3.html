@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Layout with grid-template-areas</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: 80px 1fr 60px;
+            grid-template-areas: "header header "
+                "sidebar main"
+                "footer footer";
+        }
+
+        header {
+            grid-area: header;
+            background-color: gold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: white;
+            border: 1px solid darkgoldenrod;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        aside {
+            grid-area: sidebar;
+            background-color: gold;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+
+        }
+
+        ul li a {
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: white;
+        }
+
+        main {
+            grid-area: main;
+            background-color: lightgreen;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="../../images/logo.png" alt="logo" />
+        </div>
+        <h1>My Website</h1>
+    </header>
+    <aside>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <h1>What is HTML main tag?</h1>
+        <p>The HTML
+        &lt;main&gt; tag is a structural element that represents the main content of a document. It's like the central hub of
+            your webpage, encapsulating the primary content. By wrapping your main content within this tag, you're
+            signaling to browsers and developers that this is the core information users are seeking.</p>
+    </main>
+    <footer>Footer</footer>
+</body>
+
+</html>
