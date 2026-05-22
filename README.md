@@ -47,6 +47,26 @@ If you are a student learning the fundamentals, this repository will help you ma
 
 ---
 
+##  ⚡ Quick Start (5 Minutes)
+
+**1️⃣ Clone & Open:**
+```bash
+git clone https://github.com/SaqibShah-dev/web-dev-journey.git
+code Learning
+```
+
+**2️⃣ Install Live Server** (VS Code Extension)
+- Open Extensions → Search "Live Server" → Install
+
+**3️⃣ Pick a File & Run**
+- Open any `.html` file → Right-click → "Open with Live Server"
+- Browser opens automatically with hot-reload!
+
+**Recommended First File:** [MetaTags.html](./HTML/MetaTags.html)  
+**Recommended First Project:** [Full_page_layout.html](./CSS/Flex%20Box/Full_page_layout.html)
+
+---
+
 ##  Suggested Learning Path
 
 To get the most out of this repository, we recommend following this step-by-step sequence:
@@ -208,6 +228,31 @@ Once you understand the properties above, practice building these components:
 - **Use Grid:** Page layouts, dashboards, image galleries (2D)
 - **Use Both:** Grid for layout, Flexbox for alignment within grid items!
 
+#### Today's Learning Session - Grid Practice Files (May 22, 2026)
+*Live hands-on practice with advanced CSS Grid features:*
+
+** Advanced Grid Layouts & Projects**
+*  [image-gallery-prject.html](./CSS/grid/image-gallery-prject.html) — **Interactive Gallery Project:** Build a masonry-style image gallery using `grid-auto-flow: dense` and item spanning (h2-h4, v2-v4 classes). Includes click-to-enlarge overlay modal and responsive image loading.
+*  [axis-flipping.html](./CSS/grid/axis-flipping.html) — **Layout Toggle Demo:** Toggle between multi-column responsive grid and single-column layout using JavaScript class toggling. Great for understanding responsive design patterns!
+
+** Additional Grid Concepts** (Reference implementations)
+*  [grid-dev-tools_.html](./CSS/grid/grid-dev-tools_.html) — Browser DevTools visualization guide
+*  [grid_autoflow.html](./CSS/grid/grid_autoflow.html) — Auto-flow property deep dive
+*  [grid-auto-flow-dense-Block-Fitting.html](./CSS/grid/grid-auto-flow-dense-Block-Fitting.html) — Dense packing algorithm for optimal space usage
+*  [Using_minmax_for_Responsive_Grids.html](./CSS/grid/Using_minmax_for_Responsive_Grids.html) — Responsive sizing without media queries
+*  [Naming_line_in_css_grid.html](./CSS/grid/Naming_line_in_css_grid.html) — Named grid lines for semantic layouts
+*  [grid_template_areas.html](./CSS/grid/grid_template_areas.html) & [grid_template_areas_task.html](./CSS/grid/grid_template_areas_task.html) — Creating named layout zones
+*  [grid-task2-spanning.html](./CSS/grid/grid-task2-spanning.html) — Item spanning challenges
+*  [Re-ordering-Grid-Items.html](./CSS/grid/Re-ordering-Grid-Items.html) — Using order and grid positioning to reorder items
+*  [albums_task.html](./CSS/grid/albums_task.html) — Multi-item gallery layout exercise
+
+** Key Takeaways from Today's Session:**
+- ✅ `grid-auto-flow: dense` creates masonry-style layouts by filling gaps
+- ✅ Item classes (h2, h3, h4, v2, v3, v4) control spanning across multiple tracks
+- ✅ JavaScript can toggle grid layouts dynamically for responsive behavior
+- ✅ Random image selection adds variety to gallery projects
+- ✅ Overlay modals use `position: fixed` + `display: grid` for centering
+
 ---
 
 ### Root / Starter Templates
@@ -230,7 +275,7 @@ Before starting, make sure you have:
 
 ##  Quick Learning Tips for Beginners
 
-| 💡 Tip | How to Use It |
+|  Tip | How to Use It |
 |--------|---------------|
 | **Inspect Elements** | Press `F12` → open DevTools → hover over elements to see CSS properties in real-time |
 | **Build and Break** | Change CSS values deliberately to see immediate effects (e.g., `width: 100px` → `width: 500px`) |
@@ -355,6 +400,30 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 
 ---
 
+##  📚 Learning Progress Tracker
+
+### Session: May 22, 2026 - CSS Grid Mastery
+**Status:** ✅ Advanced Grid Concepts Completed
+
+**Today's Achievements:**
+| Task | Status | Files |
+|------|--------|-------|
+| Masonry Gallery with Dense Packing | ✅ Complete | `image-gallery-prject.html` |
+| Responsive Layout Toggle Pattern | ✅ Complete | `axis-flipping.html` |
+| Image Loading & Random Selection | ✅ Complete | Updated gallery with 21 real images |
+| DevTools & Debugging Techniques | ✅ Complete | Reference guides added |
+| Grid Item Spanning (h/v classes) | ✅ Complete | Practical implementation |
+| Modal Overlays & Event Handling | ✅ Complete | Click handlers, overlay UI |
+
+**Key Learnings:**
+-  `grid-auto-flow: dense` fills gaps intelligently in masonry layouts
+-  JavaScript class toggling enables dynamic responsive behavior
+-  Item spanning combines multiple grid tracks for visual variety
+-  Fixed positioning + Grid centering creates effective modal overlays
+-  Real project implementation with file path management
+
+---
+
 ##  Future Roadmap
 
 ### Completed ✅
@@ -401,8 +470,6 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 ---
 
 <div align="center">
-
-**Made with  by a student, for students.**
 
 *Happy Learning! Your web development journey starts here! *
 
