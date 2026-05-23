@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3 Responsive Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            grid-area: header;
+            background-color: #1a1a2e;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        aside {
+            grid-area: sidebar;
+            background-color: #e94560;
+            color: white;
+            padding: 1rem;
+        }
+
+        main {
+            grid-area: main;
+            background-color: #0f3460;
+            color: white;
+            padding: 1rem;
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: #16213e;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        body {
+            display: grid;
+            grid-template-areas: "header"
+                    "main"
+                    "sidebar"
+                    "footer";
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width:768px) {
+            body {
+                grid-template-areas: "header header"
+                    "main sidebar"
+                    "footer footer";
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        @media(min-width:1024px) {
+            body {
+                grid-template-areas: "header header header"
+                    "sidebar main main"
+                    "footer footer footer";
+                grid-template-columns: 2fr 2fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>Header</header>
+    <main>Main Content</main>
+    <aside>Sidebar</aside>
+    <footer>Footer</footer>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Typography</title>
+    <style>
+        /* No px for font sizes — use rem and clamp only */
+        /* You have font sizes ✅ but missing everything else */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        button {
+            padding: 0.75rem 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            /* rem not px */
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+        }
+
+        /* All spacing in rem */
+        /* All widths in % or vw */
+    </style>
+</head>
+
+<body>
+    <!-- Test by resizing browser — text should grow and shrink smoothly. -->
+    <section class="hero">
+        <h1>Saqib Shah</h1>
+        <h2>Full Stack Developer</h2>
+        <p>Building modern web applications</p>
+        <button>Hire Me</button>
+    </section>
+</body>
+
+</html>

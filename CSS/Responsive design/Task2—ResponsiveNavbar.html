@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* MOBILE FIRST — base styles */
+    .navbar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #1a1a2e;
+      padding: 1rem 2rem;
+    }
+
+    .navbar img {
+      width: clamp(40px, 10vw, 80px);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #0070f3;
+    }
+
+    /* TABLET — 768px+ */
+    @media (min-width: 768px) {
+      .navbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        flex-direction: row;
+        gap: 1.5rem;
+      }
+    }
+
+    /* DESKTOP — 1024px+ */
+    @media (min-width: 1024px) {
+      .navbar {
+        padding: 1rem 4rem;
+      }
+
+      .nav-links {
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <img src="../../images/logo.png" alt="Logo"/>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Skills</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>
