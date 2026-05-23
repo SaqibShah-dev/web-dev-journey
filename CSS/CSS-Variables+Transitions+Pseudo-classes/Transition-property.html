@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transition Properties Demo</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: coral;
+            margin: 40px;
+        }
+
+        /* transition-property */
+        /* .box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+  transition-property: width;
+  transition-duration: 0.5s;
+}
+
+.box:hover {
+  width: 200px;            
+  height: 200px;          
+  background-color: blue; 
+} */
+
+        /* transition-duration */
+        /* 
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+
+  transition-property: background-color;
+  transition-duration: 1.5s;
+}
+
+.box:hover {
+  background-color: royalblue;
+} */
+
+        /* transition-timing-function */
+        /* .box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+
+  transition-property: width;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.box:hover {
+  width: 300px;
+} */
+
+        /* transition-delay */
+        /* .box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  transition-delay: 0.7s;  
+}
+
+.box:hover {
+  background-color: mediumseagreen;
+} */
+
+        /* Shorthand transition */
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: coral;
+
+            /* property | duration | timing-function | delay */
+
+            transition: background-color 0.8s ease-in-out 0.25s;
+        }
+
+        .box:hover {
+            background-color: purple;
+        }
+
+        .overlay {
+            width: 200px;
+            height: 100px;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="overlay">Hello</div>
+</body>
+
+</html>

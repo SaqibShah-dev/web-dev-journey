@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pseudo-class Demo</title>
+  <style>
+    /* User action states */
+    a:link {
+      color: green;
+    }
+    a:visited {
+      color: #663399;
+    }
+    a:hover {
+      color: blue;                  /* mouse over */
+      text-decoration: underline;
+    }
+    a:active {
+      color: red;                   /* being clicked */
+    }
+
+    input:focus {
+      outline: 2px solid blue;      /* keyboard focused */
+    }
+
+    /* Structural — select by position */
+    ul.demo-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+      border: 1px solid #ddd;
+    }
+
+    ul.demo-list li {
+      padding: 8px 12px;
+    }
+
+    li:first-child  {
+      font-weight: bold;            /* first item */
+    }
+
+    li:last-child   {
+      border-bottom: none;          /* last item */
+    }
+
+    li:nth-child(2) {
+      color: red;                   /* specific item */
+    }
+
+    li:nth-child(odd)  {
+      background: #f5f5f5;          /* alternating rows */
+    }
+
+    li:nth-child(even) {
+      background: white;
+    }
+
+    /* Negation */
+    li:not(:last-child) {
+      border-bottom: 1px solid #eee;/* all except last */
+    }
+
+    /* Form states */
+    .form-demo {
+      margin-top: 20px;
+    }
+
+    .form-demo input {
+      margin: 5px 0;
+      padding: 6px;
+      display: block;
+    }
+
+    input:disabled {
+      opacity: 0.5;
+    }
+
+    input:required {
+      border: 1px solid red;
+    }
+
+    input:checked {
+      accent-color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pseudo-class Examples</h1>
+
+  <h2>Links (hover, active, etc.)</h2>
+  <p>
+    <a href="#">Hover and click this link</a>
+  </p>
+
+  <h2>List structure (first, last, nth-child, not)</h2>
+  <ul class="demo-list">
+    <li>First item (bold)</li>
+    <li>Second item (red)</li>
+    <li>Third item</li>
+    <li>Fourth item</li>
+    <li>Last item (no border)</li>
+  </ul>
+
+  <h2>Form states</h2>
+  <div class="form-demo">
+    <label>
+      Required text:
+      <input type="text" required placeholder="Required input" />
+    </label>
+
+    <label>
+      Disabled input:
+      <input type="text" disabled value="Can't edit me" />
+    </label>
+
+    <label>
+      <input type="checkbox" checked />
+      Checked checkbox
+    </label>
+
+    <label>
+      Focusable input:
+      <input type="text" placeholder="Click or Tab here" />
+    </label>
+  </div>
+
+</body>
+</html>
