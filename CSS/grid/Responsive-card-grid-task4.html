@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Card Grid Task4</title>
+    <style>
+        .cards {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #eee;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            /* rounded corners */
+            cursor: pointer;
+            /* pointer on hover */
+            width: 100%;
+            /* full width looks better */
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (min-width: 768px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Desktop — 3 columns */
+        @media (min-width: 1024px) {
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cards">
+        <div class="card"><img src="../../images/album1.png" alt="Album 1" />
+            <h3>
+                Album 1
+            </h3>
+            <p>Description for Album 1</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album2.png" alt="Album 2" />
+            <h3>
+                Album 2
+            </h3>
+            <p>Description for Album 2</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album3.png" alt="Album 3" />
+            <h3>
+                Album 3
+            </h3>
+            <p>Description for Album 3</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album4.png" alt="Album 4" />
+            <h3>
+                Album 4
+            </h3>
+            <p>Description for Album 4</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album5.png" alt="Album 5" />
+            <h3>
+                Album 5
+            </h3>
+            <p>Description for Album 5</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album6.png" alt="Album 6" />
+            <h3>
+                Album 6
+            </h3>
+            <p>Description for Album 6</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album7.png" alt="Album 7" />
+            <h3>
+                Album 7
+            </h3>
+            <p>Description for Album 7</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album8.png" alt="Album 8" />
+            <h3>
+                Album 8
+            </h3>
+            <p>Description for Album 8</p>
+            <button>Read More</button>
+        </div>
+        <div class="card"><img src="../../images/album9.png" alt="Album 9" />
+            <h3>
+                Album 9
+            </h3>
+            <p>Description for Album 9</p>
+            <button>Read More</button>
+        </div>
+    </div>
+</body>
+
+</html>
