@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Label</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #111;
+        }
+
+        /* THE KEY PART — wrapper must be relative */
+        .input-wrapper {
+            position: relative;
+        }
+
+        /* Input styling */
+        .input-wrapper input {
+            width: 100%;
+            padding: 1rem 0.75rem 0.25rem 0.75rem;
+            font-size: 1rem;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Label — starts INSIDE input */
+        .input-wrapper label {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            /* vertically centered */
+            font-size: 1rem;
+            color: #999;
+            pointer-events: none;
+            /* click goes through label to input */
+            transition: all 0.2s ease;
+            /* smooth float animation */
+            background: white;
+            padding: 0 0.25rem;
+        }
+
+        /* FLOAT UP — when input is focused */
+        .input-wrapper input:focus+label {
+            top: 0;
+            /* moves to top edge */
+            font-size: 0.75rem;
+            /* shrinks */
+            color: #0070f3;
+            /* turns blue */
+        }
+
+        /* STAY UP — when input has content */
+        .input-wrapper input:not(:placeholder-shown)+label {
+            top: 0;
+            font-size: 0.75rem;
+            color: #999;
+            /* gray when not focused */
+        }
+
+        /* Border turns blue on focus */
+        .input-wrapper input:focus {
+            border-color: #0070f3;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            padding: 0.875rem;
+            background-color: #0070f3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #005ecb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-card">
+        <h2>Sign In</h2>
+
+        <div class="input-wrapper">
+            <input type="text" id="name" placeholder=" " />
+            <!-- space placeholder — REQUIRED for :not(:placeholder-shown) to work -->
+            <label for="name">Full Name</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input type="email" id="email" placeholder=" " />
+            <label for="email">Email Address</label>
+        </div>
+
+        <div class="input-wrapper">
+            <input type="password" id="password" placeholder=" " />
+            <label for="password">Password</label>
+        </div>
+
+        <button class="submit-btn">Sign In</button>
+    </div>
+
+</body>
+
+</html>
