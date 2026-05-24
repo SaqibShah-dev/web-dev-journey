@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Modules</title>
+</head>
+<body>
+    <!-- Problem in React:
+  Component A has .button { color: red; }
+  Component B has .button { color: blue; }
+  They conflict — last one loaded wins
+
+CSS Modules fix this:
+  Each component gets its own CSS file
+  Class names are auto-renamed to be unique
+  .button in ComponentA → .button_a7x3k
+  .button in ComponentB → .button_m9p2q
+  No more conflicts -->
+
+  <!-- import styles from './Card.module.css'
+
+function Card() {
+  return <div className={styles.card}>...</div>
+} -->
+
+<!-- BEM             → naming system, prevents class name conflicts
+                  Block__Element--Modifier
+
+Component CSS   → think in reusable pieces, not pages
+                  one component = one set of styles
+
+CSS Modules     → React feature, auto-scopes class names
+                  learn when you reach Stage 4 -->
+</body>
+</html>

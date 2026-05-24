@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Based CSS</title>
+    <style>
+        Base CSS — Every Project Needs This
+
+        /* base.css */
+        :root {
+            --primary: #0070f3;
+            --secondary: #333;
+            --text: #555;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --radius: 8px;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--secondary);
+            background-color: var(--bg);
+        }
+
+        img {
+            max-width: 100%;
+            /* images never overflow */
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Block */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Modifier — featured version */
+        .card--featured {
+            border: 2px solid var(--primary);
+        }
+
+        /* Elements */
+        .card__image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card__body {
+            padding: 1.5rem;
+        }
+
+        .card__title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card__description {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Button block */
+        .button {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .button--primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .button--danger {
+            background-color: #e63946;
+            color: white;
+        }
+
+        .button--outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Think in components — self-contained pieces that work anywhere.
+❌ Page-based thinking:
+  styles for homepage
+  styles for about page
+  styles for contact page
+
+✅ Component-based thinking:
+  .navbar    — works on every page
+  .card      — works anywhere
+  .button    — works anywhere
+  .form      — works anywhere
+  .hero      — works anywhere -->
+
+    <!-- style.css             ← small projects, one file
+OR
+css/
+  base.css            ← reset, variables, typography
+  components/
+    navbar.css
+    card.css
+    button.css
+    form.css
+    hero.css
+  layout.css          ← grid, containers, spacing
+  utilities.css       ← helper classes -->
+
+    <div class="card card--featured">
+        <img class="card__image" src="../../images/album1.png" alt="..." />
+        <div class="card__body">
+            <h3 class="card__title">Mountain Peak</h3>
+            <p class="card__description">Beautiful view...</p>
+            <button class="button button--primary">Read More</button>
+        </div>
+    </div>
+</body>
+
+</html>
