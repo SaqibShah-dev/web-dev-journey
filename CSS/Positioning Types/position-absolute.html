@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Positioning Playground</title>
+  <style>
+    /* basic setup for layout and readability */
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f5f6;
+      line-height: 1.6;
+      height: 2500px; /* Long height so you can test scroll behaviors! */
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Base styling for our demonstration boxes */
+    .box {
+      padding: 15px;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+
+    /* ==========================================
+       3. ABSOLUTE POSITIONING 
+       ========================================== */
+    /* Remember: Absolute needs a non-static anchor container! */
+    .card-anchor {
+      position: relative; 
+      background: #e5e7eb;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 50px;
+      height: 120px;
+    }
+
+    .absolute-badge {
+      position: absolute;
+      background-color: #ef4444; /* Red */
+      top: -10px;                /* Pops out past top edge of parent card */
+      right: -10px;              /* Pops out past right edge of parent card */
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 3. ABSOLUTE EXAMPLE -->
+    <h3>3. Absolute Position</h3>
+    <p>Look at the red "HOT" tag. It is absolute, bound safely to the gray box parent because the gray box has <code>position: relative;</code>.</p>
+    
+    <div class="card-anchor">
+      <strong>Product Card Container</strong>
+      <p>I am a relative container holding an absolute element.</p>
+      
+      <!-- The absolute element inside the parent container -->
+      <div class="absolute-badge">HOT 🔥</div>
+    </div>
+
+    <!-- Padding helper to allow down-scrolling behavior -->
+    <div style="margin-top: 40px; color: #9ca3af; text-align: center;">
+      <p>Keep scrolling down to test scroll boundaries...</p>
+      <p>↓</p>
+    </div>
+  </div>
+
+</body>
+</html>

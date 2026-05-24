@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Positioning Playground</title>
+  <style>
+    /* basic setup for layout and readability */
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f5f6;
+      line-height: 1.6;
+      height: 2500px; /* Long height so you can test scroll behaviors! */
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* Base styling for our demonstration boxes */
+    .box {
+      padding: 15px;
+      color: white;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+
+
+
+
+    /* ==========================================
+       5. STICKY POSITIONING
+       ========================================== */
+    .sticky-header {
+      position: sticky;
+      top: 45px;                 /* Snaps right below the fixed-nav when scrolling */
+      background-color: #8b5cf6; /* Purple */
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 5. STICKY EXAMPLE -->
+    <div class="box sticky-header">📌 Sticky Header (Scroll past me to watch me freeze!)</div>
+    
+    <h3>5. Sticky Position (The Hybrid)</h3>
+    <p>The purple bar directly above behaves like a static header initially. As you scroll down the page, look at how it instantly glues itself exactly 45px below the top window screen edge, traveling with you.</p>
+
+    <hr>
+
+    <!-- Padding helper to allow down-scrolling behavior -->
+    <div style="margin-top: 40px; color: #9ca3af; text-align: center;">
+      <p>Keep scrolling down to test scroll boundaries...</p>
+      <p>↓</p>
+    </div>
+  </div>
+
+</body>
+</html>

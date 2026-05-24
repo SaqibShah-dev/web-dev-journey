@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Navbar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;                /* sticks to very top ✅ */
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #1a1a2e;
+      padding: 0 2rem;
+      z-index: 100;
+    }
+
+    nav img {
+      height: 40px;
+      width: auto;
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    li a:hover { color: gold; }
+
+    section {
+      padding: 4rem 2rem;
+      min-height: 100vh;       /* each section fills screen */
+      border-bottom: 1px solid #eee;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+
+    section p {
+      color: #555;
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    /* Contact form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-width: 400px;
+      margin-top: 1rem;
+    }
+
+    .contact-form input {
+      padding: 0.6rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    footer {
+      background-color: #1a1a2e;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="../../images/logo.png" alt="Logo"/>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome to Our Website</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@email.com"/>
+      <label for="password">Password</label>
+      <input type="password" id="password"/>
+    </div>
+  </section>
+
+  <footer>© 2026 Saqib Shah</footer>
+
+</body>
+</html>

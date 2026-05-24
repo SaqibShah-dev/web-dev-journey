@@ -1,0 +1,212 @@
+The Default — position: static
+Every element starts as static. It sits in the normal document flow — one after 
+another, top to bottom.
+css/* This is the default — you never need to write it */
+div { position: static; }
+┌──────────┐
+│ Element 1│  ← sits here naturally
+├──────────┤
+│ Element 2│  ← sits below element 1
+├──────────┤
+│ Element 3│  ← sits below element 2
+└──────────┘
+top, left, right, bottom do nothing on static elements.
+
+position: relative
+Element stays in normal flow BUT you can nudge it using top, left, right, bottom.
+css.box {
+  position: relative;
+  top: 20px;   /* moves DOWN 20px from where it would naturally sit */
+  left: 30px;  /* moves RIGHT 30px */
+}
+┌──────────┐
+│ Element 1│
+├──────────┤
+│          │  ← gap left behind (space still reserved)
+│    ┌──────────┐
+│    │ Element 2│  ← moved down+right from original position
+│    └──────────┘
+├──────────┤
+│ Element 3│
+└──────────┘
+Most important use of relative — it becomes the reference point for absolutely 
+positioned children.
+css.parent {
+  position: relative;  /* establishes coordinate system */
+}
+.child {
+  position: absolute;  /* positions relative to .parent */
+}
+
+position: absolute
+Element is removed from normal flow completely. Other elements ignore it. 
+It positions itself relative to the nearest relative (or absolute) ancestor.
+css.parent {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+
+.child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* sits at top-right corner of .parent */
+}
+┌─────────────────[child]┐
+│                        │
+│        .parent         │
+│                        │
+└────────────────────────┘
+If NO ancestor has position: relative — absolute positions relative to the <html> element (the whole page).
+Real use cases:
+css/* Notification badge on icon */
+.icon-wrapper {
+  position: relative;
+}
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+/* Close button on modal */
+.modal {
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Text over image */
+.card {
+  position: relative;
+}
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 1rem;
+}
+
+position: fixed
+Element is removed from flow and positions relative to the browser viewport. Stays in place when you scroll.
+css.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: white;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+}
+┌─────────────────────┐
+│ [FIXED NAVBAR]      │  ← always visible
+├─────────────────────┤
+│                     │
+│   page content      │  ← scrolls behind navbar
+│   scrolls up        │
+│                     │
+│                     │
+│  [↑ back to top]    │  ← always bottom right
+└─────────────────────┘
+Important — fixed navbar hides content behind it. Fix with:
+cssbody {
+  padding-top: 60px; /* same as navbar height */
+}
+
+position: sticky
+Hybrid of relative and fixed. Element scrolls normally UNTIL it hits a threshold — then sticks.
+css.navbar {
+  position: sticky;
+  top: 0;        /* sticks when it reaches top of viewport */
+  z-index: 100;
+}
+
+.sidebar {
+  position: sticky;
+  top: 20px;     /* sticks 20px from top */
+}
+Before scrolling:        After scrolling past navbar:
+┌─────────────────┐      ┌─────────────────┐
+│ Hero Section    │      │ [STUCK NAVBAR]  │ ← now fixed at top
+│                 │      ├─────────────────┤
+├─────────────────┤      │ rest of page    │
+│ Navbar          │      │ scrolling...    │
+├─────────────────┤      │                 │
+│ Content         │      │                 │
+└─────────────────┘      └─────────────────┘
+Sticky is the modern way to make navbars. Better than fixed because it doesn't need the padding-top fix.
+
+z-index — Controlling Layers
+When elements overlap — z-index controls which one appears on top.
+css/* Higher number = on top */
+.modal-overlay { z-index: 200; }
+.modal         { z-index: 300; }  /* above overlay */
+.navbar        { z-index: 100; }
+.dropdown      { z-index: 150; }  /* above navbar */
+.content       { z-index: 1; }
+z-index: 300  →  modal window
+z-index: 200  →  dark overlay behind modal
+z-index: 150  →  dropdown menu
+z-index: 100  →  navbar
+z-index: 1    →  normal content
+Rules:
+css/* z-index only works on positioned elements */
+/* position must be relative, absolute, fixed, or sticky */
+
+/* ❌ z-index does nothing here */
+div { z-index: 999; }
+
+/* ✅ z-index works here */
+div { position: relative; z-index: 999; }
+
+Centering With Absolute — Classic Trick
+css/* Perfect center inside a container */
+.parent {
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* moves element back by half its own width and height */
+}
+Why transform: translate(-50%, -50%)?
+top: 50%  → moves TOP EDGE to center
+left: 50% → moves LEFT EDGE to center
+                    ↓
+transform: translate(-50%, -50%)
+           → moves element back by half its OWN size
+           → now the CENTER of element is at center of parent
+Modern alternative — just use flexbox:
+css.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+All 5 Values — Summary
+static   → default, normal flow, top/left/right/bottom ignored
+relative → normal flow, nudge with top/left, reference for absolute children
+absolute → removed from flow, positions to nearest relative ancestor
+fixed    → removed from flow, positions to viewport, stays on scroll
+sticky   → normal flow until threshold, then sticks like fixed

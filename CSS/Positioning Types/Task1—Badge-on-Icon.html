@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1 — Badge on Icon</title>
+  <style>
+    .notification {
+      position: relative;
+      display: inline-block; /* shrinks to content size */
+      cursor: pointer;
+    }
+
+    .notification__icon {
+      font-size: 2rem;
+    }
+
+    .notification__badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;        /* right edge, not left */
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notification">
+    <span class="notification__icon">🔔</span>
+    <span class="notification__badge">3</span>
+  </div>
+
+</body>
+</html>
