@@ -1,0 +1,87 @@
+Tailwind Cheat Sheet — Most Used Classes
+
+Spacing
+p-4    → padding: 1rem
+px-4   → padding left + right
+py-4   → padding top + bottom
+pt-4   → padding top only
+m-4    → margin: 1rem
+mx-auto → margin: 0 auto (center)
+gap-4  → gap: 1rem
+
+
+Sizing
+w-full   → width: 100%
+w-1/2    → width: 50%
+w-64     → width: 16rem
+max-w-md → max-width: 28rem
+max-w-xl → max-width: 36rem
+h-screen → height: 100vh
+min-h-screen → min-height: 100vh
+
+Typography
+text-sm    → font-size: 0.875rem
+text-base  → font-size: 1rem
+text-xl    → font-size: 1.25rem
+text-2xl   → font-size: 1.5rem
+text-4xl   → font-size: 2.25rem
+font-bold  → font-weight: 700
+font-medium → font-weight: 500
+text-center → text-align: center
+text-gray-500 → color: #6b7280
+
+Flexbox
+flex            → display: flex
+flex-col        → flex-direction: column
+items-center    → align-items: center
+justify-center  → justify-content: center
+justify-between → justify-content: space-between
+flex-wrap       → flex-wrap: wrap
+flex-1          → flex: 1
+
+Grid
+grid              → display: grid
+grid-cols-3       → grid-template-columns: repeat(3, 1fr)
+grid-cols-1       → single column
+col-span-2        → grid-column: span 2
+col-span-full     → grid-column: 1 / -1
+
+Colors
+bg-white         → background: white
+bg-gray-100      → light gray background
+bg-blue-500      → medium blue
+bg-blue-700      → dark blue
+text-white       → white text
+text-gray-900    → near black text
+border-gray-200  → light gray border
+
+Borders
+border           → border: 1px solid
+border-2         → border: 2px solid
+border-gray-200  → border color
+rounded          → border-radius: 0.25rem
+rounded-lg       → border-radius: 0.5rem
+rounded-xl       → border-radius: 0.75rem
+rounded-full     → border-radius: 9999px (circle/pill)
+
+Shadows
+shadow-sm  → small shadow
+shadow     → medium shadow
+shadow-md  → slightly larger
+shadow-lg  → large shadow
+shadow-xl  → extra large
+
+
+Pros and Cons
+✅ Pros:
+→ No CSS file to maintain
+→ No class naming decisions
+→ Responsive built in
+→ No specificity conflicts
+→ Used by most modern companies
+
+❌ Cons:
+→ HTML looks cluttered with many classes
+→ Hard to read at first
+→ Must learn Tailwind class names
+→ Without knowing CSS first — you won't understand what it does

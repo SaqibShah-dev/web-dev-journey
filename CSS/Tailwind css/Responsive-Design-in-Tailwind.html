@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design IN Tailwind CSS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <!-- Plain CSS way -->
+    <!-- Need media queries in separate CSS file -->
+
+    <!-- Tailwind way — all in HTML -->
+    <div class="
+    bg-gray-900
+    text-white
+    text-center
+  grid
+  grid-cols-1
+  md:grid-cols-2
+  lg:grid-cols-3
+  gap-5
+">Responsive Design</div>
+
+    <!-- Hover, Focus, Active States -->
+    <!-- Pseudo-classes as prefixes -->
+    <button class="
+  bg-blue-500
+  hover:bg-blue-700
+  active:scale-95
+  focus:outline-none
+  focus:ring-2
+  transition-all
+">
+        Click Me
+    </button>
+    
+    <!-- Equivalent plain CSS:
+css.button { background: #3b82f6; transition: all 0.2s; }
+.button:hover { background: #1d4ed8; }
+.button:active { transform: scale(0.95); }
+.button:focus { outline: none; box-shadow: 0 0 0 2px blue; } -->
+
+    <!-- No prefix    → all screens (mobile first)
+sm:          → min-width: 640px
+md:          → min-width: 768px
+lg:          → min-width: 1024px
+xl:          → min-width: 1280px -->
+</body>
+
+</html>
