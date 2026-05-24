@@ -1,0 +1,58 @@
+The CSS Selectors Explained
+:focus + label
+cssinput:focus + label { }
+/*
+  :focus     → input is currently clicked/active
+  +          → adjacent sibling selector (label immediately after input)
+
+  IMPORTANT: label must come AFTER input in HTML
+  <input/>          ← first
+  <label></label>   ← second (the + targets this)
+*/
+:not(:placeholder-shown) + label
+cssinput:not(:placeholder-shown) + label { }
+/*
+  :placeholder-shown     → placeholder IS visible (input is empty)
+  :not(:placeholder-shown) → placeholder is NOT visible (input has content)
+
+  So this rule fires when the input has content typed in it
+  This keeps the label floated up even after user clicks away
+*/
+Why placeholder=" " (space) is required
+css/*
+  :not(:placeholder-shown) checks if placeholder is showing
+  If input has no placeholder at all — this selector never fires
+  If placeholder=" " (space) — it counts as having a placeholder
+  When user types — space placeholder is hidden — selector fires
+  Label stays up ✅
+*/
+
+The Float Animation Broken Down
+Step 1 — Default state:
+  label: top: 50%, translateY(-50%) → vertically centered in input
+  label: font-size: 1rem, color: #999
+
+Step 2 — User clicks input (:focus):
+  label: top: 0 → moves to top edge of input
+  label: font-size: 0.75rem → shrinks
+  label: color: #0070f3 → turns blue
+  transition: all 0.2s ease → animates smoothly
+
+Step 3 — User types then clicks away:
+  :focus removed → blue color gone
+  :not(:placeholder-shown) fires → label STAYS at top
+  label: color: #999 → turns gray again
+  label stays small and up ✅
+
+Step 4 — User clears input:
+  placeholder-shown again → :not(:placeholder-shown) stops
+  label floats back down to center
+
+Common Mistake
+html<!-- ❌ Label before input — selector won't work -->
+<label for="email">Email</label>
+<input type="email" id="email"/>
+
+<!-- ✅ Input MUST come before label -->
+<input type="email" id="email" placeholder=" "/>
+<label for="email">Email</label>
