@@ -4,6 +4,17 @@
     box-sizing: border-box;
 }
 
+:root {
+    --netflix-red: #e50914;
+    --bg-dark: #000000;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --text-white: #ffffff;
+    --text-gray: #bcbcbc;
+    --input-bg: rgba(0, 0, 0, 0.6);
+    --input-border: rgba(255, 255, 255, 0.5);
+    --btn-bg: #e50914;
+}
+
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -25,7 +36,7 @@ header {
 
 .signin-btn button {
     padding: 10px 20px;
-    background-color: red;
+    background-color: var(--btn-bg);
     color: white;
     text-align: center;
     font-size: 1rem;
@@ -46,18 +57,36 @@ header {
 }
 
 .netflix-background-image {
-    /* Modern, clean equivalent if you don't want to type out 13 steps */
-    background-image: linear-gradient(7deg, rgba(0, 0, 0, 0.85) 10%, ease-in-out, rgba(0, 0, 0, 0.6) 97%);
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
 
 }
 
-/* .form-submit{
+.form-submit {
     position: absolute;
-    top: -10px;
-} */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
 .form-detail {
     display: flex;
     flex-direction: column;
@@ -75,73 +104,111 @@ form {
     z-index: 0;
 }
 
-
-/* THE KEY PART — wrapper must be relative */
-.input-wrapper {
-    position: relative;
-        background-image: linear-gradient(7deg, rgba(0, 0, 0, 0.85) 10%, ease-in-out, rgba(0, 0, 0, 0.6) 97%);
-
+.form-detail h1 {
+    font-size: clamp(1rem,1.5vw,2.5rem);
+    color: white;
 }
 
-/* Input styling */
-.input-wrapper input {
+.form-detail p {
+    font-size: clamp(0.75rem,1vw,1.2rem);
+    color: white;
+}
+
+form h3 {
+    font-size: clamp(1rem,1.2vw,1.5rem);
+    color: white;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.email-input-box {
     width: 100%;
-    padding: 1rem 0.75rem 0.25rem 0.75rem;
-    font-size: 1rem;
-    border: 1.5px solid #ddd;
+    border: 2px solid #999;
+    color: white;
     border-radius: 8px;
-    outline: none;
-    background: transparent;
+    background-color: transparent;
+    /* padding: 10px 25px; */
+    padding: 1rem 0.75rem 0.25rem 0.75rem;
     transition: border-color 0.3s ease;
 }
 
-/* Label — starts INSIDE input */
-.input-wrapper label {
+.email-input-box input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    caret-color: white;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.input-wrapper-label {
     position: absolute;
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    /* vertically centered */
+    color: white;
     font-size: 1rem;
-    color: #999;
     pointer-events: none;
-    /* click goes through label to input */
     transition: all 0.2s ease;
-    /* smooth float animation */
-
-    padding: 0 0.25rem;
 }
 
-/* FLOAT UP — when input is focused */
-.input-wrapper input:focus+label {
-    top: 0;
-    /* moves to top edge */
+.input-wrapper:focus-within .input-wrapper-label {
+    top: 0.4rem;
     font-size: 0.75rem;
-    /* shrinks */
-    color: #0070f3;
-    /* turns blue */
 }
 
-/* STAY UP — when input has content */
-.input-wrapper input:not(:placeholder-shown)+label {
-    top: 0;
+.input-wrapper:has(input:not(:placeholder-shown)) .input-wrapper-label {
+    top: 0.4rem;
     font-size: 0.75rem;
-    color: #999;
-    /* gray when not focused */
 }
 
-/* Border turns blue on focus */
-.input-wrapper input:focus {
-    border-color: #0070f3;
-}
-.submit-detail{
+
+.submit-detail {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-.form-submit{
+.submit-icon{
     position: relative;
-    top: -180px;
+    background-color: var(--btn-bg);
+    border: 2px solid var(--btn-bg);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+.submit-icon button{
+    color:white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: clamp(1rem,1.25vw,1.5rem);
+}
+/* Make parent just tall enough to be a line */
+.section-divider {
+  position: relative;
+  width: 100%;
+  height: 8px;        /* height of the line */
+  overflow: hidden;
+}
+
+.red-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to right,
+    rgba(33, 13, 22, 1) 0%,
+    rgba(184, 40, 105, 1) 30%,
+    rgba(229, 9, 20, 1) 50%,
+    rgba(184, 40, 105, 1) 70%,
+    rgba(33, 13, 22, 1) 100%
+  );
 }

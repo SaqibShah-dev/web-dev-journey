@@ -23,6 +23,7 @@
                 <div class="background-image">
                     <img class="netflix-background-image" src="./images/netflix-bg-image.png" alt="Background image" />
                 </div>
+                <div class="hero__overlay"></div>
                 <div class="form-submit">
                     <div class="form-detail">
                         <h1>Unlimited movies, TV shows, and more</h1>
@@ -32,11 +33,14 @@
                         <h3>Ready to watch? Enter your email to create or restart your membership.</h3>
                         <div class="submit-detail">
                             <div class="input-wrapper">
-                                <input type="email" id="email" placeholder=" " />
-                                <label for="email">Email Address</label>
+                                <div class="email-input-box">
+                                    <input type="email" id="email" placeholder=" " />
+                                </div>
+                                <label class="input-wrapper-label" for="email">Email Address</label>
                             </div>
-                            <button type="submit" id="signin-btn">Get Started</button>
+
                             <div class="submit-icon">
+                                <button type="submit" id="signin-btn">Get Started</button>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
                                     stroke-linejoin="round" style="width: 24px; height: 24px; color: #ffffff;">
@@ -47,11 +51,46 @@
                     </form>
                 </div>
             </div>
-            <div class="red-line"></div>
+            <div class="section-divider">
+                <div class="red-line"></div>
+            </div>
             <div class="container">
                 <div class="landing-page-content">
                     <div class="page-content-heading">
                         <h2>Trending News</h2>
+                        <div class="trending-news-items">
+                            <div class="trending-item">
+                                <ul class="items">
+                                    <li class="item"><img src="./images/movie-image1.png" alt="Movie1" /><span>1</span>
+                                    </li>
+                                    <li class="item"><img src="./images/movie-image2.png" alt="Movie2" /><span>2</span>
+                                    </li>
+                                    <li class="item"><img src="./images/movie-image3.png" alt="Movie3" /><span>3</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image4.png" alt="Movie4" /><span>4</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image5.png" alt="Movie5" /><span>5</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image6.png" alt="Movie6" /><span>6</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image7.png" alt="Movie7" /><span>7</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image8.png" alt="Movie8" /><span>8</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image9.png" alt="Movie9" /><span>9</span>
+                                    </li>
+
+                                    <li class="item"><img src="./images/movie-image10.png" alt="Movie10" /><span>10</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

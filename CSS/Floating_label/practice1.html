@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input-wrapper{
+            position: relative;
+        }
+        .input-wrapper input{
+            width: 100%;
+            background-color: transparent;
+            transition: border-color 0.3s ease;
+        }
+        .input-wrapper label{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+        }
+         .input-wrapper input:focus+label {
+            top: 0;
+            /* moves to top edge */
+            font-size: 0.75rem;
+            /* shrinks */
+            color: #0070f3;
+            /* turns blue */
+        }
+    </style>
+</head>
+<body>
+      <div class="input-wrapper">
+    <input id="name" name="name" type="text" required>
+    <label for="name">Your Name</label>
+  </div>
+</body>
+</html>
