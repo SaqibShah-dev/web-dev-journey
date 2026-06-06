@@ -33,6 +33,12 @@ If you are a student learning the fundamentals, this repository will help you ma
    - [Phase 2: CSS Box Model](#phase-2-css-box-model-cssbox-model)
    - [Phase 3: CSS Flexbox Layouts](#phase-3-css-flexbox-layouts-cssflex-box)
    - [Phase 4: CSS Grid Layouts](#phase-4-css-grid-layouts-cssgrid)
+   - [Phase 5: CSS Positioning Types](#phase-5-css-positioning-types-csspositioning-types)
+   - [Phase 6: CSS Variables & Pseudo-classes](#phase-6-css-variables--pseudo-classes-csscss-variablestransitionspseudo-classes)
+   - [Phase 7: Responsive Design](#phase-7-responsive-design-cssresponsive-design)
+   - [Phase 8: CSS Architecture](#phase-8-css-architecture-csscss-architecture)
+   - [Phase 9: Tailwind CSS](#phase-9-tailwind-css-csstailwind-css)
+   - [Additional Projects](#additional-projects)
    - [Root / Starter Templates](#root--starter-templates)
 3. [ Prerequisites & Requirements](#-prerequisites--requirements)
 4. [ Quick Learning Tips for Beginners](#-quick-learning-tips-for-beginners)
@@ -76,14 +82,17 @@ graph TD
     A[Phase 1: HTML Basics] --> B[Phase 2: CSS Box Model]
     B --> C[Phase 3: CSS Flexbox Layouts]
     C --> D[Phase 4: CSS Grid Layouts]
-    D --> E[Next: Responsive Design & JavaScript]
+    D --> E[Phase 5: CSS Positioning Types]
+    E --> F[Phase 6-8: Advanced CSS & Responsive]
+    F --> G[Phase 9: Tailwind CSS]
 ```
 
 1. **Step 1:** Learn how to structure text, headers, and lists in [HTML](./HTML).
 2. **Step 2:** Learn how block elements behave and spacing works using the [Box Model](./CSS/Box%20Model).
 3. **Step 3:** Master alignment, direction, and responsiveness using [Flexbox](./CSS/Flex%20Box).
 4. **Step 4:** Build advanced 2D layouts using [CSS Grid](./CSS/grid).
-5. **Step 5:** Build final projects combining CSS and HTML knowledge!
+5. **Step 5:** Learn how to position elements precisely with [Positioning](./CSS/Positioning%20Types).
+6. **Step 6:** Move to advanced topics like Responsive Design, Variables, Architecture, and Tailwind CSS.
 
 ---
 
@@ -153,7 +162,7 @@ Once you understand the properties above, practice building these components:
 *  [css_grid_fundamental.html](./CSS/grid/css_grid_fundamental.html) — **Start Here:** Learn the fundamental grid structure with `grid-template-columns`, `grid-template-rows`, and `grid-gap`.
 
 **2. Sizing Grid Tracks (Columns & Rows)**
-*  [sizing-tracks-FINISHED.html](./CSS/grid/sizing-tracks-FINISHED.html) — Learn to size columns using:
+*  [grid_sizing.html](./CSS/grid/grid_sizing.html) — Learn to size columns using:
    - `px` (fixed pixels)
    - `%` (percentage)
    - `auto` (content-based sizing)
@@ -187,7 +196,7 @@ Once you understand the properties above, practice building these components:
    - Combine sizing and positioning
 
 **7. Automatic Grid Flow**
-*  [autoflow-START.html](./CSS/grid/autoflow-START.html) & [autoflow-FINISHED.html](./CSS/grid/autoflow-FINISHED.html) — Understand how items automatically fill the grid:
+*  [grid_autoflow.html](./CSS/grid/grid_autoflow.html) — Understand how items automatically fill the grid:
    - `grid-auto-flow: row` (default — fills left to right)
    - `grid-auto-flow: column` (fills top to bottom)
 
@@ -202,7 +211,7 @@ Once you understand the properties above, practice building these components:
    - Perfect for mobile-first responsive layouts!
 
 **10. Developer Tools for Grid**
-*  [dev-tools-START.html](./CSS/grid/dev-tools-START.html) & [dev-tools-FINISHED.html](./CSS/grid/dev-tools-FINISHED.html) — Learn to inspect and debug CSS Grid using browser DevTools:
+*  [grid-dev-tools_.html](./CSS/grid/grid-dev-tools_.html) — Learn to inspect and debug CSS Grid using browser DevTools:
    - Visualize grid lines in Firefox Developer Tools
    - Inspect grid container and item properties
    - Debug layout issues faster
@@ -252,6 +261,66 @@ Once you understand the properties above, practice building these components:
 - ✅ JavaScript can toggle grid layouts dynamically for responsive behavior
 - ✅ Random image selection adds variety to gallery projects
 - ✅ Overlay modals use `position: fixed` + `display: grid` for centering
+
+---
+
+### Phase 5: CSS Positioning Types (`/CSS/Positioning Types`)
+Master the control of element placement on a webpage.
+*  [css-position-property-explain.txt](./CSS/Positioning%20Types/css-position-property-explain.txt) — **Crucial Concept:** In-depth explanation of all CSS position values.
+*  [position-static.html](./CSS/Positioning%20Types/position-static.html) — Default positioning behavior.
+*  [position-relative.html](./CSS/Positioning%20Types/position-relative.html) — Positioning relative to the normal document flow.
+*  [position-absolute.html](./CSS/Positioning%20Types/position-absolute.html) — Positioning relative to the nearest positioned ancestor.
+*  [position-fixed.html](./CSS/Positioning%20Types/position-fixed.html) — Positioning relative to the browser viewport.
+*  [position-sticky.html](./CSS/Positioning%20Types/position-sticky.html) — Hybrid of relative and fixed based on scroll position.
+*  **Projects & Tasks:**
+   * [Modal.html](./CSS/Positioning%20Types/Modal.html) — Building a popup overlay modal using fixed positioning.
+   * [Task1—Badge-on-Icon.html](./CSS/Positioning%20Types/Task1—Badge-on-Icon.html) — Creating notification badges on icons using absolute positioning.
+   * [Task2—StickyNavbar.html](./CSS/Positioning%20Types/Task2—StickyNavbar.html) — A navigation bar that sticks to the top on scroll.
+
+---
+
+### Phase 6: CSS Variables & Pseudo-classes (`/CSS/CSS-Variables+Transitions+Pseudo-classes`)
+*  [CSS-variables.html](./CSS/CSS-Variables+Transitions+Pseudo-classes/CSS-variables.html) — Using custom properties for consistent theming and styling.
+*  [Pseudo-classes.html](./CSS/CSS-Variables+Transitions+Pseudo-classes/Pseudo-classes.html) — Styling elements based on their state (e.g., `:hover`, `:focus`, `:nth-child`).
+*  [Transition-property.html](./CSS/CSS-Variables+Transitions+Pseudo-classes/Transition-property.html) — Adding smooth animations and state transitions.
+
+---
+
+### Phase 7: Responsive Design (`/CSS/Responsive design`)
+*  [mobile-first-design.html](./CSS/Responsive%20design/mobile-first-design.html) — Core concepts of designing for smaller screens first.
+*  **Projects & Tasks:**
+   * [Task1—Fluid-Typography.html](./CSS/Responsive%20design/Task1—Fluid-Typography.html) — Scaling text dynamically based on viewport size.
+   * [Task2—ResponsiveNavbar.html](./CSS/Responsive%20design/Task2—ResponsiveNavbar.html) — Creating a collapsible mobile menu.
+   * [Task3—ResponsiveLayout.html](./CSS/Responsive%20design/Task3—ResponsiveLayout.html) — Building multi-column layouts that collapse on mobile.
+   * [Task4—ResponsiveProfileCard.html](./CSS/Responsive%20design/Task4—ResponsiveProfileCard.html) — A user profile card that adapts to screen size.
+
+---
+
+### Phase 8: CSS Architecture (`/CSS/css-architecture`)
+Learn how to write maintainable and scalable CSS for large projects.
+*  [Block-Element-Modifier.html](./CSS/css-architecture/Block-Element-Modifier.html) — The BEM naming convention for CSS classes.
+*  [Component-Based-CSS.html](./CSS/css-architecture/Component-Based-CSS.html) — Structuring styles around reusable UI components.
+*  [CSS-Modules.html](./CSS/css-architecture/CSS-Modules.html) — Scoping CSS to avoid class name conflicts.
+
+---
+
+### Phase 9: Tailwind CSS (`/CSS/Tailwind css`)
+Introduction to utility-first CSS frameworks.
+*  [Learning-Tailwind-css.txt](./CSS/Tailwind%20css/Learning-Tailwind-css.txt) — Core concepts and setup instructions.
+*  [Using-Tailwind-CSS.html](./CSS/Tailwind%20css/Using-Tailwind-CSS.html) — Styling with utility classes instead of writing custom CSS.
+*  [Responsive-Design-in-Tailwind.html](./CSS/Tailwind%20css/Responsive-Design-in-Tailwind.html) — Using screen-size prefixes (`md:`, `lg:`) for responsive designs.
+*  [Project.html](./CSS/Tailwind%20css/Project.html) — A complete landing page built purely with Tailwind CSS.
+
+---
+
+### Additional Projects
+
+#### Floating Labels (`/CSS/Floating_label`)
+*  [cheet-sheet.txt](./CSS/Floating_label/cheet-sheet.txt) — Implementation notes.
+*  [floating-example.html](./CSS/Floating_label/floating-example.html) & [practice1.html](./CSS/Floating_label/practice1.html) — Creating modern, animated input field labels that float up when typing.
+
+#### Netflix Clone (`/CSS/Netflix Landing Page`)
+*  [Netflix-Landing-page.html](./CSS/Netflix%20Landing%20Page/Netflix-Landing-page.html) & [style.css](./CSS/Netflix%20Landing%20Page/style.css) — **Capstone Project:** A full clone of the Netflix landing page using advanced CSS layouts, positioning, and responsive techniques!
 
 ---
 
@@ -394,9 +463,9 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 | Category | Count |
 |----------|-------|
 | **Total HTML Files** | 10 |
-| **CSS Learning Files** | 35+ |
-| **Code Examples** | 100+ |
-| **Hands-on Tasks** | 15+ |
+| **CSS Learning Files** | 60+ |
+| **Code Examples** | 120+ |
+| **Hands-on Tasks** | 20+ |
 
 ---
 
