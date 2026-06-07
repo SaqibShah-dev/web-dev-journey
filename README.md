@@ -53,7 +53,7 @@ If you are a student learning the fundamentals, this repository will help you ma
 
 ---
 
-##  ⚡ Quick Start (5 Minutes)
+##   Quick Start (5 Minutes)
 
 **1️⃣ Clone & Open:**
 ```bash
@@ -537,9 +537,3 @@ Since this repository uses relative file paths, you can click on any `.html` fil
 - [ ] ⭐ Star this repo if it helped you!
 
 ---
-
-<div align="center">
-
-*Happy Learning! Your web development journey starts here! *
-
-</div>
