@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anchor Positioning</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            align-items: flex-start;
+            padding-top: 20px;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background: #f0f0f0;
+        }
+
+        .anchor {
+            anchor-name: --btn;
+            padding: 0.75rem 1.5rem;
+            background-color: royalblue;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .tooltip {
+            position: absolute;
+            position-anchor: --btn;
+            position-area: top;
+            position-try-fallbacks: flip-block;
+
+            background: #333;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+
+            /* little arrow pointing down */
+            margin-bottom: 8px;
+        }
+
+        /* arrow using pseudo element */
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="anchor" aria-describedby="tooltipInfo">
+        Hover over me
+    </button>
+
+    <div class="tooltip" role="tooltip" id="tooltipInfo">
+        I am a tooltip!
+    </div>
+
+</body>
+</html>
