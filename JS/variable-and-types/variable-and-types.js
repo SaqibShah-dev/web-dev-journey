@@ -41,6 +41,22 @@ b = 20;
 console.log("a", a); // 10 — unchanged
 console.log("b", b); // 20
 
+// JavaScript has 7 primitive data types:
+
+// String — text, e.g. "hello"
+// Number — integers and decimals, e.g. 42, 3.14
+// Boolean — true or false
+// Undefined — a variable that has been declared but not assigned a value
+// Null — represents the intentional absence of a value
+// Symbol — a unique, immutable value often used as object property keys (ES6+)
+// BigInt — for numbers larger than Number can safely represent (ES2020+)
+console.log(typeof "hello");      // "string"
+console.log(typeof 42);           // "number"
+console.log(typeof true);         // "boolean"
+console.log(typeof undefined);    // "undefined"
+console.log(typeof null);         // "object" (a known JS quirk — it's actually a primitive)
+console.log(typeof Symbol("id")); // "symbol"
+console.log(typeof 10n);          // "bigint"
 // Each variable has its own independent copy. Changing b has no effect on a.
 
 
