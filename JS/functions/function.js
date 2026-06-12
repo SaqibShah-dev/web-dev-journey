@@ -495,3 +495,38 @@ function outer() {
 outer();
 // Note: Both a and b are hoisted within their respective scopes (outer and inner functions),
 //  but their values are not set until the code execution reaches the initialization lines.
+
+
+// 1. Default parameters
+function greetUser(name = "Guest") {
+  return "Hello, " + name;
+}
+console.log("Greet user:",greetUser()); // "Hello, Guest"
+
+
+// 2. Rest parameters (...args)
+function calsum(...numbers) {
+  return numbers.reduce((total, n) => total + n, 0);
+}
+console.log("Sum:",calsum(1, 2, 3)); // 6
+
+// 3. The spread operator in function calls
+function add(a, b, c) {
+  return a + b + c;
+}
+const nums = [1, 2, 3];
+console.log("Add:",add(...nums)); // 6
+
+// 4. Immediately Invoked Function Expressions (IIFE)
+(function() {
+  console.log("Runs immediately!");
+})();
+
+// 5. Callback functions (a special use-case of HOFs — very common for async work)
+function fetchData(callback) {
+  setTimeout(() => {
+    callback("Data loaded!");
+  }, 1000);
+}
+
+fetchData((message) => console.log(message)); // after 1 sec: "Data loaded!"
