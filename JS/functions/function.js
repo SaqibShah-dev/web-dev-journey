@@ -1,11 +1,192 @@
+// "A function is a 'subprogram'..."
+// Think of a function as a mini-program inside your main program — a self-contained
+//  block of code that does one specific job, which you can run (or "call") whenever 
+//  you need it.
+function makeSandwich() {
+  console.log("Bread");
+  console.log("Filling");
+  console.log("Bread");
+}
+
+makeSandwich(); 
+
+
+// "called by code external (or internal, in case of recursion)"
+// External = code outside the function calls it (the normal case — you write 
+//   makeSandwich() somewhere in your program).
+// Internal (recursion) = a function calls itself from within its own body. This 
+// is a more advanced technique:
+function countdown(n) {
+  console.log(n);
+  if (n > 0) {
+    countdown(n - 1); // function calling itself
+  }
+}
+countdown(3);
+// 3
+// 2
+// 1
+// 0
+
+// "composed of a sequence of statements called the function body"
+// The "function body" is just the code between the curly braces { } — the actual 
+// instructions the function will run.
+function example() {
+  // everything in here is the "function body"
+  console.log("Step 1");
+  console.log("Step 2");
+}
+// "Values can be passed to a function as parameters, and the function will return 
+// a value"
+// Parameters = inputs you give the function
+// Return value = output the function gives back
+function add(a, b) {  // a and b are parameters (inputs)
+  return a + b;        // returns a value (output)
+}
+
+const result = add(3, 5); // result = 8
+
+// "Functions are first-class objects"
+// This is the most important concept here for understanding why JavaScript 
+// functions are so flexible. "First-class" means functions are treated like 
+// any other value (numbers, strings, etc.) — you can:
+// 1. Assign them to variables
+const greet = function() {
+  console.log("Hello!");
+};
+
+
+// 2. Pass them as arguments to other functions
+function callFunction(fn) {
+  fn(); // calling the function passed in
+}
+
+callFunction(greet); // "Hello!"
+
+
+// 3. Return them from other functions
+function createGreeter() {
+  return function() {
+    console.log("Hi there!");
+  };
+}
+const greeter = createGreeter();
+greeter(); // "Hi there!"
+
+
+// "They can also have properties and methods just like any other object"
+// This might be surprising — functions aren't just code, they're also objects 
+// under the hood, so you can attach extra information to them:
+function changeFunctionProperty() {
+  console.log("Hello!");
+}
+
+changeFunctionProperty.language = "English"; // adding a property to a function!
+changeFunctionProperty.description = "A simple greeting function"; // adding another property
+console.log("Language : ",changeFunctionProperty.language); // "English"
+console.log("Description: ",changeFunctionProperty.description);
+console.log("Name: ",changeFunctionProperty.name);
+
+console.log("Function type:",typeof changeFunctionProperty);   // "function"
+
+
+// "Every function is actually a Function object"
+// This connects to what we discussed earlier — functions are objects. Specifically,
+//  every function you write is an instance of Function, similar to how [1, 2, 3] is an 
+//  instance of Array. This is why functions have built-in properties and methods.
+function dummyfun() {}
+
+console.log(dummyfun instanceof Function); // true
+
+// Instance properties — the useful ones
+// length — tells you how many parameters a function expects:
+function add(a, b, c) {
+  return a + b + c;
+}
+console.log("function length",add.length); // 3
+
+// name — the function's name as a string:
+function demofun() {}
+console.log("Function name:",demofun.name); // "demofun"
+
+const sayHi = () => {};
+console.log("Function name:",sayHi.name); // "sayHi"
+
+// arguments and caller — these are outdated/legacy. Modern JavaScript avoids them. 
+// (We'll use the rest parameter ...args instead, which is the modern replacement for
+//    arguments.)
+// Old way (avoid)
+function oldSum() {
+  console.log("Arguments:",arguments); // [1, 2, 3]
+}
+oldSum(1, 2, 3);
+
+// Modern way
+function newSum(...args) {
+  console.log("New arguments:",args); // [1, 2, 3]
+}
+newSum(1, 2, 3);
+
+// Instance methods — these are the important part
+// These three methods (call, apply, bind) all deal with controlling what this refers 
+// to inside a function. Remember earlier we mentioned this behaves differently in regular
+//  vs arrow functions? These methods let you manually set what this should be.
+// call() — runs the function immediately, letting you specify this and pass arguments one
+//  by one:
+function introduce(greeting) {
+  console.log(greeting + ", I'm " + this.name);
+}
+
+const person1 = { name: "Alex" };
+
+introduce.call(person1, "Hello"); // "Hello, I'm Alex"
+// Without call, introduce() wouldn't know what this.name should be. call lets you say "run 
+// this function, but pretend this is person."
+
+
+// apply()  — same as call, but arguments are passed as an array:
+introduce.apply(person1, ["Hi"]); // "Hi, I'm Alex"
+// The only difference between call and apply is how you pass arguments: 
+// call(thisValue, arg1, arg2, ...) vs apply(thisValue, [arg1, arg2, ...]).
+
+// bind() — doesn't run the function immediately. Instead, it returns a new 
+// function with this permanently set:
+const boundIntroduce = introduce.bind(person1);
+boundIntroduce("Hey"); // "Hey, I'm Alex" — runs later, but 'this' is locked to 'person'
+
+
+// A practical example of why bind matters
+// This is a very common real-world scenario, especially with event listeners:
+
+const button = {
+  label: "Submit",
+  click: function() {
+    console.log("Clicked: " + this.label);
+  }
+};
+
+button.click(); // "Clicked: Submit" — works fine here
+
+// But if we pass it elsewhere...
+const clickHandler = button.click;
+clickHandler(); // "Clicked: undefined" — 'this' is lost!
+
+// Fix with bind:
+const boundClickHandler = button.click.bind(button);
+boundClickHandler(); // "Clicked: Submit" — 'this' is preserved
+
+// When you pass a method around separately from its object, it "forgets" what this
+//  was supposed to be. bind fixes this by locking this to a specific object permanently.
+
+
 // 1. Function DeclarationsThis is the classic way to define a function using 
 // the function keyword with a name.
 
-function greet(name) {
+function greetAlex(name) {
   return "Hello, " + name + "!";
 }
 
-console.log(greet("Alex")); // "Hello, Alex!"
+console.log(greetAlex("Alex")); // "Hello, Alex!"
 
 
 
@@ -154,9 +335,9 @@ console.log(triple(5)); // 15
 // A key feature of function declarations: they're hoisted, meaning you can call 
 // them before they appear in the code.
 
-sayHi(); // works fine!
+Hi(); // works fine!
 
-function sayHi() {
+function Hi() {
   console.log("Hi!");
 }
 
@@ -223,8 +404,8 @@ var a = 5;
 // This means the function can be called before its definition in the code.
 
 
-greet(); // "Hello, Mahima!"
-function greet() {
+greetMahima(); // "Hello, Mahima!"
+function greetMahima() {
     console.log("Hello, Mahima!");
 }
 // Note: The function declaration is hoisted, and the entire function definition is available 
