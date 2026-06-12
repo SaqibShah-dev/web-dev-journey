@@ -1,3 +1,15 @@
+// Variables = Labeled Boxes
+// A variable is like a labeled box where you keep something safe, and you can 
+// look at what's inside whenever you want.
+let myToy = "robot";
+// This is like writing "MY TOY" on a box and putting a robot inside. Later, you
+//  can open the box:
+console.log(myToy); // "robot"
+// And if you get a new favorite toy, you can swap what's inside the box:
+myToy = "teddy bear";
+console.log(myToy); // "teddy bear"
+// The box (myToy) stayed the same — only what's inside it changed!
+
 // let vs const
 // Both let and const are used to declare variables, but the difference is whether 
 // you can reassign the value afterward.

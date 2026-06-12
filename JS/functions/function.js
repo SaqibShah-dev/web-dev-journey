@@ -1,3 +1,25 @@
+// Functions = Magic Machines
+// A function is like a machine that does a job every time you push its button. 
+// You can use it again and again without rebuilding it.
+function makeSandwich() {
+  console.log("Put bread");
+  console.log("Put cheese");
+  console.log("Put bread on top");
+}
+// Now, whenever you're hungry, you just press the button:
+// javascriptmakeSandwich(); // does all 3 steps instantly!
+// You don't have to write all those steps again — the machine remembers them for you!
+// Even cooler — machines that take requests:
+function makeSandwich(filling) {
+  console.log("Put bread");
+  console.log("Put " + filling);
+  console.log("Put bread on top");
+}
+
+// makeSandwich("peanut butter"); // makes a peanut butter sandwich
+// makeSandwich("jam");           // makes a jam sandwich
+// Same machine, but you tell it what filling you want!
+
 // "A function is a 'subprogram'..."
 // Think of a function as a mini-program inside your main program — a self-contained
 //  block of code that does one specific job, which you can run (or "call") whenever 
