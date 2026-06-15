@@ -1,0 +1,302 @@
+How JavaScript Works?
+Basic Definition
+JavaScript is a high-level, object-oriented, multi-paradigm programming language.
+
+Detailed Definition
+JavaScript is:
+1. High-level
+    Low-level language (C, C++):
+    "Hey computer, give me 4 bytes of memory at address 0x7fff,
+    store this value, then free that memory when done..."
+
+    JavaScript:
+    const name = "Alex"; // JavaScript handles ALL the memory stuff for you!
+    You just write code — JavaScript handles the computer stuff behind the scenes.
+
+2. Garbage Collected
+    An algorithm inside the JavaScript engine that automatically removes old unused 
+    objects from memory. It cleans computer memory from time to time.
+
+    Imagine your room gets dirty while you work.
+    A cleaning robot automatically comes and cleans it.
+
+    JavaScript has a "cleaning robot" that automatically
+    removes variables/objects you're no longer using.
+    You never have to manually clean up memory!
+    function greet() {
+    const message = "Hello!"; // created in memory
+    console.log(message);
+    } // function ends → "message" cleaned up automatically 🤖
+
+3. JIT Compiled (Just In Time)
+    OLD way (Compilation):
+    Write code → Translate EVERYTHING → Save file → Run later
+
+    OLD way (Interpretation):
+    Write code → Run line 1 → translate → Run line 2 → translate...
+
+    MODERN JS (JIT):
+    Write code → Translate + Run at the SAME TIME → Super fast! ⚡
+
+4. Multi-paradigm: Approach of Structuring code i.e. Coding Style. JavaScript use all three 
+    types of paradigm: Procedural Programming, OOPs, and Functional Programming
+    Think of it like cooking styles:
+    - Procedural  → follow recipe step by step (do this, then this, then this)
+    - OOP         → organize ingredients into boxes (objects with methods)
+    - Functional  → use specialized kitchen tools (pure functions, no side effects)
+
+    JavaScript supports ALL THREE styles!
+    // Procedural style
+    let total = 0;
+    total = total + 5;
+    total = total * 2;
+
+    // OOP style
+    const cart = {
+        total: 0,
+        add(price) { this.total += price; }
+    };
+
+    // Functional style
+    const double = n => n * 2;
+    const result = [1,2,3].map(double);
+
+5. Prototype-based
+    Everything in JavaScript (except primitives) is an object.
+    Objects can inherit features from other objects.
+
+    Like a family tree — children inherit from parents!
+
+    // Arrays are objects with built-in methods
+    const arr = [1, 2, 3];
+    arr.push(4);    // push() comes from Array's "parent" (prototype)
+    arr.map(x=>x);  // map() also inherited!
+
+    // Even functions are objects!
+    function greet() {}
+    console.log(typeof greet); // "function" — but it's also an object
+    greet.myProperty = "hello"; // can add properties like an object!
+
+6. First-class Functions
+    Functions are treated like any other value (number, string, etc.)
+    You can store them, pass them, return them!
+    // Store in variable
+    const sayHi = () => console.log("Hi!");
+
+    // Pass as argument
+    [1,2,3].forEach(sayHi);
+
+    // Return from function
+    function makeGreeter() {
+        return () => console.log("Hello!"); // returning a function!
+    }
+
+7. Dynamic
+    Some languages force you to declare types:
+    int age = 25;        // Java — must say it's an integer
+    string name = "Alex"; // Java — must say it's a string
+
+    JavaScript doesn't care:
+    javascriptlet x = 25;      // number
+    x = "Alex";      // now string — no error!
+    x = true;        // now boolean — still no error!
+    x = [1,2,3];     // now array — JavaScript is fine with this!
+
+8. Single-threaded + Non-blocking
+    Single-threaded = ONE chef in the kitchen
+                      (can only do one thing at a time)
+
+    Non-blocking   = slow tasks go to kitchen helpers
+                      (chef doesn't freeze while waiting)
+
+The JavaScript ENGINE
+    The engine is the machine that RUNS your JavaScript. Chrome uses V8, Firefox uses SpiderMonkey.
+    JavaScript Engine has 2 parts:
+
+    ┌─────────────────────────────────────┐
+    │           JS ENGINE                 │
+    │                                     │
+    │  📋 CALL STACK                      │
+    │  "Where code actually RUNS"         │
+    │  Like a to-do list for the chef     │
+    │                                     │
+    │  🗄️ HEAP                            │
+    │  "Where objects are STORED"         │
+    │  Like a big storage room            │
+    │                                     │
+    └─────────────────────────────────────┘
+    Simple example:
+    javascriptconst user = { name: "Alex" }; // stored in HEAP (storage room)
+
+    function greet() {
+        console.log(user.name);    // this RUNS in Call Stack
+    }
+
+    greet(); // added to Call Stack, runs, removed
+
+How JIT actually works step by step:
+Your JS code
+    ↓
+1. PARSING — reads your code, checks for syntax errors
+    ↓
+2. AST (Abstract Syntax Tree) — converts code into a tree structure
+    ↓
+3. COMPILATION — converts AST to machine code
+    ↓
+4. EXECUTION — runs immediately in Call Stack
+    ↓
+5. OPTIMIZATION — rewrites to faster machine code while still running!
+
+Execution Context in detail
+When JavaScript runs, the very first thing created is the Global Execution Context:
+javascript// This is TOP-LEVEL code (runs first, in Global Execution Context)
+const name = "Alex";
+const age = 25;
+
+function greet() {
+    // This gets its OWN Execution Context when called
+    const message = "Hello " + name;
+    return message;
+}
+
+// Function only executes when CALLED
+greet(); // new Execution Context created here
+Each Execution Context contains:
+
+Variable Environment — all variables declared in that scope
+Scope Chain — reference to outer scopes (this is what makes closures work!)
+this keyword — what this refers to in that context
+
+
+
+
+HOW code actually executes — the full story
+Let's trace this code completely:
+const name = "Alex";     // top-level code
+
+function greet() {
+    console.log("Hi " + name);
+}
+
+function start() {
+    greet();
+}
+
+start();
+
+Phase 1: Global Execution Context created
+CALL STACK:
+┌────────────────────────────────────┐
+│         GLOBAL CONTEXT             │
+│  name  = "Alex"                    │
+│  greet = function                  │
+│  start = function                  │
+│  this  = window                    │
+└────────────────────────────────────┘
+
+Top-level code runs:
+→ name = "Alex" stored ✅
+→ greet and start functions registered ✅
+→ start() called! → new context created
+Phase 2: start() called
+CALL STACK:
+┌────────────────────────────────────┐
+│         start() CONTEXT            │ ← running now
+│  (no local variables)              │
+│  scope chain → Global              │
+└────────────────────────────────────┘
+┌────────────────────────────────────┐
+│         GLOBAL CONTEXT             │ ← waiting
+└────────────────────────────────────┘
+
+→ greet() called! → new context created
+Phase 3: greet() called
+CALL STACK:
+┌────────────────────────────────────┐
+│         greet() CONTEXT            │ ← running now
+│  (no local variables)              │
+│  scope chain → Global              │
+│  finds 'name' = "Alex" via chain   │
+└────────────────────────────────────┘
+┌────────────────────────────────────┐
+│         start() CONTEXT            │ ← waiting
+└────────────────────────────────────┘
+┌────────────────────────────────────┐
+│         GLOBAL CONTEXT             │ ← waiting
+└────────────────────────────────────┘
+
+→ console.log("Hi Alex") runs ✅
+→ "Hi Alex" printed!
+Phase 4: greet() finishes → POPPED OFF
+CALL STACK:
+┌────────────────────────────────────┐
+│         start() CONTEXT            │ ← back to running
+└────────────────────────────────────┘
+┌────────────────────────────────────┐
+│         GLOBAL CONTEXT             │ ← waiting
+└────────────────────────────────────┘
+Phase 5: start() finishes → POPPED OFF
+CALL STACK:
+┌────────────────────────────────────┐
+│         GLOBAL CONTEXT             │ ← back to running
+└────────────────────────────────────┘
+Phase 6: All code done → Global Context POPPED OFF
+CALL STACK:
+┌────────────────────────────────────┐
+│              EMPTY ✅              │
+└────────────────────────────────────┘
+
+Engine now WAITS for callbacks...
+(click events, setTimeout, fetch responses)
+
+The Event Loop — final piece
+javascriptconsole.log("1. Start");
+
+// This goes to Web API (browser handles it)
+setTimeout(() => {
+    console.log("3. Timeout done!");
+}, 2000);
+
+document.querySelector("button")
+    .addEventListener("click", () => {
+        console.log("Button clicked!");
+    });
+
+console.log("2. End");
+Timeline:
+0ms:    "1. Start" printed
+0ms:    setTimeout sent to Web API ⏳
+0ms:    addEventListener registered in Web API 🖱️
+0ms:    "2. End" printed
+0ms:    Call Stack EMPTY
+        Event Loop starts watching...
+
+2000ms: Timer done!
+        Callback → Callback Queue
+        Event Loop: "Stack empty? YES!"
+        → moves callback to Call Stack
+        → "3. Timeout done!" printed
+
+Anytime user clicks button:
+        Click callback → Callback Queue
+        Event Loop: "Stack empty? YES!"
+        → "Button clicked!" printed
+
+
+
+The complete picture
+You write code
+    ↓
+Engine PARSES it (reads entire file, builds AST, catches syntax errors)
+    ↓
+Engine COMPILES it (AST → machine code via JIT)
+    ↓
+Global Execution Context created
+    ↓
+Top-level code runs in Call Stack
+    ↓
+Function calls → new Execution Contexts pushed onto Call Stack
+    ↓
+Async tasks → handed to Web APIs → Callback Queue → Event Loop → Call Stack
+    ↓
+All done → Global Execution Context popped off → Call Stack empty
