@@ -365,7 +365,7 @@ async function fetchWithTimeout() {
 
     } catch (error) {
         console.log("Error:", error); // either fetch error OR timeout
-    }
+    }    
 }
 
 fetchWithTimeout();
