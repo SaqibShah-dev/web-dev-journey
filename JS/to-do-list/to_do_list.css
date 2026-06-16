@@ -1,0 +1,102 @@
+/* From Uiverse.io by felipesntr */ 
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+button {
+  border: 2px solid #24b4fb;
+  background-color: #24b4fb;
+  border-radius: 0.9em;
+  cursor: pointer;
+  padding: 0.7em 1em 0.5em 1em;
+  transition: all ease-in-out 0.2s;
+  font-size: 16px;
+}
+
+button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #0071e2;
+}
+
+.input-wrapper{
+    position: relative;
+}
+
+.input-wrapper input{
+    padding: 0.7rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+}
+.input-wrapper input:focus {
+    border-color: dodgerblue;
+}
+
+.input-wrapper label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    padding: 0 0.3rem;
+    color: gray;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    pointer-events: none; /* clicking label still focuses input, not the label itself */
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-50%) scale(0.85);
+    color: dodgerblue;
+}
+
+.wrapper-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 10px;
+}
+
+.list-item-container ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:10px;
+}
+.list-item-container ul li{
+    list-style: none;
+    border: 2px solid dodgerblue;
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+}
+
+.list-item-container ul li:hover{
+    background-color: #0071e2;
+    color:white;
+}
