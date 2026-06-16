@@ -540,9 +540,91 @@ const nums = [1, 2, 3];
 console.log("Add:",add(...nums)); // 6
 
 // 4. Immediately Invoked Function Expressions (IIFE)
+// An IIFE (Immediately Invoked Function Expression) is a JavaScript function that 
+// runs as soon as it’s defined. As documented on MDN, it creates a private scope to
+//  protect variables from polluting the global namespace. This pattern was essential
+//   before ES6 modules existed.
 (function() {
   console.log("Runs immediately!");
 })();
+// The Anatomy of an IIFE
+// Let’s break down the syntax piece by piece:
+(function() {
+  // your code here
+})();
+
+// Let's label each part:
+
+// ( function() { ... } )  ();
+// │                    │   │
+// │                    │   └─── 3. Invoke (call) it immediately
+// │                    │
+// │                    └─────── 2. Wrap in parentheses (makes it an expression)
+// │
+// └──────────────────────────── 1. Define a function
+
+
+// IIFE Variations
+// There are several ways to write an IIFE. They all do the same thing:
+// Classic style
+(function() {
+  console.log("Classic IIFE");
+})();
+
+// Alternative parentheses placement
+(function() {
+  console.log("Alternative style");
+}());
+
+// Arrow function IIFE (modern)
+(() => {
+  console.log("Arrow IIFE");
+})();
+
+// With parameters
+((name) => {
+  console.log(`Hello, ${name}!`);
+})("Alice");
+
+// Named IIFE (useful for debugging)
+(function myIIFE() {
+  console.log("Named IIFE");
+})();
+
+const counter = (function() {
+  // Private variable — can't be accessed directly
+  let count = 0;  // let is block-scoped, perfect for private state
+  
+  // Private function — also hidden
+  function log(message) {
+    console.log(`[Counter] ${message}`);
+  }
+  
+  // Return public interface
+  return {
+    increment() {
+      count++;
+      log(`Incremented to ${count}`);
+    },
+    decrement() {
+      count--;
+      log(`Decremented to ${count}`);
+    },
+    getCount() {
+      return count;
+    }
+  };
+})();
+
+// Using the counter
+counter.increment();      // [Counter] Incremented to 1
+counter.increment();      // [Counter] Incremented to 2
+console.log(counter.getCount());  // 2
+
+// Trying to access private variables
+console.log(counter.count);  // undefined (it's private!)
+counter.log("test");         // TypeError: counter.log is not a function
+
 
 // 5. Callback functions (a special use-case of HOFs — very common for async work)
 function fetchData(callback) {
@@ -552,3 +634,4 @@ function fetchData(callback) {
 }
 
 fetchData((message) => console.log(message)); // after 1 sec: "Data loaded!"
+
