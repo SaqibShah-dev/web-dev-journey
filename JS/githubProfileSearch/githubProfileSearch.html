@@ -10,22 +10,64 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="title-wrapper">
-            <h1>GitHub Profile Search </h1>
-        </div>
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" id="search" placeholder="Enter GitHub username" value="" />
+    <div class="wrapper-container">
+        <div class="container">
+            <div class="title-wrapper">
+                <h1>GitHub Profile Search </h1>
             </div>
-            <div class="search-icon">
-                <img src="./icons/search.png" alt="search-icon" />
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="search" placeholder="Enter GitHub username" value="" />
+                </div>
+                <div class="search-icon">
+                    <img src="./icons/search.png" alt="search-icon" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="error-container">
-        <span id="errorMsg"></span>
-    </div>
+        <div class="error-container">
+            <span id="errorMsg"></span>
+        </div>
+        <div id="profile-card" class="profile-card-container hidden">
+            <div class="profile-card-wrapper">
+                <div class="user-image">
+                    <img id="user-img" src="" alt="user profile image" />
+                </div>
+                <div class="user-detail">
+                    <div class="user-name">
+                        <h3 id="name"></h3>
+                    </div>
+                    <div class="user-name">
+                        <p id="userName"></p>
+                    </div>
+                    <div class="user-description">
+                        <p id="user-des"></p>
+                    </div>
+                    <div class="user-location">
+                        <img src="./icons/maps-and-flags.png" alt="location-icon" />
+                        <h3 id="user-loc"></h3>
+                    </div>
+                </div>
+                <div class="github-account-data">
+                    <div class="userinfo" id="user-followers">
+                        <span id="total-followers"></span>
+                        <span>Followers</span>
+                    </div>
+                    <div class="userinfo" id="user-following">
+                        <sapn id="total-following"></sapn>
+                        <span>Following</span>
+                    </div>
+                    <div class="userinfo" id="user-repos">
+                        <span id="total-repos"></span>
+                        <span>repos</span>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <a id="profileLink" href="" target="_blank" class="profile-link">View on GitHub</a>
+
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="githubProfileSearch.js"></script>
 </body>

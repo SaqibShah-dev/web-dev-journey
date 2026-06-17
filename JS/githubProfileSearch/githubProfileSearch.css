@@ -8,6 +8,13 @@ body{
 .title-wrapper h1{
     font-size: 2rem;
 }
+.wrapper-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -21,7 +28,7 @@ body{
     justify-content: space-between;
     border: 2px solid #333;
     border-radius: 8px;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.5rem;
     width: 500px;
     background: white;
 }
@@ -48,4 +55,85 @@ body{
 }
 .error-container span{
     color: red;
+}
+
+.profile-card-container{
+    border: 2px solid black;
+    margin: 5px;
+    padding: 0.7rem 1rem;
+    width: 60%;
+}
+.profile-card-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* display: none; */
+}
+
+.user-image img{
+    width: 60%;
+    height: 200px;
+    object-fit: cover;
+}
+.user-image{
+    padding: 0.5rem 0.7rem;
+}
+
+.user-detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.user-location{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-location img{
+    height: 20px;
+    width: 20px;
+}
+
+.github-account-data{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.userinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    background-color: rgb(63, 62, 62);
+    color: white;
+    height: 70px;
+    width: 100px;
+    padding: 5px 10px;
+}
+
+.profile-link {
+    display: block;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    background: #f5f5f5;
+}
+
+.hidden {
+    display: none;
 }
