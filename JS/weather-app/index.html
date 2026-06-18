@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather -app</title>
-    <Link rel="stylesheet" href="style.css">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
 
+<body>
+    <div class="weather-app">
+        <div class="search-bar">
+            <input type="text" id="cityInput" placeholder="Enter city name">
+            <img src="./icons/search.png" id="searchIcon" alt="search">
+        </div>
+
+        <p id="errorMsg" class="error"></p>
+        <p id="loadingMsg" class="loading hidden">Loading...</p>
+
+        <div class="show-current-weather-container hidden" id="currentWeatherContainer">
+            <div class="current-weather">
+                <div class="current-location">
+                    <h4>Current Location</h4>
+                    <div class="location">
+                        <img src="./icons/maps-and-flags.png" alt="location-icon" />
+                        <h2 id="locationName"></h2>
+                    </div>
+                </div>
+
+                <div class="weather">
+                    <img id="weatherIcon" src="" alt="weather icon" />
+                    <p id="temperature" class="temperature"></p>
+                </div>
+                <p id="conditionText" class="condition"></p>
+
+                <div class="stats-row">
+                    <div class="humidity">
+                        <span id="humidity"></span>
+                        <p>humidity</p>
+                    </div>
+                    <div class="wind">
+                        <span id="wind"></span>
+                        <p>wind</p>
+                    </div>
+                    <div class="pressure">
+                        <span id="pressure"></span>
+                        <p>pressure</p>
+                    </div>
+                </div>
+
+                <div class="five-day-forecast">
+                    <p class="forecast-title">5-day forecast</p>
+                    <div class="forecast-container">
+                        <ul id="forecastList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
