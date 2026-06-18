@@ -61,7 +61,9 @@ body{
     border: 2px solid black;
     margin: 5px;
     padding: 0.7rem 1rem;
-    width: 60%;
+    width: 50%;
+    border-radius: 8px;
+
 }
 .profile-card-wrapper{
     display: flex;
@@ -69,7 +71,6 @@ body{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /* display: none; */
 }
 
 .user-image img{
@@ -136,4 +137,39 @@ body{
 
 .hidden {
     display: none;
+}
+
+
+
+.repos-container {
+    width: 50%;
+    margin-top: 1rem;
+}
+
+.repos-list {
+    list-style: none;
+    padding: 0;
+}
+
+.repos-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.repos-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+
+#loadingMsg {
+    color: #666;
+    font-style: italic;
+}
+.repos-list li:hover{
+    background-color: #f5f5f5;
 }

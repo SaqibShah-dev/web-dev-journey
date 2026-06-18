@@ -26,6 +26,7 @@
         </div>
         <div class="error-container">
             <span id="errorMsg"></span>
+            <p id="loadingMsg" class="hidden">Searching...</p>
         </div>
         <div id="profile-card" class="profile-card-container hidden">
             <div class="profile-card-wrapper">
@@ -53,7 +54,7 @@
                         <span>Followers</span>
                     </div>
                     <div class="userinfo" id="user-following">
-                        <sapn id="total-following"></sapn>
+                        <span id="total-following"></span>
                         <span>Following</span>
                     </div>
                     <div class="userinfo" id="user-repos">
@@ -65,7 +66,12 @@
                     <a id="profileLink" href="" target="_blank" class="profile-link">View on GitHub</a>
 
                 </div>
+                <div id="repos-container" class="repos-container hidden">
+                    <h3>Repositories</h3>
+                    <ul id="repos-list" class="repos-list"></ul>
+                </div>
             </div>
+
         </div>
 
     </div>
