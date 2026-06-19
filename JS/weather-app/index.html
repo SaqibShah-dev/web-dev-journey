@@ -10,16 +10,21 @@
 
 <body>
     <div class="weather-app">
+        <h1>Weather App</h1>
+
         <div class="search-bar">
             <input type="text" id="cityInput" placeholder="Enter city name">
             <img src="./icons/search.png" id="searchIcon" alt="search">
         </div>
 
-        <p id="errorMsg" class="error"></p>
+        <button id="locationBtn">📍 Use my location</button>
+
+        <p id="errorMsg" class="error hidden"></p>
         <p id="loadingMsg" class="loading hidden">Loading...</p>
 
         <div class="show-current-weather-container hidden" id="currentWeatherContainer">
             <div class="current-weather">
+
                 <div class="current-location">
                     <h4>Current Location</h4>
                     <div class="location">
@@ -32,6 +37,7 @@
                     <img id="weatherIcon" src="" alt="weather icon" />
                     <p id="temperature" class="temperature"></p>
                 </div>
+
                 <p id="conditionText" class="condition"></p>
 
                 <div class="stats-row">
@@ -55,6 +61,7 @@
                         <ul id="forecastList"></ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
