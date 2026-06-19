@@ -132,6 +132,7 @@ async function searchByCity() {
 }
 
 function displayWeatherData(data, locationName) {
+  
   const current = data.current_weather;
   const daily = data.daily;
   const hourly = data.hourly;
@@ -139,7 +140,7 @@ function displayWeatherData(data, locationName) {
   const code = current.weathercode;
   const info = weatherInfo[code] || { condition: "Unknown", icon: "sunny" };
 
-  currentLocation.textContent = locationName;
+  currentLocation.textContent = data.timezone;
   temperature.textContent = `${Math.round(current.temperature)}°C`;
   conditionText.textContent = info.condition;
   document.getElementById("weatherIcon").src =
