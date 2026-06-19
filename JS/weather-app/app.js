@@ -67,26 +67,27 @@ async function fetchWeatherByCoord(lat, lon) {
 }
 
 async function getCityCoordinates(cityName) {
-  const response = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1`,
-  );
+    const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=1`
+    );
 
-  if (!response.ok) {
-    throw new Error("Could not search for city");
-  }
+    if (!response.ok) {
+        throw new Error("Could not search for city");
+    }
 
-  const data = await response.json();
+    const data = await response.json();
+    console.log("getCityCoordinates data:", data); 
 
-  if (!data.results || data.results.length === 0) {
-    throw new Error("City not found");
-  }
+    if (!data.results || data.results.length === 0) {
+        throw new Error("City not found");
+    }
 
-  return {
-    lat: data.results[0].latitude,
-    lon: data.results[0].longitude,
-    name: data.results[0].name,
-    country: data.results[0].country,
-  };
+    return {
+        lat: data.results[0].latitude,
+        lon: data.results[0].longitude,
+        name: data.results[0].name,
+        country: data.results[0].country,
+    };
 }
 
 async function showUserLocation() {
@@ -106,6 +107,8 @@ async function showUserLocation() {
 }
 
 async function searchByCity() {
+    console.log("search by city");
+    
   const cityName = cityInput.value.trim();
   if (cityName === "") return;
 
@@ -113,7 +116,11 @@ async function searchByCity() {
   loadingMsg.classList.remove("hidden");
 
   try {
+    console.log("check coordinates");
+    
     const coords = await getCityCoordinates(cityName);
+    console.log("coordinates val",coords);
+    
     const weatherData = await fetchWeatherByCoord(coords.lat, coords.lon);
     displayWeatherData(weatherData, `${coords.name}, ${coords.country}`);
   } catch (error) {
@@ -137,7 +144,7 @@ function displayWeatherData(data, locationName) {
   conditionText.textContent = info.condition;
   document.getElementById("weatherIcon").src =
     `https://openweathermap.org/img/wn/${info.icon}@2x.png`;
-    
+
   humidity.textContent = `${hourly.relativehumidity_2m[0]}%`;
   wind.textContent = `${current.windspeed} km/h`;
   pressure.textContent = `${hourly.surface_pressure[0]} hPa`;
