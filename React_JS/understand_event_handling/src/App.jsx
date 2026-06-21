@@ -265,33 +265,205 @@
 // 3)It Saves You Time: You don't have to worry about browser compatibility bugs; React 
 // handles them for you automatically.
 
-import { useState } from "react";
+// Event Propagation — Capture vs Bubble phases
+// User clicks a button inside a div
+
+// CAPTURE PHASE (top → down):
+// document
+//     ↓
+// div          ← capture listeners fire HERE first
+//     ↓
+// button       ← target reached
+
+// BUBBLE PHASE (bottom → up):
+// button       ← regular listeners fire HERE
+//     ↑
+// div          ← then HERE
+//     ↑
+// document
+
+// function App() {
+//     return (
+//         <div
+//             onClickCapture={() => console.log("1. div CAPTURE")}  // fires first
+//             onClick={() => console.log("3. div BUBBLE")}           // fires last
+//         >
+//             <button
+//                 onClick={() => console.log("2. button BUBBLE")}    // fires second
+//             >
+//                 Click me
+//             </button>
+//         </div>
+//     );
+// }
+// Output when button clicked:
+// 1. div CAPTURE    ← capture goes down first
+// 2. button BUBBLE  ← target
+// 3. div BUBBLE     ← bubble goes up last
+
+//  All supported events in React 
+// Mouse events
+// onClick onMouseDown onMouseUp
+// onMouseMove onMouseEnter onMouseLeave
+// onMouseOver onMouseOut
+
+// // Keyboard events
+// onKeyDown onKeyUp onKeyPress (deprecated)
+
+// // Form events
+// onChange onSubmit onReset onInvalid
+
+// // Focus events
+// onFocus onBlur
+
+// // UI events
+// onScroll onWheel
+
+// // Image events
+// onLoad onError
+
+// // Animation events
+// onAnimationStart onAnimationEnd
+
+// // Touch events (mobile)
+// onTouchStart onTouchMove onTouchEnd
+
+// // Drag events
+// onDragStart onDrag onDragEnd onDrop
+
+// Practical ones you'll actually use regularly:
+// // Most common in real apps:
+// onClick          // buttons, cards, anything clickable
+// onChange         // inputs, selects, textareas
+// onSubmit         // forms
+// onKeyDown        // keyboard shortcuts, Enter to submit
+// onFocus onBlur   // input validation, floating labels
+// onMouseEnter
+// onMouseLeave     // hover effects
+// onScroll         // infinite scroll, animations
+// onLoad onError   // image loading states
+
+// 3. onClickCapture — practical use case
+
+// function Modal({ onClose, children }) {
+//     return (
+//         <div
+//             className="overlay"
+//             onClickCapture={(e) => {
+//                 // catches ALL clicks in the modal area
+//                 // useful for analytics or logging
+//                 console.log("Something was clicked inside modal");
+//             }}
+//             onClick={onClose} // clicking overlay closes modal
+//         >
+//             <div
+//                 className="modal-content"
+//                 onClick={(e) => e.stopPropagation()} // prevent closing when clicking content
+//             >
+//                 {children}
+//             </div>
+//         </div>
+//     );
+// }
+
+//  Event pooling clarification
+// React 16 and below — event pooling was active
+// Event properties reset to null after handler finished
+// function handleClick(e) {
+//     setTimeout(() => {
+//         console.log(e.target); // null in React 16! event was recycled
+//     }, 1000);
+// }
+
+// // Fix in React 16:
+// function handleClick(e) {
+//     e.persist(); // keep event alive
+//     setTimeout(() => {
+//         console.log(e.target); // works now
+//     }, 1000);
+// }
+
+// // React 17+ (what you're using) — pooling removed!
+// // e.persist() is no longer needed — events persist automatically
+// function handleClick(e) {
+//     setTimeout(() => {
+//         console.log(e.target); // works fine without e.persist() ✅
+//     }, 1000);
+// }
+
+
+// 1. Prevent default on forms
+// function handleSubmit(e) {
+//     e.preventDefault(); // always do this on form submit
+// }
+
+// // 2. Stop propagation when needed
+// function handleCardClick(e) {
+//     e.stopPropagation(); // stop event bubbling to parent
+// }
+
+// // 3. onLoad and onError for images (practical for your GitHub/weather projects)
+// function UserAvatar({ src, name }) {
+//     const [imgError, setImgError] = useState(false);
+
+//     return imgError
+//         ? <div className="avatar-placeholder">{name[0]}</div>
+//         : <img
+//             src={src}
+//             alt={name}
+//             onLoad={() => console.log("image loaded")}
+//             onError={() => setImgError(true)} // fallback if image fails
+//           />;
+// }
+
+//  onInvalid — built-in form validation event
+// function Form() {
+//     return (
+//         <form>
+//             <input
+//                 type="email"
+//                 required
+//                 onInvalid={(e) => {
+//                     e.preventDefault(); // prevent default browser tooltip
+//                     alert("Please enter a valid email!"); // custom message
+//                 }}
+//                 placeholder="Email"
+//             />
+//             <button type="submit">Submit</button>
+//         </form>
+//     );
+// }
+
+// function App() {
+//     return (
+//         <div
+//             onClickCapture={() => console.log("1. div CAPTURE")}  // fires first
+//             onClick={() => console.log("3. div BUBBLE")}           // fires last
+//         >
+//             <button
+//                 onClick={() => console.log("2. button BUBBLE")}    // fires second
+//             >
+//                 Click me
+//             </button>
+//         </div>
+//     );
+// }
 
 function App() {
-  const [count,setCount] = useState(0);
-      function increment() {
-        setCount(prev => {
-            alert(prev);
-            return prev + 1; // ✅ explicit return
-        });
-    }
-
-    function decrement() {
-        setCount(prev => prev - 1); // ✅ separate decrement
-    }
-  return (
-    <div>
-           <button onClick={increment}>+</button>
-            <button onClick={decrement}>-</button>  {/* ✅ calls decrement */}
-            <button onClick={()=>{
-              increment();
-              increment();
-              increment();
-            }}>Triple</button>
-            <button onClick={() => setCount(0)}>Reset</button>
-            <p>{count}</p>
-    </div>
-  );
+    return (
+        <form>
+            <input
+                type="email"
+                required
+                onInvalid={(e) => {
+                    e.preventDefault(); // prevent default browser tooltip
+                    alert("Please enter a valid email!"); // custom message
+                }}
+                placeholder="Email"
+            />
+            <button type="submit">Submit</button>
+        </form>
+    );
 }
 
 export default App;
