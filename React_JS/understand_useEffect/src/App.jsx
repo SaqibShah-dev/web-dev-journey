@@ -204,6 +204,7 @@ import { useState, useEffect } from 'react';
 import ListAndKeys from './ListAndKeys/ListAndKeys';
 import CourseList from './ListAndKeys/CourseList';
 import ConditionalRendering from './conditional_rendering/ConditionalRendering';
+import ControlComponents from './control_components/ControlComponents';
 function App() {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -228,6 +229,7 @@ function App() {
         <ListAndKeys/>
         <CourseList />
         <ConditionalRendering />
+        <ControlComponents />
       </div>
     );
 }
