@@ -201,6 +201,8 @@
 
 
 import { useState, useEffect } from 'react';
+import ListAndKeys from './ListAndKeys/ListAndKeys';
+import CourseList from './ListAndKeys/CourseList';
 function App() {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -222,6 +224,8 @@ function App() {
         <button >
           Click me
         </button>
+        <ListAndKeys/>
+        <CourseList />
       </div>
     );
 }
