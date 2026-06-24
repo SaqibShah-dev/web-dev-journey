@@ -223,6 +223,7 @@ import { useState } from "react";
 import RegistrationForm from "./RegistrationForm";
 import FormSubmission from "./FormSubmission";
 import SignupForm from "./SignupForm";
+import ContactForm from "./ContactForm";
 
 const ControlComponents = () => {
   const [value, setValue] = useState('');
@@ -314,6 +315,11 @@ const ControlComponents = () => {
       <div className="signup-form">
         <h1>Sign up form</h1>
         <SignupForm />
+      </div>
+
+      <div className="contact-form">
+        <h2>Contact Form</h2>
+        <ContactForm />
       </div>
     </>
   );
