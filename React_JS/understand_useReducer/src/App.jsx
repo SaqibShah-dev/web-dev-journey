@@ -19,7 +19,7 @@ import Form from "./components/Form";
 const App = () => {
   return (
     <div>
-      <Counter />
+      {/* <Counter /> */}
       <Form />
     </div>
   );
