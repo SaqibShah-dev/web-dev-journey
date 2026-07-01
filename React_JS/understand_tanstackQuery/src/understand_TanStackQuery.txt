@@ -1,0 +1,89 @@
+TanStack Query
+Why Your React App Needs TanStack Query (And You Didn’t Even Know It)
+Have you ever written code like this in React?
+
+const [data, setData] = useState(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+  fetch('/api/users')
+    .then(res => res.json())
+    .then(data => {
+      setData(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      setError(err);
+      setLoading(false);
+    });
+}, []);
+If yes, you’re not alone. But there’s a better way. TanStack Query (formerly React Query) 
+makes data fetching feel like magic.
+
+What is TanStack Query?
+Think of TanStack Query as your personal assistant for handling server data. It manages:
+    -->Data fetching
+    -->Caching
+    -->Loading states
+    -->Error handling
+    -->Refetching
+    -->Infinite scrolling
+    -->Prefetching
+    -->Optimistic updates
+    -->And much more!
+
+
+The Problem TanStack Query Solves
+Without TanStack Query
+
+function UserProfile() {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`/api/user/1`)
+      .then(res => res.json())
+      .then(data => {
+        setUser(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  
+  return <div>{user.name}</div>;
+}
+Problems:
+
+Boilerplate code everywhere
+No caching (refetch on every mount)
+Manual state management
+No background updates
+
+With TanStack Query
+
+function UserProfile() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['user', 1],
+    queryFn: () => fetch('/api/user/1').then(res => res.json())
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  
+  return <div>{data.name}</div>;
+}
+
+Benefits:
+    Less code
+    Automatic caching
+    Smart refetching
+    Built-in loading/error states
