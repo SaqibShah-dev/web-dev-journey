@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
-import { ShoppingCart, User, Menu, X } from "lucide-react"; // Added Menu and X icons
+import { ShoppingCart, User, Menu, X } from "lucide-react"; 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
