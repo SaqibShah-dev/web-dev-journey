@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom"; 
 import toast from "react-hot-toast";
+import Logo from '../components/Logo';
 
 const Register = () => {
   const { register } = useAuth();
@@ -51,7 +52,7 @@ const Register = () => {
     <div className="flex flex-row min-h-screen w-full">
       {/* Left Column: Visual Sidebar Accent */}
       <div className="hidden md:flex md:w-1/2 bg-blue-600 min-h-screen items-center justify-center">
-        <h1 className="text-4xl font-extrabold text-white tracking-wider">ShopEasy</h1>
+        <Logo className="[&_span]:text-white scale-125" />
       </div>
 
       {/* Right Column: Centered Form */}
