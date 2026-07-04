@@ -56,7 +56,7 @@ const Logo = ({ className = "" }) => {
       {/* Upgraded Professional Typography */}
       <div className="flex flex-col justify-center leading-none">
         <span className="text-2xl font-black tracking-tight text-gray-900 transition-colors duration-200">
-          Shop<span className="bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Easy</span>
+          Shop<span className="bg-linear-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">Easy</span>
         </span>
         <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mt-0.5 pl-0.5">
           Ecosystem

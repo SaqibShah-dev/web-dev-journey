@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; 
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -6,13 +6,14 @@ import Logo from "../components/Logo";
 
 const Login = () => {
   const { login } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation(); 
+    const from = location.state?.from?.pathname || "/";
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
-  const navigate = useNavigate();
-
-  const handleSignIn = (e) => {
+  const handleSignIn = async(e) => {
     e.preventDefault();
 
     if(formData.email.trim() === "" || formData.password.trim() === ""){
@@ -24,16 +25,13 @@ const Login = () => {
       toast.error("Password must be at least 6 characters long");
       return;
     }
-
     try {
-      login({ email: formData.email, password: formData.password });
-
-      toast.success("Welcome back! Login successful.");
-
-      navigate("/");
-    } catch (error) {
-      toast.error("Login failed. Please check your credentials.");
-    }
+            await login({ email: formData.email, password: formData.password });
+            toast.success("Welcome back! Login successful.");
+            navigate(from, { replace: true }); 
+        } catch (error) {
+            toast.error("Login failed. Please check your credentials.");
+        }
   };
 
   const onChange = (value, field) => {

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate , useLocation} from "react-router-dom"; 
 import toast from "react-hot-toast";
 import Logo from '../components/Logo';
 
 const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate(); 
+  const location = useLocation(); 
+  const from = location.state?.from?.pathname || "/";
   
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +16,7 @@ const Register = () => {
     password: "",
     confirmPassword: ""
   });
+  console.log(from.state?.from?.pathname);
 
   const onChange = (value, field) => {
     setFormData((prevData) => ({
@@ -22,7 +25,7 @@ const Register = () => {
     }));
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async(e) => {
     e.preventDefault();
     
     // Validation Checks
@@ -40,12 +43,13 @@ const Register = () => {
     }
 
     // 3. Pass name, email, and password to Auth Context
-    register({ name: formData.name, email: formData.email, password: formData.password });
-    
-    toast.success("Registration successful!");
-    
-    // 4. Automatically send them to the home page after registering
-    navigate("/"); 
+    try {
+        await register({ name: formData.name, email: formData.email, password: formData.password });
+        toast.success("Registration successful!");
+         navigate(from, { replace: true }); 
+    } catch (error) {
+        toast.error(error.message || "Registration failed.");
+    }
   };
 
   return (
