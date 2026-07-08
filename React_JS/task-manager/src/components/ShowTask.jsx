@@ -1,20 +1,25 @@
 import React from 'react';
-import UpdateTask from './UpdateTask';
-import { useState } from 'react';
 
-const ShowTask = ({ setTasks, tasks, task,index, setNewTask }) => {
-  const [isEditing, setIsEditing] = useState(false);
+const ShowTask = ({ setTasks, tasks, task, setNewTask, setEditId }) => {
 
-  function handleDelete(){
-    console.log("Deleting task at index:", index, "with value:", task);
-    const deletedTask = tasks.filter((currentTask, currentIndex) => currentIndex !== index);
-    console.log("Deleted task:", deletedTask);
+  function handleDelete() {
+    const deletedTask = tasks.filter((currentTask) => currentTask.id !== task.id);
     setTasks(deletedTask);
+    setEditId(null);
   }
+
+  function handleEditMode() {
+    setNewTask(task.task);
+    setEditId(task.id);    
+  }
+
   return (
     <ul>
-      <li>{task}<button onClick={() => setIsEditing(true)}>Update</button><button onClick={handleDelete}>Delete</button></li>
-      {isEditing && <UpdateTask setIsEditing={setIsEditing} setTasks={setTasks} task={task} index={index} />}
+      <li>
+        {task.task} 
+        <button onClick={handleEditMode}>Update</button>
+        <button onClick={handleDelete}>Delete</button>
+      </li>
     </ul>
   );
 }
