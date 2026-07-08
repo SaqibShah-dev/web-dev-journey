@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+  </defs>
+
+  <path 
+    d="M11 10 C11 5, 21 5, 21 10" 
+    fill="none" 
+    stroke="url(#brandGradient)" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+  />
+
+  <path 
+    d="M7 10 H25 L27 25 C27 27, 25 28, 23 28 H9 C7 28, 5 27, 5 25 Z" 
+    fill="none" 
+    stroke="url(#brandGradient)" 
+    stroke-width="2.5" 
+    stroke-linejoin="round" 
+  />
+
+  <path 
+    d="M19 14 H13 L12 18 H18 L14 24" 
+    fill="none" 
+    stroke="#10b981" 
+    stroke-width="2.5" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+  />
+</svg>
