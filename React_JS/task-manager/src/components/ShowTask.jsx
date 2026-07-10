@@ -1,16 +1,21 @@
 import React from 'react';
 
-const ShowTask = ({ setTasks, tasks, task, setNewTask, setEditId }) => {
+const ShowTask = ({ setTasks,id, tasks, task, setNewTask,editId, setEditId }) => {
 
   function handleDelete() {
     const deletedTask = tasks.filter((currentTask) => currentTask.id !== task.id);
+    console.log("editId:", editId, "task.id:", task.id);
     setTasks(deletedTask);
-    setEditId(null);
+    if(editId === task.id){
+      console.log("editId:", editId, "task.id:", task.id);
+      setNewTask("");
+      setEditId(null);
+    }
   }
 
   function handleEditMode() {
     setNewTask(task.task);
-    setEditId(task.id);    
+    setEditId(id);    
   }
 
   return (
@@ -19,6 +24,7 @@ const ShowTask = ({ setTasks, tasks, task, setNewTask, setEditId }) => {
         {task.task} 
         <button onClick={handleEditMode}>Update</button>
         <button onClick={handleDelete}>Delete</button>
+
       </li>
     </ul>
   );

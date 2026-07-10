@@ -20,6 +20,10 @@ const App = () => {
     
     setNewTask(""); 
   }
+  function handleCancel(){
+    setEditId(null);
+    setNewTask("");
+  }
 
   return (
     <div>
@@ -33,6 +37,7 @@ const App = () => {
       <button onClick={handleSubmit}>
         {editId ? "Update Task" : "Add Task"}
       </button>
+      {editId && <button onClick ={handleCancel}>Cancel</button>} 
 
       {tasks.length > 0 ? (
         tasks.map((task, index) => (
@@ -40,7 +45,9 @@ const App = () => {
             key={task.id} 
             tasks={tasks} 
             setTasks={setTasks} 
+            id={task.id}
             task={task} 
+            editId={editId}
             setNewTask={setNewTask} 
             setEditId={setEditId} 
           />
