@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowTask from "./components/ShowTask";
 
 const App = () => {
@@ -6,6 +6,7 @@ const App = () => {
   const [newTask, setNewTask] = useState("");
   const [editId, setEditId] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function handleSubmit() {
     if (newTask.trim() === "") return;
@@ -17,6 +18,7 @@ const App = () => {
       setEditId(null);
     } else {
       setTasks([...tasks, { id: Date.now().toString(), task: newTask, completeTask: false }]);
+
     }
 
     setNewTask("");
@@ -25,6 +27,20 @@ const App = () => {
     setEditId(null);
     setNewTask("");
   }
+
+useEffect(() => {
+    const saved = localStorage.getItem("tasks");
+    if (saved) {
+        setTasks(JSON.parse(saved));
+    }
+    setIsLoaded(true); 
+}, []);
+
+useEffect(() => {
+    if (isLoaded) { 
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+}, [tasks, isLoaded]);
 
   const filteredList = tasks.filter((task) => {
     if (filter === "all") return true;
