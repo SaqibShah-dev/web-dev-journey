@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Quiz from './pages/Quiz';
 import { Toaster } from "react-hot-toast"; 
+import Result from './pages/Result';
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
       
       <Routes>
         <Route path='/' element={<Quiz />} />
+        <Route path='/result' element={<Result/>} />
       </Routes>
     </div>
   );
