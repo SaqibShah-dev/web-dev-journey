@@ -1,0 +1,36 @@
+What is Node?
+Node is an environment in which you can run JavaScript code "Outside the web browser". 
+Node be like – "Hey y'all, you give your JS code to me and I'll run it 😎". It 
+uses Google's V8 Engine to convert the JavaScript code to Machine Code.
+
+Since Node runs JavaScript code outside the web browser, this means that it doesn't 
+have access to certain features that are only available in the browser, like the DOM or
+ the window object or even the localStorage.
+
+This means that at any point in your code, you can't type in document.querySelector() or 
+alert() as these will produce errors (This is what is shown in the below image).
+
+Remember: Node is meant for server-side programming, while those browser features are meant
+ for client-side programming.
+
+ Front-end folks don't be sad – there's more to it! Node provides you with lots of API's and 
+ Modules with which you can perform a variety of operations like File Handling, Creating
+  Servers, and much more. Before diving into the NodeJS, first let's install it in our 
+  machine.
+
+How to Install NodeJS
+Installing NodeJS is straightforward. If you already have Node installed in your machine,
+ you can skip this section. If not, then follow along.
+
+Here are the steps to download NodeJS on your machine:
+
+Navigate to https://nodejs.org/
+Download the LTS Version of NodeJS for your operating system
+Run the installer and follow the installation wizard. Simply answer Yes to all the 
+questions.
+Once the installation is complete, open a new terminal or command prompt window and run 
+the following command to verify that NodeJS is installed correctly: node -v. If you see 
+the version of NodeJS printed in your terminal, Congratulations! You have now successfully 
+installed NodeJS on your machine.
+Note: If you encounter any issues during the installation process, you can refer to the 
+official NodeJS documentation for more detailed instructions and troubleshooting tips.
