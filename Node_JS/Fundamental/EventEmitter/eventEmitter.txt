@@ -1,0 +1,15 @@
+In essence, an EventEmitter behaves as a central broadcaster, constantly listening for
+ and reacting to specific events triggered within your application. It acts as a mediator,
+  allowing disparate parts of your code to communicate without directly referencing each 
+  other. Imagine a news channel — the emitter broadcasts “breaking news” events, and 
+  interested parties (listeners) tune in and react accordingly.
+
+Players
+There are three key elements in Event Emitters:
+
+Events: Named signals indicating that something has happened — a file change, user 
+    interaction, database update, etc.
+Emitters: Objects capable of triggering events based on specific scenarios. Most core 
+    objects in Node.js, like fs and net, inherit from EventEmitter, making them event-enabled.
+Listeners: Functions registered with an emitter to be notified when a specific event 
+    occurs. Listeners react to the event by executing their designated code.
