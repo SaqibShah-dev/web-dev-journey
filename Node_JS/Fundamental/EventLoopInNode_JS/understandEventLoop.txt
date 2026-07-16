@@ -1,0 +1,98 @@
+JavaScript is single-threaded → one thing runs at a time
+Slow tasks (fetch, setTimeout, file reads) → handed off, not blocking the main thread
+When the slow task finishes → its callback gets queued
+Event Loop's job → move finished callbacks back to the Call Stack when it's empty
+
+   ┌───────────────────────────┐
+   │           timers          │
+   └─────────────┬─────────────┘
+                 │
+                 v
+   ┌───────────────────────────┐
+┌─>│     pending callbacks     │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │       idle, prepare       │
+│  └─────────────┬─────────────┘      ┌───────────────┐
+│  ┌─────────────┴─────────────┐      │   incoming:   │
+│  │           poll            │<─────┤  connections, │
+│  └─────────────┬─────────────┘      │   data, etc.  │
+│  ┌─────────────┴─────────────┐      └───────────────┘
+│  │           check           │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+│  │      close callbacks      │
+│  └─────────────┬─────────────┘
+│  ┌─────────────┴─────────────┐
+└──┤           timers          │
+   └───────────────────────────┘
+
+   
+The Big Secret: Node.js is Like a Busy Restaurant
+Imagine you walk into a small, popular restaurant. There is only one waiter working there. You might think, “Oh no, this is going to be very slow!”
+
+But this is a special restaurant. The waiter does not stand by the table while the chef cooks the food. Instead:
+
+The waiter takes your order.
+The waiter gives the order to the kitchen.
+The waiter immediately goes to the next table to take another order.
+When your food is ready, the kitchen rings a bell. The waiter hears the bell, stops what they are doing (after they finish their current task), and brings the food to your table.
+
+In this story:
+
+The Waiter is the Event Loop.
+The Kitchen represents the computer’s system (like reading a file or a database).
+The Bell is the “Callback” — the signal that the work is finished.
+This is why Node.js is so fast. The “waiter” never stands still waiting for a “chef” to finish. They are always moving, always taking new orders.
+
+Why “Single-Threaded” Sounds Scarier Than It Is
+When people say Node.js is single-threaded, they mean it has only one person (the waiter) to handle the main logic.
+
+In other languages, like Java or PHP (the old way), the restaurant would hire a new waiter for every single guest. If 100 guests come in, you have 100 waiters. This sounds good, but it takes a lot of space and money (memory and CPU) to manage all those people.
+
+Node.js says, “I only need one very fast waiter.” As long as that waiter doesn’t do anything that takes a long time — like chopping vegetables himself — the restaurant runs perfectly.
+
+A Lesson I Learned the Hard Way
+I once wrote a piece of code that calculated a very large math problem. My whole app stopped. No one could even log in!
+
+I realized I had told the “waiter” to stop taking orders and start doing 10 minutes of math. This is called Blocking the Event Loop.
+
+Rule number one: Never give the waiter a job that takes a long time. Give those jobs to the kitchen!
+
+The Six Stages of the Loop (The Simple Version)
+The Event Loop isn’t just a circle; it’s a circle with different “stations.” Every time the loop “ticks” (goes around once), it visits these stations in order.
+
+1. Timers
+This is where Node.js checks its watch. Did you set a setTimeout for 2 seconds? If 2 seconds have passed, the waiter executes that code now.
+
+2. Pending Callbacks
+Sometimes, the system has errors it needs to report (like a network connection failing). Node.js handles those here.
+
+3. Idle / Prepare
+This is just for internal house-keeping. We don’t really need to worry about this as developers.
+
+4. Poll (The Most Important Part)
+This is where the waiter waits for “bells” from the kitchen. If a file is done reading or data arrived from the internet, the waiter handles it here. If there is nothing to do, the waiter might actually stay here for a moment to see if a bell rings soon.
+
+5. Check
+This is specifically for setImmediate(). If you want a piece of code to run right after the kitchen tasks are finished, you put it here.
+
+6. Close Callbacks
+This is for cleaning up. If a database connection closes, the “goodbye” code runs here.
+
+What are Microtasks? (The VIP Guests)
+There is one more thing that confused me: Promises.
+
+Node.js architecture is used to “Single Threaded Event Loop” for handling multiple clients. So basically Node.js architecture has various core components such as,
+
+⦿ V8 Engine: V8 is the JavaScript engine i.e. it parses and executes JavaScript code. The DOM and the other Web Platform APIs (they all make up runtime environments) are provided by the browser.
+
+⦿ Libuv Library : This is a very essential component of Node.js architecture. That is handling Asynchronous I/O operations and powering the Event Loop.
+
+⦿ Event Loop : The Event loop is continuously processing the requests and then returns the responses to corresponding clients.
+
+⦿ Callback Functions : These are functions that are passing arguments in another function.
+
+⦿ Node.js Server : Node.js server is a server-side platform that receives user requests, handles them, and sends back responses to the relevant users.
+
+⦿ Streams : An abstract interface for interacting with streaming data in Node.js is called a stream.
