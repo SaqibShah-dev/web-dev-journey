@@ -1,0 +1,84 @@
+n Node.js, process is a global object that provides information about, and control over, the
+ currently running Node.js application.
+
+Because it is a global, you don't need to import or require it—it is available everywhere. 
+Think of it as the dashboard and control panel for your running application, letting you
+ talk directly to the operating system it's running on.
+
+1. Reading the Environment (process.env)
+This is easily the most common use of the process object. When your code runs, it often 
+needs to behave differently depending on whether it's running on your laptop (development) 
+or a live cloud server (production).
+
+The operating system stores these settings as "environment variables," and Node exposes 
+them through process.env.
+
+JavaScript
+// Accessing configuration safely
+const port = process.env.PORT || 8080;
+const dbConnectionString = process.env.DATABASE_URL;
+
+if (process.env.NODE_ENV === 'production') {
+  console.log("Running in secure production mode.");
+}
+2. Reading Command-Line Arguments (process.argv)
+If you launch your Node application from the terminal and pass it extra instructions, 
+process is how you read them.
+
+If you run:
+
+Bash
+node app.js --port=3000 --admin
+Inside app.js, process.argv will be an array containing:
+
+JavaScript
+console.log(process.argv);
+/*
+Output:
+[
+  '/usr/local/bin/node',       // 0: Path to the Node executable
+  '/path/to/your/app.js',      // 1: Path to your JavaScript file
+  '--port=3000',               // 2: Your first custom argument
+  '--admin'                    // 3: Your second custom argument
+]
+*/
+3. Controlling Application Lifetime (process.exit())
+Sometimes your program encounters an unrecoverable error (like failing to connect to your 
+database on startup) and needs to shut down immediately.
+
+JavaScript
+if (!databaseConnected) {
+  console.error("Database connection failed! Shutting down...");
+  
+  // Exit with a status code. 
+  // '1' means the app closed due to an error. '0' means everything closed successfully.
+  process.exit(1); 
+}
+4. Hooking into Process Events (The "Seatbelt")
+Because process is an instance of an EventEmitter (just like the HTTP server and streams we
+ talked about earlier), you can listen to system-level events. This is critical for 
+ preventing crash loops.
+
+Catching Unhandled Exceptions
+If some code deep inside your app throws an error that you didn't wrap in a try/catch block, 
+the default behavior of Node is to crash instantly. You can catch these gracefully:
+
+JavaScript
+process.on('uncaughtException', (err) => {
+  console.error('An unhandled error occurred somewhere in the app:', err.message);
+  // Perform cleanup (e.g., close DB connections) before shutting down safely
+  process.exit(1);
+});
+Clean Shutdowns (SIGTERM / SIGINT)
+When hosting providers (like AWS, Docker, or Heroku) want to restart your server to deploy 
+new code, they send a signal to your app asking it to stop. You can listen for this to close
+ active connections gracefully instead of cutting off users mid-request.
+
+JavaScript
+process.on('SIGTERM', () => {
+  console.log('Received signal to terminate. Closing open HTTP connections...');
+  server.close(() => {
+    console.log('Safe to shut down.');
+    process.exit(0);
+  });
+});

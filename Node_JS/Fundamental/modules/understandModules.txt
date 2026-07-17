@@ -1,0 +1,65 @@
+In Node.js, a module is simply a reusable block of code wrapped up in a single JavaScript
+ file.Instead of writing a massive 5,000-line script, modules let you break your code into
+  small, organized pieces. Think of it like Lego bricks: you build small, individual pieces
+   and snap them together to create your application.By default, variables and functions 
+   created inside a Node.js file are private. They cannot be seen by other files unless you 
+   explicitly export them.
+
+The Three Types of Modules
+Node.js organizes modules into three distinct buckets:
+
+1. Core Modules (Built-In)
+These are utility modules that come pre-packaged with Node.js when you install it. You don't 
+have to download anything extra; you just pull them into your code.
+
+node:http: For building web servers (which we used earlier).
+
+node:fs: For interacting with your computer's File System (reading/writing files).
+
+node:path: For handling and transforming file paths.
+
+2. Local Modules (Your Code)
+These are the JavaScript files you write yourself. For example, you might create a file 
+named database.js to handle your database connection, and import it into your main app.js
+ file.
+
+3. Third-Party Modules (NPM)
+These are packages written by other developers in the open-source community. You download 
+them using NPM (Node Package Manager).
+
+Examples: express (for routing), mongoose (for MongoDB), or dotenv (for managing environment 
+variables).
+
+How Modules Work: The Two Systems
+Node.js supports two different ways to export (share) and import (receive) modules.
+
+System A: CommonJS (CJS)
+This is the traditional, classic Node.js module system. It uses require() and 
+module.exports.
+
+JavaScript
+// math.js (The Local Module)
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+
+// We explicitly choose what to make public
+module.exports = { add, subtract };
+JavaScript
+// app.js (The Main File)
+const { add } = require('./math.js'); // Import it
+
+console.log(add(5, 3)); // 8
+System B: ES Modules (ESM)
+This is the modern, official JavaScript standard. It uses import and export. To use this in 
+Node, you either use the .mjs file extension or add "type": "module" to your package.json 
+file.
+
+JavaScript
+// math.js (The Local Module)
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+JavaScript
+// app.js (The Main File)
+import { add } = from './math.js'; // Import it
+
+console.log(add(5, 3)); // 8
