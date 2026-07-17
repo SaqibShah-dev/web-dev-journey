@@ -13,3 +13,4 @@ Emitters: Objects capable of triggering events based on specific scenarios. Most
     objects in Node.js, like fs and net, inherit from EventEmitter, making them event-enabled.
 Listeners: Functions registered with an emitter to be notified when a specific event 
     occurs. Listeners react to the event by executing their designated code.
+
