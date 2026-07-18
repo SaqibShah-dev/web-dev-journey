@@ -1,0 +1,115 @@
+Introduction to Express
+Express.js is a minimal and flexible Node.js web application framework that simplifies 
+building server-side applications and APIs.
+
+Middleware-based: Uses middleware to handle requests, responses, and common features.
+Routing system: Structure—developers can design apps as they want.
+Integration: Works well with databases (MongoDB, MySQL, PostgreSQL) and front-end frameworks.
+Scalable: Suitable for small apps to large-scale enterprise APIs.
+
+Usage of Express.js
+Express.js is a popular web framework for Node.js that simplifies server-side development. It is widely used to build web applications, APIs, and scalable server-side solutions.
+
+Web Applications: Build dynamic sites and SPAs efficiently.
+RESTful APIs: Create APIs for CRUD operations and data delivery.
+Middleware Apps: Add logging, authentication, and validation.
+Microservices: Lightweight and modular for scalable services.
+Server-Side Rendering: Supports EJS, Pug, Handlebars.
+Proxy/Gateway: Routes and manages HTTP traffic.
+Rapid Prototyping: Quickly develop and test server logic.
+
+
+Why use Express?
+Before we start with mechanism of using Express as the backend framework, let us first
+ explore why we should consider it using or the reasons of its popularity.
+
+Express lets you build single page, multi-page, and hybrid web and mobile applications. 
+Other common backend use is to provide an API for a client (whether web or mobile).
+It comes with a default template engine, Jade which helps to facilitate the flow of data 
+into a website structure and does support other template engines.
+It supports MVC (Model-View-Controller), a very common architecture to design web 
+applications.
+It is cross-platform and is not limited to any particular operating system.
+It leverages upon Node.js single threaded and asynchronous model.
+Whenever we create a project using npm, our project must have a package.json file.
+
+
+Creating package.json
+A JSON (JavaScript Object Notation) file is contains every information about any Express 
+project. The number of modules installed, the name of the project, the version, and other 
+meta information. To add Express as a module in our project, first we need to create a
+ project directory and then create a package.json file.
+
+mkdir express-app-example
+cd express-app-example
+npm init --yes
+This will generate a package.json file in the root of the project directory. To install any module from npm we need to have package.json file exist in that directory.
+
+{
+  "name": "express-web-app",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "MIT"
+}
+Installing Express
+Now we have package.json file, we can install Express by running the command:
+
+npm install --save express
+We can confirm that Express has correctly installed by two ways. First, there will be new 
+section in package.json file named dependencies under which our Express exists:
+
+{
+  "name": "express-web-app",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.16.0"
+  }
+}
+Second way is that a new folder called node_modules suddenly appeared in the root of our
+ project directory. This folder stores the packages we install locally in our project.
+
+
+ Anatomy of an Express Application
+A typical structure of an Express server file will most likely contain the following parts:
+
+Dependencies
+
+Importing the dependencies such as the express itself. These dependencies are installed 
+using npm like we did in the previous example.
+
+Instantiations
+
+These are the statements to create an object. To use express, we have to instantiate the 
+app variable from it.
+
+Configurations
+
+These statements are the custom application based settings that are defined after the 
+instantiations or defined in a separate file (more on this when discuss the project 
+structure) and required in our main server file.
+
+Middleware
+
+These functions determine the flow of request-response cycle. They are executred after every incoming request. We can also define custom middleware functions. We have section on them below.
+
+Routes
+
+They are the endpoints defined in our server that helps to perform operations for a particular client request.
+
+Bootstrapping Server
+
+The last that gets executed in an Express server is the app.listen() function which starts our server.
+
+We will now start disussing sections that we haven’t previously discussed about.

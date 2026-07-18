@@ -1,6 +1,7 @@
 const path = require('path');
 const organizeDirectory = require('./organizer');
 
+
 // Extract arguments from CLI input: node app.js <directory-path>
 const args = process.argv.slice(2);
 const targetPath = args[0];
