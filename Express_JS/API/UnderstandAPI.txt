@@ -1,0 +1,196 @@
+What is an API?
+API stands for Application Programming Interface. The application can be any software that 
+performs a specific task and the interface is a point where two applications communicate.
+
+One application acts as a client and the other acts as a server. A client asks for some 
+resource, say for example a photo, and the server sends that photo to the client.
+
+The client here can be your mobile phone, desktop or laptop computer, or any device you use
+ to surf the internet. And the server is a bigger computer that stores the data you 
+ want (a photo in our case).
+
+ Suppose I want a nature photograph to upload to my travel blog. I might go onto the 
+ Unsplash website, type "nature: in the search bar, and it would return a large number 
+ of nature photographs.
+
+That's an API working behind the scenes to make the conversation between Unsplash and me 
+happen.
+
+How Do APIs Work?
+Computers follow a protocol to communicate with each other. A protocol is nothing but a set 
+of rules that computers follow to communicate. Any computer that doesn't follow the protocol
+ breaks the communication thread.
+
+You might have used Bluetooth to share data back in the day. Bluetooth is nothing but a 
+protocol for mobile devices to communicate with each other at a shorter distance.
+
+When you ask your friend to send you photos of their last trip, your device acts as a 
+client, and your friend's device (the one that sends photos) is the server.
+
+This is just an example of a protocol. We have a large number of protocols in the world of 
+computer science – one for almost anything.
+
+On the web, we use the HTTP protocol (which stands for Hyper Text Transfer Protocol). APIs 
+available on the web use the HTTP protocol for a number of reasons - it's easy to use and 
+it's popular, for example.
+
+Communications that take place over the HTTP protocol are also known as the request-response
+ cycle because this is exactly how the protocol works. The client sends a request to the 
+ server and the server responds to the client regarding that request.
+
+Unlike humans, computers have to be rigid to communicate with each other or they break the 
+communication. For this reason, a client (requesting computer/ device) needs a set of 
+information to send with the request so the server responds accordingly. This information 
+includes:
+
+URL – a web address where you want to make a request
+Method – whether you want data already stored somewhere or want to save new data in a 
+database
+Header – all the relevant information about your request including in what format the 
+client device expects to receive the data
+Body – the body contains the actual request data
+
+
+
+Let's go deep on HTTP methods — these are the "verbs" that tell the server what action you
+ want to take. Here's each one, explained simply with real examples.
+The Core Idea
+Every HTTP request has two parts that matter here:
+
+The URL → what thing you're working with (/users/5)
+The method → what you want to do to that thing
+
+Same URL, different method, different result.
+GET — "Show me"
+Fetches data. Never changes anything on the server.
+GET /users/5
+→ Returns user #5's data. You can call this 1000 times, nothing on the server changes.
+Real-world feel: Like looking through a shop window. Looking doesn't change what's inside.
+POST — "Create a new one"
+Creates something new. Every time you call it, a new thing gets made.
+POST /users
+Body: { "name": "Ahmed", "email": "ahmed@mail.com" }
+→ Creates a new user. Call it twice with the same data → you get two different users
+ with two different IDs.
+Real-world feel: Like submitting a form to open a new bank account — each submission
+ opens a new account, even with the same details.
+PUT — "Replace this entirely"
+Replaces the whole resource with what you send. If it doesn't exist, some APIs create 
+it; if it exists, it's fully overwritten.
+PUT /users/5
+Body: { "name": "Ahmed", "email": "ahmed@mail.com" }
+→ User 5 is now exactly this data. If user 5 previously had a "phone" field and you don't 
+include it in your PUT body, that phone field gets wiped out — because PUT replaces 
+everything.
+Call it 5 times with the same body → same result every time. This is called idempotent.
+PATCH — "Update just this part"
+Updates only the fields you send, leaving everything else untouched.
+PATCH /users/5
+Body: { "email": "newemail@mail.com" }
+→ Only the email changes. Name, phone, everything else stays as it was.
+PUT vs PATCH — the classic confusion:
+PUTPATCHSendsEntire resourceOnly the changed fieldsEffectFull replacementPartial 
+updateAnalogyRepainting the whole carTouching up one scratch
+DELETE — "Remove this"
+Deletes the resource.
+DELETE /users/5
+→ User 5 is gone. Call it again → user 5 is still gone (no error, no double-delete issue).
+ That's also idempotent — the end state is the same no matter how many times you call it.
+Quick Summary Table
+MethodActionChanges data?Idempotent? (safe to repeat)GETReadNoYesPOSTCreateYesNo — repeats 
+create duplicatesPUTReplaceYesYesPATCHPartial updateYesNot guaranteedDELETERemoveYesYes
+Why "idempotent" matters (practical reason)
+Imagine your internet glitches after you hit "submit." Your app auto-retries the request.
+
+If it was a POST (create) → you might now have 2 duplicate orders. Bad.
+If it was a PUT or DELETE → retrying is safe, the end result is identical either way.
+
+This is exactly why REST design pushes you to pick the right method — it's not just style,
+ it protects against real bugs.
+
+
+HTTP status codes
+There is a huge list of HTTP status codes, but let's look at a few of the most common:
+
+200 OK: this indicates that the request was successfully fulfilled by the server
+201 CREATED: the data entry that you requested to create was created
+404 NOT FOUND: this indicates that the resource you requested wasn't found by the server
+500 INTERNAL SERVER ERROR: this means that an error occured at the server's end and it 
+    couldn't fulfill your request
+There is no need to memorize these status codes, as the list is huge and you will 
+    subconsciously learn them as you encounter them in your development journey.
+
+Still, there is a range of status codes that indicates a generic response, as you can see 
+    here:
+
+100s: Informational responses, indicating the request's progress
+200s: Success, indicating the request's success
+300s: Redirection, indicating the request had to redirect somewhere else
+400s: Client errors, indicating errors that occurred on the client side
+500s: Server errors, when the server fails to respond to a valid client request
+
+
+Types of APIs
+API types are mainly categorised by their accessibility and usage. There are four types of 
+    APIs, namely:
+Open (Public) APIs
+Partner APIs
+Internal (Private) APIs
+Composite APIs
+
+Open APIs
+Open APIs are APIs made available to the general public. This encourages developers, 
+organisations, and other people to use them to develop applications, integrate them into 
+their services, and improve them. Open APIs provide standardised access to data or services 
+over the Internet.
+
+Some very useful Open APIs include:
+
+TradeWatch – Real-time financial market data
+
+SerpAPI’s Search API – Real-time Google SERP API
+
+TwitterApi.io – Access real-time and historical data
+
+Instagram Post Generator – Generate posts with templates from popular IG pages
+
+Partner APIs
+Partner APIs are shared with specific business partners and often require authentication 
+and agreements. They perform essential functions for businesses and applications.
+
+For example, a payment API like Paystack directly communicates with service providers and
+ banking platforms to process payments for products and services.
+
+Internal APIs
+Internal APIs are used for internal communication within an organisation. They enable 
+integration and streamline internal processes. Internal teams use the API to access and 
+share data between their applications. The API is not exposed to the public, ensuring that
+ sensitive business logic remains secure.
+
+An example is a company’s internal API that connects its HR, payroll, and project 
+management systems.
+
+Composite APIs
+Composite APIs combine multiple API calls into a single request. They are instrumental 
+in microservices architectures, where a single operation may require data from several 
+services. A single API call triggers requests to multiple underlying APIs, and the 
+composite API then combines the responses and returns a unified result.
+
+For example, an e-commerce platform might use a composite API to fetch product details,
+ pricing, and inventory information in one go, reducing latency and simplifying the 
+ integration process.
+
+
+
+Types of API Architecture
+APIs are structured differently depending on use case, scalability, security, and 
+accessibility. There are multiple ways to structure an API, but we will only focus on 
+the most prevalent architectural styles used in Web development. They include:
+
+REST
+
+SOAP
+
+GraphQL
+
+gRPC
