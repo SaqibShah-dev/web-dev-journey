@@ -1,0 +1,112 @@
+What even is JSON?
+
+JSON (JavaScript Object Notation) is just a text format for organizing data. Think of 
+it as a universal way for different programs — written in different languages — to hand
+ data back and forth without getting confused. Your React frontend, your Python backend,
+  your database, a mobile app — they can all read and write JSON without needing 
+  a translator.
+
+Despite the name, you don't need JavaScript to use it. Basically every language has 
+built-in support.
+
+The basic shapes
+
+There are really only two containers you need to know:
+
+Objects — key/value pairs wrapped in { }
+
+json
+{
+  "username": "alex_dev",
+  "isOnline": true
+}
+
+Arrays — ordered lists wrapped in [ ]
+
+json
+["React", "Node.js", "PostgreSQL"]
+
+You'll almost always see them combined — arrays of objects, objects containing 
+arrays, etc:
+
+json
+{
+  "project": "Todo App",
+  "techStack": ["React", "Express", "MongoDB"],
+  "contributors": [
+    { "name": "Alex", "role": "frontend" },
+    { "name": "Sam", "role": "backend" }
+  ]
+}
+The six data types (that's it, only six)
+Type	Example	Notes
+String	"hello"	Double quotes only — single quotes break it
+Number	42 or 3.14	No separate "integer" vs "float" type
+Boolean	true / false	Lowercase, no quotes
+Null	null	Means "explicitly nothing"
+Array	[1, 2, 3]	Ordered list
+Object	{"a": 1}	Key/value pairs
+The rules that trip beginners up
+
+This is where most bugs come from, so pay attention here:
+
+Keys must be in double quotes. {name: "Alex"} is invalid. {"name": "Alex"} is valid.
+No trailing commas. {"a": 1, "b": 2,} — that last comma will break the whole thing.
+No comments allowed. You can't do // this is a note in a JSON file. Annoying, but that's 
+the spec.
+No single quotes. Always double quotes for strings and keys.
+Using it in code (the two functions you'll use constantly)
+
+Turning a JSON string into a real JS object — you do this whenever you get data back from 
+an API:
+
+javascript
+const jsonString = '{"name": "Alex", "age": 28}';
+const user = JSON.parse(jsonString);
+console.log(user.name); // "Alex"
+
+Always wrap this in a try/catch — if the string isn't valid JSON, it'll throw an error 
+instead of quietly failing:
+
+javascript
+try {
+  const user = JSON.parse(jsonString);
+} catch (err) {
+  console.error("That wasn't valid JSON:", err.message);
+}
+
+Turning a JS object into a JSON string — you do this when sending data to an API:
+
+javascript
+const user = { name: "Alex", age: 28 };
+const jsonString = JSON.stringify(user);
+// '{"name":"Alex","age":28}'
+
+Pro tip: pass null, 2 as extra arguments to get nicely indented, readable
+ output (great for debugging or writing config files):
+
+javascript
+JSON.stringify(user, null, 2);
+Where you'll actually see this in real projects
+APIs: when your frontend calls a backend endpoint, the request body and response are 
+almost always JSON, with the header Content-Type: application/json.
+Config files: package.json, VS Code settings, Docker configs — all JSON.
+Databases: MongoDB literally stores documents as JSON-like objects (technically BSON, 
+but same idea).
+One good habit to build early
+
+Once you're accepting JSON from outside your app (a user, a third-party API), don't just
+ trust it blindly. Use JSON Schema to validate the shape before your code touches it:
+
+json
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age": { "type": "integer", "minimum": 0 }
+  },
+  "required": ["name"]
+}
+
+This catches bad data at the door instead of causing a confusing crash three functions deep
+ into your app.

@@ -1,0 +1,101 @@
+Environment Variables
+Environment variables are key-value pairs that live outside your code, in the environment 
+your process runs in, rather than hardcoded into your files. Node exposes them to you 
+through the global process.env object.
+
+console.log(process.env.DATABASE_URL);
+console.log(process.env.PORT);
+
+Why Not Just Hardcode Values?
+
+Three real reasons, not just "best practice" hand-waving:
+
+Secrets shouldn't be in your codebase. Your code goes into git, git gets pushed to GitHub,
+ GitHub is often public or has many collaborators. An API key or DB password committed to 
+ git is compromised the moment it's pushed — and even if you delete it later, it's still in 
+ your git history unless you rewrite it.
+Same code, different environments. Your app needs a different database URL 
+locally vs staging vs production. You don't want three copies of your code — you want
+ one codebase that reads process.env.DATABASE_URL, and each environment supplies its
+  own value.
+Config changes without redeploying code. Need to rotate an API key or flip a feature
+ flag? Change the environment variable, restart the process — no code change, no 
+ new deploy, no PR.
+
+Setting Them Up Locally with dotenv
+
+In local development, you create a .env file in your project root:
+
+# .env
+DATABASE_URL=postgresql://localhost:5432/mydb
+PORT=3000
+JWT_SECRET=some-long-random-string
+STRIPE_API_KEY=sk_test_abc123
+
+Then load it at the very top of your entry file:
+
+js
+// Node 20.6+ has this built in, no package needed:
+process.loadEnvFile();
+
+// Or with the dotenv package (works on any Node version):
+require('dotenv').config();
+
+Once loaded, every key becomes available on process.env as a 
+string (important gotcha below)
+
+
+Critical: Add .env to .gitignore Immediately
+
+Before you even create the .env file, put this in .gitignore:
+
+.env
+.env.local
+
+This is genuinely one of the most common beginner mistakes — I'd bet it's caused more
+ real-world security incidents than almost any other single Node mistake. Bots actively 
+ scan public GitHub repos for exposed .env files and API keys within minutes of a push. 
+ If you ever do commit one by accident:
+
+Rotate/revoke that secret immediately (assume it's compromised, don't just delete the file)
+Removing it from the latest commit isn't enough — it's still in git history unless you
+ rewrite history (git filter-repo or similar) or the repo is deleted
+
+
+.env.example — the pattern for teams
+
+Since .env is gitignored, teammates cloning your repo have no idea what variables they 
+need. Commit a template instead:
+
+# .env.example (this one IS committed)
+DATABASE_URL=
+PORT=3000
+JWT_SECRET=
+STRIPE_API_KEY=
+
+New devs copy it (cp .env.example .env) and fill in real values. This is standard
+ practice on any real team.
+
+
+Gotchas Worth Knowing Now
+Everything in process.env is a string. PORT=3000 gives you "3000", not 3000. If you do math
+ or comparisons, convert it: Number(process.env.PORT).
+Validate on startup, don't discover missing vars at runtime. A senior habit: check required
+ env vars exist when the app boots, and crash loudly with a clear error if not — instead of 
+ your app silently failing halfway through a request three hours later because JWT_SECRET 
+ was undefined.
+
+const required = ['DATABASE_URL', 'JWT_SECRET'];
+for (const key of required) {
+  if (!process.env[key]) {
+    throw new Error(`Missing required env var: ${key}`);
+  }
+}
+
+In production, you usually don't use a .env file at all. Hosting platforms 
+(Railway, Render, Vercel, AWS) give you a dashboard or CLI to set environment 
+variables directly on the server — the .env file is really a local development 
+convenience. .env files are for your laptop; production environments inject variables 
+at the platform level.
+Never console.log(process.env) in code that might run in production logs — that dumps 
+every secret into your logging system, which is often less locked-down than you'd assume.

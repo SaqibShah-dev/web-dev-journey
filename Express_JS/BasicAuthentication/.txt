@@ -1,0 +1,100 @@
+Basic Auth
+    Basic Auth sends the raw username/password on every single request. That's fine for 
+    a quick internal tool, but for a real app with a login page, you want the user to log in 
+    once and then get something else to prove they're still logged in — not resend their 
+    password over and over. That "something else" is either a session ID or a JWT.
+
+The core reason: HTTP has no memory
+
+HTTP is a stateless protocol. Every single request — loading a page, calling an API, 
+fetching an image — is treated by the server as a completely fresh, unrelated event. 
+The server has no built-in concept of "oh, this is the same person who logged in a minute 
+ago."
+
+So with Basic Auth specifically, there's no login step that creates a token or session. 
+There's nothing else the server could check on the second request — it never "remembers"
+ you from the first one. The only way it can verify you're still you is if you attach your
+  credentials again.
+
+Walking through it request by request
+Request 1: GET /profile
+Headers: Authorization: Basic YWxleDpwYXNz
+→ Server decodes it, checks alex:pass → OK → sends back profile data
+
+Request 2: GET /orders  (even 2 seconds later)
+Headers: Authorization: Basic YWxleDpwYXNz
+→ Server has ZERO memory of Request 1. It decodes THIS header fresh,
+   checks alex:pass again → OK → sends back orders
+
+If you forget to attach the header on Request 2, the server has no idea who you are — it 
+treats you like a total stranger, even though you were just verified two seconds ago.
+
+Why this is different from sessions/JWT
+
+This is exactly the gap that sessions and JWT were invented to close:
+
+	What gets sent each request	Why
+Basic Auth	Full username + password	No "memory" exists anywhere — password is the only 
+proof
+Sessions	Just a random session ID (cookie)	The proof (verified identity) lives on the 
+server, ID is just a lookup key
+JWT	The signed token	Proof is baked into the token itself, so it can be re-checked 
+without a password
+
+So it's really a spectrum of "what has to be resent to prove who I am":
+
+Basic Auth: resend the actual secret (password) every time
+Sessions/JWT: log in once with the password, then resend a substitute (session ID or token) 
+that proves you already logged in — without exposing the password again
+Why this makes Basic Auth risky
+
+Since the raw password travels on literally every request, it's exposed way more often than 
+in a login-once system:
+
+If it's ever intercepted (e.g. sent over plain HTTP), the attacker gets your actual password,
+ not just a token they could invalidate
+Every request is a chance for something to log it accidentally — server logs, browser history,
+ proxy logs
+There's no way to "log out" — the browser just keeps sending the credentials as long as it
+ has them cached; the server can't revoke access without changing the actual password
+
+
+Option 1: Sessions
+
+The idea: after login, the server creates a record of "this user is logged in" and stores it
+ somewhere (memory, or more commonly Redis in production). It gives the browser a random 
+ ID — the session ID — stored in a cookie. On every future request, the browser sends that
+  cookie back, and the server looks up the session ID in its storage to figure out who you 
+  are.
+
+// Simplified login flow
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const user = await verifyCredentials(username, password); // checks bcrypt hash
+
+  req.session.userId = user.id; // stored server-side (e.g. in Redis)
+  res.send('Logged in');
+  // Express automatically sets a cookie like: connect.sid=s%3Aabc123...
+});
+
+app.get('/profile', (req, res) => {
+  if (!req.session.userId) return res.status(401).send('Not logged in');
+  res.send(`Hello user ${req.session.userId}`);
+});
+
+
+
+Option 2: JWTs (JSON Web Tokens)
+
+The idea: instead of the server remembering anything, it packs the user info into a token,
+ cryptographically signs it, and hands it to the client. The client sends that token back on 
+ every request. The server just verifies the signature — no database lookup needed.
+
+A JWT looks like three Base64 chunks separated by dots:
+
+eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjF9.4Adcj3UFYzPUVaVF43FmMab6RlaQD8A9V8wFzzht-KQ
+   header          .        payload         .         signature
+
+You can decode the header and payload right now (they're just Base64, same as Basic Auth) — 
+but you cannot forge the signature without the server's secret key. That's the whole 
+security model: the data is readable but not tamperable.

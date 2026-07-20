@@ -139,3 +139,424 @@ Cacheable                Responses say if/how long they can be reused
 Uniform Interface        Consistent, predictable structure everywhere
 Layered System           Client doesn't need to know what's behind the API
 Code on Demand(Optional)  server can send executable code
+
+
+In REST, a resource is simply any "thing" your API manages — a piece of data or an object that has its own identity. Almost everything in a REST API design starts with figuring out: what are my resources?
+
+Simple Definition
+
+A resource = a noun (a thing), not an action.
+
+Examples of resources in a typical app:
+
+A user
+A product
+An order
+A comment
+An account
+
+Not resources (these are actions, not things): login, createOrder, sendEmail — these describe what to do, not a thing. In REST, the action is expressed by the HTTP method (GET/POST/etc.), not the resource name.
+
+Every Resource Gets a URL (its "address")
+
+Once you identify something as a resource, you give it a unique URL:
+
+/users        → the "users" resource (a collection)
+/users/5      → one specific user (user #5)
+/products     → the "products" resource
+/orders/12    → one specific order
+Two Types of Resources
+1. Collection Resource
+
+Represents a group of items.
+
+GET /customers
+
+→ Returns all customers.
+
+2. Singleton Resource
+
+Represents one specific item inside that collection.
+
+GET /customers/123
+
+→ Returns just customer #123.
+
+Analogy: Think of a filing cabinet.
+
+The whole drawer labeled "Customers" = the collection resource (/customers)
+One specific folder inside it, labeled "Customer #123" = the singleton resource (/customers/123)
+Sub-Resources (Resources Inside Resources)
+
+Resources can also be related to each other, and REST models that relationship right in 
+the URL path:
+
+GET /customers/123/orders
+
+→ "Give me all the orders belonging to customer 123."
+
+GET /customers/123/orders/45
+
+→ "Give me order #45, which belongs to customer 123."
+
+This is called a sub-collection resource — a collection that only makes sense in the 
+context of its "parent" resource.
+
+Why This Matters So Much in REST Design
+
+Almost the entire design process of a REST API comes down to answering:
+
+What are my resources? (users, products, orders...)
+How do they relate to each other? (an order belongs to a customer, a comment belongs to a 
+post)
+What URL represents each one?
+
+Once you've mapped this out, the HTTP methods (GET/POST/PUT/PATCH/DELETE) just naturally 
+apply on top — you're not inventing new patterns for every feature.
+
+Quick Example —        Mapping a Blog to Resources
+Real-world thing	    Resource	        URL
+All blog posts	      Collection	       /posts
+One blog post	       Singleton	       /posts/7
+Comments on that post	Sub-collection	   /posts/7/comments
+One specific comment	Sub-resource	   /posts/7/comments/3
+The post's author	   Related resource	   /posts/7/author
+
+
+A URI (Uniform Resource Identifier) is simply the "address" or "name" you use to identify
+ a resource in your API. Every resource in REST must have one unique URI.
+
+Breaking Down the Name
+Uniform → follows a consistent, standard format everywhere
+Resource → the "thing" it's pointing to (a user, a product, an order)
+Identifier → it uniquely identifies that one thing, like an ID card
+
+So a URI is literally: "a standard way to name and locate a specific resource."
+
+URI vs URL — The Confusion Beginners Always Hit
+
+People use these words interchangeably, but technically:
+
+URI = the general concept of "an identifier for a resource" (broader term)
+URL = a URI that also tells you where/how to locate it (i.e., includes the protocol, 
+like https://)
+https://api.example.com/books/1
+└──────────┬──────────┘└───┬───┘
+        URL part        URI part
+     (how to reach it)  (what it identifies)
+
+In practice: almost every URI you'll deal with in REST API design is also a URL, since 
+it includes the full address (https://...). So don't stress too much over 
+this distinction — just know URL is the more specific/common term people 
+actually use day-to-day.
+
+Example URI Structure
+http://localhost:8080/book-service/books/1
+
+Breaking this apart:
+
+Part	Meaning
+http://localhost:8080	Where the server lives (protocol + host + port)
+/book-service	The service/API name
+/books	The resource (collection)
+/1	The specific resource ID (singleton)
+
+So this URI says: "On this server, in the book-service, give me book #1."
+
+Why REST Cares So Much About Good URIs
+
+A well-designed URI should be predictable just by reading it — you shouldn't need 
+documentation to guess what it does.
+
+Good URI design:
+
+GET /users              → list of users
+GET /users/5            → user #5
+GET /users/5/orders     → orders belonging to user 5
+
+Bad URI design (breaks REST conventions):
+
+GET /getAllUsers
+GET /user?id=5
+GET /fetchOrdersForUser?userId=5
+
+These work technically, but they're inconsistent, verb-based, and every endpoint invents 
+its own pattern — meaning a developer has to relearn the rules for every single one.
+
+Key Rules for Good URIs (from earlier in the article)
+Use nouns, not verbs → /orders not /getOrders
+Use plural nouns → /users not /user
+Use hyphens for readability → /user-profiles not /user_profiles
+Use lowercase letters only
+No trailing slashes → /users not /users/
+No file extensions → /users not /users.json
+Model relationships as nested paths → /customers/123/orders
+Quick Analogy
+
+Think of a URI like a home address:
+
+It should be structured the same way for every house (street, city, 
+zip — consistent format)
+Anyone reading it should immediately understand where to go
+You wouldn't want one house labeled "the blue one near the bakery" and another 
+labeled "123 Main Street" — that inconsistency makes the whole system harder to use
+
+The core takeaway: A URI is your API's "naming system" for everything it manages.
+ Get this right, and your whole API feels intuitive; get it wrong, and every 
+ endpoint feels like a surprise.
+
+
+Best Practices : Do’s and Don’ts
+
+1. Use Proper HTTP Methods (Verbs) for API Operations
+
+The article stresses using the right HTTP method for the right job, based on whether
+ you're working with a collection (like /customers) or a single item (like /customers/1).
+
+Here's the table from the article, using an e-commerce example:
+
+Resource	POST	GET	PUT	DELETE
+/customers	Create a new customer	Retrieve all customers	Bulk update of customers	
+Remove all customers
+/customers/1	Error (can't POST to a specific item)	Retrieve details for customer 1	
+Update customer 1 if it exists	Remove customer 1
+/customers/1/orders	Create a new order for customer 1	Retrieve all orders for
+ customer 1	Bulk update orders for customer 1	Remove all orders for customer 1
+
+Key nuance the article calls out — POST vs PUT vs PATCH, since these confuse everyone:
+
+POST → creates a new resource inside a collection. Can also be used to trigger an 
+action that isn't strictly "creating" something (e.g., POST /orders/5/cancel).
+PUT → creates or fully replaces a resource at a specific URI. Requires sending the 
+entire resource.
+PATCH → partial update — only send the fields that changed.
+
+And critically: PUT must be idempotent (repeating it gives the same result), while 
+POST and PATCH are not guaranteed to be.
+
+2. Use Nouns (Plural) to Represent Resources
+
+REST URIs should name a thing, not an action — because things have properties 
+(like a database table), while actions don't.
+
+✅ Good:
+
+GET /users
+GET /accounts/{accountNumber}
+
+❌ Avoid:
+
+GET /create-order      ← verb-based, avoid
+GET /student           ← singular, should be /students
+
+Rule of thumb: always plural, always a noun.
+
+3. Use Sub-Resources for Relations
+
+When one resource "belongs to" another, model that relationship as a nested path:
+
+Method	Endpoint	Meaning
+GET	/posts/{id}/comments	All comments on a post
+GET	/posts/{id}/comments/{commentId}	One specific comment
+POST	/posts/{id}/comments	Add a new comment to a post
+GET	/cars/711/drivers	All drivers of car 711
+GET	/cars/711/drivers/4	Driver #4 of car 711
+
+This keeps relationships clear and readable directly from the URL, without needing extra 
+documentation.
+
+4. Focus on Readability and Consistency
+
+This is a group of small but important formatting rules:
+
+a) No trailing slash
+
+❌ GET /device-management/managed-devices/
+✅ GET /device-management/managed-devices
+
+b) Use hyphens, not other cases, for readability
+
+✅ GET /device-management/managed-devices
+❌ GET /devicemanagement/manageddevices   (no separation, hard to read)
+❌ GET /My-Folder/my-doc                  (inconsistent casing)
+
+c) Avoid underscores, camelCase, and PascalCase
+
+✅ GET /managed-entities/{id}/install-script-location   ← most readable (kebab-case)
+⚠️  GET /managed_entities/{id}/install_script_location   ← readable but inconsistent 
+with web conventions
+❌ GET /managedEntities/{id}/installScriptLocation       ← least readable
+
+d) No file extensions in URIs
+
+❌ /device-management/managed-devices.xml
+✅ /device-management/managed-devices
+
+The response format should be controlled by headers (like Accept: application/json), 
+not baked into the URL.
+
+e) Never use CRUD function names in the URI — this is a big one:
+
+❌ HTTP GET  /get-managed-devices
+❌ HTTP POST /create-managed-devices
+
+✅ HTTP GET    /managed-devices           (Get all devices)
+✅ HTTP POST   /managed-devices           (Create new device)
+✅ HTTP GET    /managed-devices/{id}      (Get one device)
+✅ HTTP PUT    /managed-devices/{id}      (Update device)
+✅ HTTP DELETE /managed-devices/{id}      (Delete device)
+
+The method already says "get," "create," "delete" — repeating that in the URL text 
+is redundant and breaks convention.
+
+f) Don't use verbs in the URI at all
+
+❌ GET /scripts/{id}/execute     ← this is RPC-style, not REST
+✅ POST /scripts                 ← better: create a script "run" using POST
+✅ GET /scripts/{id}/status      ← checking status is fine (status is a noun/resource)
+5. Use HTTP Response Status Codes
+
+Always return the correct status code so clients know instantly what happened, without 
+needing to parse the response body. The article includes the full standard list, grouped 
+by category:
+
+Range	Meaning	Common examples
+1xx	Informational	100 Continue
+2xx	Success	200 OK, 201 Created, 204 No Content
+3xx	Redirection	301 Moved Permanently, 304 Not Modified
+4xx	Client error (your fault)	400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not
+ Found, 409 Conflict
+5xx	Server error (their fault)	500 Internal Server Error, 503 Service Unavailable
+
+The point: don't just return 200 OK for everything (a common beginner mistake) — the status
+ code itself should carry meaning.
+
+Putting It All Together — A "Good" vs "Bad" API Side by Side
+❌ Bad	✅ Good
+GET /getAllUsers	GET /users
+POST /createUser	POST /users
+GET /user/5	GET /users/5
+GET /deleteUser/5	DELETE /users/5
+GET /users_list.json	GET /users (with Accept: application/json header)
+Always returns 200 OK	Returns 201 Created, 404 Not Found, etc. as appropriate
+
+The one-sentence summary of this entire section: name things like nouns, let HTTP methods
+ do the verbs, keep URLs clean and consistent, and let status codes tell the truth about 
+ what happened.
+
+
+ Let's build a Notes App API (simple, but covers everything: collections, single items, relationships). I'll walk you through the thinking process step by step, not just hand you the answer.
+
+Step 1: What are our Resources?
+
+First question to ask: what "things" (nouns) does this app manage?
+
+For a notes app:
+
+A Note (title, content, date created)
+Maybe: a Category or Tag (e.g., "Work", "Personal") that notes belong to
+
+Let's keep it simple for now — just Notes. We can add categories later once the basics feel natural.
+
+Step 2: Design the URLs (resources → URIs)
+
+Following the rules we covered (nouns, plural, lowercase):
+
+What we want to do	Method	URL
+Get all notes	GET	/notes
+Get one specific note	GET	/notes/:id
+Create a new note	POST	/notes
+Replace a note completely	PUT	/notes/:id
+Update part of a note	PATCH	/notes/:id
+Delete a note	DELETE	/notes/:id
+
+Quick check — does this follow our rules?
+✅ Nouns, not verbs
+✅ Plural (/notes not /note)
+✅ No trailing slash
+✅ No verbs like /get-notes or /delete-note
+
+Step 3: What does a single "Note" look like?
+
+Let's define its shape (this becomes your JSON structure):
+
+json
+{
+  "id": 1,
+  "title": "Grocery List",
+  "content": "Milk, eggs, bread",
+  "createdAt": "2026-07-20T10:00:00Z"
+}
+
+Question for you: does this cover what you'd want a note to have, or do you want to add anything — like a "pinned" boolean, or a "tags" array?
+
+Step 4: Design each endpoint's request/response
+
+Let's do the first one together as an example — GET /notes:
+
+GET /notes
+
+Response → 200 OK
+
+json
+[
+  { "id": 1, "title": "Grocery List", "content": "Milk, eggs, bread" },
+  { "id": 2, "title": "Meeting Notes", "content": "Discuss Q3 roadmap" }
+]
+
+And POST /notes (creating one):
+
+POST /notes
+Body: { "title": "New Idea", "content": "Build a notes app" }
+
+Response → 201 Created
+
+json
+{ "id": 3, "title": "New Idea", "content": "Build a notes app" }
+
+
+
+
+
+PUT/notes/{id} (update notes)
+PUT /notes/3
+Body: { "title": "New something", "content": "Build a notes app" }
+
+Response → 200 OK
+
+json
+{ "id": 3, "title": "New something", "content": "Build a notes app" }
+
+
+
+Get/notes/{id} (get specific notes)
+
+Get/notes/3
+
+Response → 200 OK
+json
+{ "id": 3, "title": "New something", "content": "Build a notes app" }
+
+
+Delete/notes (delete all data)
+
+DELETE /notes
+Response → 204 No Content
+
+
+Delete/notes/{id}  (delete specific notes)
+
+Delete/notes/3
+Response → 204
+
+
+Patch/notes/id (update partially notes)
+
+Patch/notes/3
+Body:{"content":"update partially"}
+Response → 200
+{
+   "id": 3,
+   "title": "New something",
+   "content": "update partially"
+}
