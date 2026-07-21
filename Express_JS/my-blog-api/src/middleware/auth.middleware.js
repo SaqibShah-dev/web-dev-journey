@@ -5,6 +5,10 @@ const AppError = require('../utils/AppError');
 // Protects routes: verifies the JWT in the Authorization header and
 // attaches the decoded user info to req.user for downstream handlers.
 function requireAuth(req, res, next) {
+  if (!req || !req.headers) {
+    return next(new AppError('Authentication required', 401));
+  }
+
   const header = req.headers.authorization; // "Bearer <token>"
 
   if (!header || !header.startsWith('Bearer ')) {

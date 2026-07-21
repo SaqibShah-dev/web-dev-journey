@@ -4,6 +4,7 @@ const postsRoutes = require('./posts.routes');
 
 const router = express.Router();
 
+
 // app.js only ever imports this one file — adding a new feature
 // means adding one line here, not editing app.js.
 router.use('/auth', authRoutes);

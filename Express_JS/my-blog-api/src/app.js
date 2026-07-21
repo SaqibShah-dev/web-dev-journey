@@ -5,6 +5,8 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
+console.log("in app.js file")
+
 // Parses incoming JSON bodies into req.body
 app.use(express.json());
 
