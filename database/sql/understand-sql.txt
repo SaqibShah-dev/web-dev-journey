@@ -1,0 +1,178 @@
+1. SQL Basics & Core Fundamentals
+SQL (Structured Query Language): The universal standard language used to store, manipulate, 
+and retrieve data from Relational Database Management Systems (RDBMS) like PostgreSQL, 
+MySQL, SQL Server, and Oracle.
+
+Data Types: Define what kind of data a column can hold (e.g., INT for numbers, VARCHAR for 
+text, DATE for calendar dates, BOOLEAN for true/false, JSON for unstructured documents).
+
+Commands: Categorized into four main language subsets:
+
+DDL (Data Definition Language): CREATE, ALTER, DROP, TRUNCATE (defines the structure).
+
+DML (Data Manipulation Language): INSERT, UPDATE, DELETE (modifies the rows).
+
+DQL (Data Query Language): SELECT (retrieves data).
+
+DCL/TCL (Control Languages): GRANT, REVOKE, COMMIT, ROLLBACK (handles permissions and 
+ transactions).
+
+Comments: Code annotations (-- single line or /* multi-line */) ignored by the database 
+  engine.
+
+Wildcards: Special characters used in searches (e.g., % matches any sequence of 
+  characters; _ matches a single character).
+
+
+2. Managing Databases & Tables
+Databases: Containers housing all tables, views, and security rules (CREATE DATABASE, DROP 
+ DATABASE, RENAME).
+
+Tables: Grid structures organized in rows (records) and columns (attributes).
+
+CREATE TABLE: Defines new columns and types.
+
+ALTER TABLE: Adds or modifies columns on an existing table.
+
+TRUNCATE TABLE: Deletes all rows instantly while leaving table structure intact 
+(faster than DELETE).
+
+DROP TABLE: Completely deletes the table and its data from existence.
+
+Auto Increment / Sequences: Automatically generates a unique sequential number for every
+ new row (useful for primary IDs).
+
+3. SQL Queries & Clauses
+Queries:
+
+SELECT: Pulls data from tables (SELECT column_name FROM table_name;).
+
+INSERT INTO: Adds new rows.
+
+UPDATE: Modifies existing row values (always use with WHERE!).
+
+DELETE: Removes specific rows based on criteria.
+
+Clauses (Filtering & Sorting):
+
+WHERE: Filters records before any grouping occurs.
+
+GROUP BY: Groups rows sharing a property so aggregate operations (like sum or count) can be
+ applied.
+
+HAVING: Filters grouped results after GROUP BY completes.
+
+ORDER BY: Sorts results (ASC or DESC).
+
+LIMIT / TOP: Constrains the number of returned rows.
+
+DISTINCT: Eliminates duplicate values in the result set.
+
+WITH (CTE): Creates temporary named result sets that make complex queries readable.
+
+
+4. SQL Operators & Functions
+Operators:
+
+Logical/Filtering: AND, OR, NOT, IN (list matching), BETWEEN (range filtering), LIKE
+  (pattern matching), IS NULL.
+
+Set Operators: UNION (combines results, removes duplicates), UNION ALL (combines, keeps 
+ duplicates), INTERSECT (common rows), EXCEPT (rows in A not in B).
+
+Conditional: CASE WHEN condition THEN output ELSE default END.
+
+Built-in Functions:
+
+String: UPPER(), LOWER(), LTRIM(), RTRIM(), CONCAT().
+
+Aggregate/Statistical: COUNT(), SUM(), AVG(), MIN(), MAX().
+
+Date & Conversion: Extracting years, calculating date differences, and converting data 
+  types (CAST / CONVERT).
+
+
+5. Data Constraints
+Constraints enforce data integrity rules directly at the database level:
+
+NOT NULL: Prevents empty/null entries in a column.
+
+UNIQUE: Guarantees all values in a column are distinct.
+
+PRIMARY KEY: Uniquely identifies each row in a table (combination of NOT NULL and UNIQUE).
+
+FOREIGN KEY: Establishes a link to a Primary Key in another table to preserve referential 
+ integrity.
+
+COMPOSITE KEY: A primary key made from two or more columns combined.
+
+CHECK: Ensures values meet a specific boolean condition (e.g., age >= 18).
+
+DEFAULT: Sets a fallback value if none is supplied during insertion.
+
+6. SQL Joins
+Joins pull related data from across multiple tables into a single output stream.
+
+Inner Join: Returns only rows with matching values in both tables.
+
+Left (Outer) Join: Returns all records from the left table, plus matched records from the
+  right table (unmatched right rows become NULL).
+
+Right (Outer) Join: Returns all records from the right table, plus matched records from the 
+ left table.
+
+Full (Outer) Join: Returns all records when there is a match in either table.
+
+Cross Join: Produces a Cartesian product (combines every row from Table A with every row
+  from Table B).
+
+Self Join: Joining a table to itself (useful for hierarchical data like employee/manager 
+  relationships).
+
+7. SQL Views, Subqueries & Indexes
+Views: Virtual tables saved as named SQL queries. They simplify complex queries and restrict
+ direct access to underlying tables for security.
+
+Subqueries: A query nested inside another query (e.g., WHERE salary > (SELECT AVG(salary) 
+ FROM employees)).
+
+Correlated Subqueries: Subqueries that depend on values from the outer query for each 
+ processed row.
+
+Indexes: Data structures (often B-Trees) that accelerate search speed at the cost of slight 
+ additional storage and write overhead.
+
+Clustered Index: Reorders physical rows on disk (only 1 per table, usually the Primary Key).
+
+Non-Clustered Index: Maintains a separate index structure pointing back to disk rows 
+  (multiple allowed per table).
+
+8. Database Design & Normalization
+Designing a database properly up front prevents data redundancy and operational anomalies:
+
+Entity-Relationship Diagrams (ERDs): Visual blueprints depicting entities (tables), 
+   attributes (columns), and relationships (1-to-1, 1-to-Many, Many-to-Many).
+
+Normalization: Organizing columns and tables to minimize redundancy:
+
+1NF: Atomic values (no list/array entries per cell) and unique column names.
+
+2NF: 1NF + remove partial dependencies (all non-key attributes depend on the entire primary
+  key).
+
+3NF: 2NF + remove transitive dependencies (non-key attributes depend only on the primary 
+  key, not on other non-key attributes).
+
+Denormalization: Reintroducing redundancy intentionally in data warehouses to optimize read
+  performance and reduce expensive join operations.
+
+
+9. Database Security & Operations
+SQL Injection (SQLi): A major vulnerability where attacker inputs manipulate your raw SQL
+ commands. Prevention requires Prepared Statements / Parameterized Queries.
+
+Encryption: Protecting sensitive data at rest (disk encryption) and in transit (SSL/TLS).
+
+Backup & Recovery: Strategies to preserve data state (Full, Differential, Transaction Log 
+  backups) enabling Point-In-Time recovery during incidents.
+
